@@ -71,6 +71,14 @@ a {
 .nav-links a.active {
   color: #b80404; /* Red highlight on hover */
 }
+.red-divider {
+  border: 0;
+  height: 4px;
+  background-color: red;
+  margin: 20px auto;
+  width: 80%;
+  border-radius: 2px;
+}
 
 /* ===== Section ===== */
 section {
