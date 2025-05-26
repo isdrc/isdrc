@@ -73,11 +73,11 @@ a {
 }
 .red-divider {
   border: 0;
-  height: 4px;
-  background-color: red;
+  height: 10px;
+  background-color: #b80404;
   margin: 20px auto;
-  width: 80%;
-  border-radius: 2px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 /* ===== Section ===== */
