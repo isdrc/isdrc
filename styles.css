@@ -35,6 +35,8 @@ a {
   color: #ffffff; /* Black text */
   text-align: center;
   padding: 4rem 2rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .hero-logos {
@@ -71,13 +73,19 @@ a {
 .nav-links a.active {
   color: #b80404; /* Red highlight on hover */
 }
+.red-divider-wrapper {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  line-height: 0; /* eliminates extra vertical spacing */
+}
+
 .red-divider {
   border: 0;
-  height: 5px;
+  height: 2px;
   background-color: #b80404;
-  margin: 20px auto;
+  margin: 0;
   width: 100%;
-  border-radius: 0px;
 }
 
 /* ===== Section ===== */
