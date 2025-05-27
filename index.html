@@ -6,6 +6,13 @@
   <title>ISDRC – Innovation & Skill Development Research Center</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+  <div id="popup-gallery" class="popup-gallery hidden">
+  <div class="popup-content">
+    <span id="popup-close">&times;</span>
+    <div id="popup-images"></div>
+  </div>
+</div>
+  
 <body>
   <header>
     <nav class="navbar">
@@ -55,7 +62,7 @@
     <li>
   📢 <strong>One-Day National Seminar – 7th March 2025</strong><br />
   ISDRC, Department of Physics, Jadavpur University, is going to organize a one-day national seminar on 7th March 2025 named Scientific Innovation and Skill Development for Societal Advancement at the Dr. K.P. Basu Memorial Hall, Engineering Science Building, Jadavpur University, Kolkata. Faculty, Researchers, students, and professionals from all fields are invited to participate.  
-  <a href="https://drive.google.com/file/d/1IiEkStz1VPsEl2Ec4PZxRCbeZCyGaFBb/view?usp=sharing" download>Download Seminar Flyer (PDF)</a>
+  📄 <a href="https://drive.google.com/file/d/1IiEkStz1VPsEl2Ec4PZxRCbeZCyGaFBb/view?usp=sharing" download>Download Seminar Flyer (PDF)</a>
 </li>
 
   </ul>
@@ -64,11 +71,23 @@
 
   <section class="gallery">
     <h2>Gallery</h2>
-    <div class="gallery-images">
-      <img src="img/event1.jpg" alt="Workshop on AI & ML" />
-      <img src="img/event2.jpg" alt="Internship Program" />
-      <img src="img/event3.jpg" alt="Research Symposium" />
-      <img src="img/event4.jpg" alt="Skill Development Session" />
+    <div class="gallery-thumbnails">
+      <div class="gallery-category" data-category="training">
+        <img src="img/training_thumb.jpg" alt="Training Thumbnail" />
+        <p>Training</p>
+      </div>
+      <div class="gallery-category" data-category="seminar">
+        <img src="img/seminar_thumb.jpg" alt="Seminar Thumbnail" />
+        <p>Seminar</p>
+      </div>
+      <div class="gallery-category" data-category="laboratory">
+        <img src="img/laboratory_thumb.jpg" alt="Laboratory Thumbnail" />
+        <p>Laboratory</p>
+      </div>
+      <div class="gallery-category" data-category="members">
+        <img src="img/members_thumb.jpg" alt="Members Thumbnail" />
+        <p>Members</p>
+      </div>
     </div>
   </section>
 
@@ -91,10 +110,86 @@
     <a href="https://drive.google.com/file/d/1v71_dfwiECTWsPInCOjPXdDSUBOEsELr/view?usp=sharing" download class="download-btn">Download Joining Form</a>
   </section>
 
-  <footer>
-    <p>📍 ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
-    <p>&copy; 2025 ISDRC. All rights reserved.</p>
-  </footer>
+ <footer style="padding: 10px 20px; background: #f5f5f5; font-size: 0.9rem; color: #555;">
+
+  <div style="text-align: center;">
+    <p style="margin: 0;">📍 ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
+    <p style="margin: 0;">&copy; 2025 ISDRC. All rights reserved.</p>
+  </div>
+
+  <div style="text-align: right; font-size: 0.6rem; font-weight: normal; font-style: italic; color: #888; user-select: none; margin-top: 4px;">
+    Developed by <a href="https://www.linkedin.com/in/arpanpurkait/" target="_blank" rel="noopener noreferrer" style="color: #888; text-decoration: none;">Arpan Purkait</a>
+  </div>
+
+</footer>
+
+   <!-- Popup gallery container -->
+  <div id="popup-gallery" class="popup-gallery hidden">
+    <div class="popup-content">
+      <span id="popup-close">&times;</span>
+      <div id="popup-images"></div>
+    </div>
+  </div>
+  
+   <script>
+    // Images for each category
+    const galleryData = {
+      training: [
+        "img/training1.jpg",
+        "img/training2.jpg",
+        "img/training3.jpg"
+      ],
+      seminar: [
+        "img/seminar1.jpg",
+        "img/seminar2.jpg"
+      ],
+      laboratory: [
+        "img/laboratory1.jpg",
+        "img/laboratory2.jpg",
+        "img/laboratory3.jpg"
+      ],
+      members: [
+        "img/members1.jpg",
+        "img/members2.jpg",
+        "img/members3.jpg",
+        "img/members4.jpg"
+      ]
+    };
+
+     
+    const popupGallery = document.getElementById('popup-gallery');
+    const popupImagesContainer = document.getElementById('popup-images');
+    const popupClose = document.getElementById('popup-close');
+// Open popup with images of clicked category
+    document.querySelectorAll('.gallery-category').forEach(category => {
+      category.addEventListener('click', () => {
+        const categoryName = category.getAttribute('data-category');
+        const images = galleryData[categoryName];
+        if (images && images.length) {
+          popupImagesContainer.innerHTML = '';
+          images.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = categoryName + " image";
+            popupImagesContainer.appendChild(img);
+          });
+          popupGallery.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Close popup on clicking X
+    popupClose.addEventListener('click', () => {
+      popupGallery.classList.add('hidden');
+    });
+
+    // Close popup when clicking outside content
+    popupGallery.addEventListener('click', (e) => {
+      if (e.target === popupGallery) {
+        popupGallery.classList.add('hidden');
+      }
+    });
+  </script>
 </body>
 </html>
 
