@@ -112,10 +112,13 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #b80404; /* White navbar */
-  padding: 1rem 2rem;
-  color: #ffffff; /* Black text */
-  border-bottom: 1px solid #ccc; /* subtle border */
+  background-color: #b80404;
+  padding: 0.0rem 1.0rem; /* Slightly more padding for better visibility */
+  color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  width: 100%;           /* Full width for mobile responsiveness */
+  max-width: 100%;
+  box-sizing: border-box; /* Ensures padding doesn't exceed width */
 }
 
 .hero {
@@ -322,7 +325,12 @@ footer {
     flex-direction: column;
     gap: 0.5rem;
   }
-
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;         /* Stack items vertically on very small screens */
+    align-items: flex-start;        /* Align left */
+  }
+}
   .card-container, .vision-mission {
     flex-direction: column;
     align-items: center;
