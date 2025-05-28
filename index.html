@@ -17,6 +17,7 @@
   <header>
     <nav class="navbar">
       <div class="logo">ISDRC</div>
+      <div class="hamburger" id="hamburger">&#9776;</div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
@@ -132,6 +133,12 @@
   </div>
   
    <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    });    
     // Images for each category
     const galleryData = {
       training: [
