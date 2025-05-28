@@ -109,6 +109,7 @@ a {
 
 /* ===== Navbar ===== */
 .navbar {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,7 +121,51 @@ a {
   max-width: 100%;
   box-sizing: border-box; /* Ensures padding doesn't exceed width */
 }
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  z-index: 1001;
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
 
+  .hamburger {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background-color: #b80404;
+    height: 100vh;
+    width: 250px;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 4rem;
+    padding-left: 2rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  
+  .nav-links.active {
+    right: 0;
+  }
+}
 .hero {
   background: #ffffff; /* White hero */
   color: #ffffff; /* Black text */
