@@ -1,3 +1,53 @@
+/* Registration form section width adjustment */
+.reg-section {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 2.5rem 2rem;
+}
+@media (min-width: 900px) {
+  .reg-section {
+    max-width: 1000px;
+  }
+}
+/* Registration form 2-column grid for desktop */
+.reg-form-2col .reg-form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+.reg-form-2col .reg-form-grid > * {
+  flex: 1 1 45%;
+  min-width: 200px;
+  box-sizing: border-box;
+  padding: 0.9rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+.reg-form-2col .reg-form-grid select {
+  color: #888;
+}
+@media (max-width: 700px) {
+  .reg-form-2col .reg-form-grid {
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .reg-form-2col .reg-form-grid > * {
+    min-width: 0;
+    width: 100%;
+  }
+}
+/* Disabled submit button style for registration form */
+#submitBtn:disabled {
+  background: #cccccc !important;
+  color: #888 !important;
+  cursor: not-allowed;
+  border: none;
+}
 /* ===== Events More Info Link Hover ===== */
 a[href="https://sites.google.com/view/isdrcjuphysics/"]:hover {
   color: #FFD600 !important;
@@ -346,6 +396,7 @@ p {
 }
 
 /* ===== Join Us Button ===== */
+
 .download-btn {
   display: inline-block;
   margin-top: 1rem;
@@ -354,11 +405,23 @@ p {
   color: white;
   border-radius: 5px;
   font-weight: normal;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .download-btn:hover {
   background-color: #8b0303; /* Darker red on hover */
+}
+
+/* Special style for Online Registration button */
+.download-btn.online-registration {
+  background: #FFD600;
+  color: #b80404;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+.download-btn.online-registration:hover {
+  background: #b80404;
+  color: #FFD600;
 }
 
 /* ===== Contact Form ===== */
