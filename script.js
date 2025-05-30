@@ -1,3 +1,15 @@
+// Change Online Registration button text on hover
+document.addEventListener('DOMContentLoaded', function() {
+  var regBtn = document.getElementById('online-reg-btn');
+  if (regBtn) {
+    regBtn.addEventListener('mouseenter', function() {
+      regBtn.innerHTML = 'Register <span style="font-size:1.2em; vertical-align:middle;">&#8594;</span>';
+    });
+    regBtn.addEventListener('mouseleave', function() {
+      regBtn.textContent = 'Online Registration';
+    });
+  }
+});
 
 
     const hamburger = document.getElementById('hamburger');
