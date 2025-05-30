@@ -1,3 +1,7 @@
+/* ===== Events More Info Link Hover ===== */
+a[href="https://sites.google.com/view/isdrcjuphysics/"]:hover {
+  color: #FFD600 !important;
+}
 .gallery-thumbnails {
   display: flex;
   gap: 20px;
@@ -241,7 +245,7 @@ a {
   /* When sidebar is open, active link is black */
   .nav-links.active li a.active {
     color: #111 !important;
-    text-decoration: underline !important;
+ /*   text-decoration: underline !important; */
     text-underline-offset: 6px;
     text-decoration-thickness: 2px;
   }
