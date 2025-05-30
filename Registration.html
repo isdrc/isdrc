@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISDRC Member Registration</title>
+  <link rel="icon" type="image/png" href="isdrc_logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">ISDRC</div>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="downloads.html">Download Centre</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="reg-section">
+    <h2 style="text-align:center; color:#b80404; margin-bottom:1.5rem;">Register as a Member</h2>
+    <form id="registrationForm" class="reg-form-2col">
+      <div class="reg-form-grid">
+        <input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="qualification" placeholder="Highest Degree (Completed / Ongoing)" required>
+        <input type="text" name="role" placeholder="Position (Student / Researcher / Faculty)" required>
+        <input type="text" name="institution" placeholder="Institution / Organization" required>
+        <select name="gradYear" required>
+          <option value="" disabled selected>Year of Graduation</option>
+        </select>
+      </div>
+      <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.98rem; margin-top: 0.5rem;">
+        <input type="checkbox" id="agreeTerms" style="width: 1.1em; height: 1.1em;"> I confirm that the above information is correct.
+      </label>
+      <button type="submit" class="download-btn online-registration" id="submitBtn" style="margin-top:1.2rem;" disabled>Submit</button>
+    </form>
+  </section>
+
+ <footer style="padding: 10px 20px; background: #f5f5f5; font-size: 0.9rem; color: #555;">
+    <div style="text-align: center;">
+      <p style="margin: 0;">ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
+      <p style="margin: 0;">&copy; 2025 ISDRC. All rights reserved.</p>
+    </div>
+    <div style="text-align: right; font-size: 0.6rem; font-weight: normal; font-style: italic; color: #888; user-select: none; margin-top: 4px;">
+      Developed by <a href="https://www.linkedin.com/in/arpanpurkait/" target="_blank" rel="noopener noreferrer" style="color: #888; text-decoration: none;">Arpan Purkait</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Populate gradYear select with years (1950 to current year)
+    (function() {
+      var select = document.querySelector('select[name="gradYear"]');
+      var currentYear = new Date().getFullYear();
+      var maxYear = currentYear + 5;
+      for (var y = maxYear; y >= 1950; y--) {
+        var opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        select.appendChild(opt);
+      }
+    })();
+
+    // Enable submit button only if all fields are filled and checkbox is checked
+    var agreeTerms = document.getElementById('agreeTerms');
+    var submitBtn = document.getElementById('submitBtn');
+    var form = document.getElementById('registrationForm');
+    var inputs = form.querySelectorAll('input[required], select[required]');
+
+    function validateForm() {
+      let allFilled = true;
+      inputs.forEach(function(input) {
+        if (!input.value) {
+          input.style.borderColor = '#e53935';
+          allFilled = false;
+        } else {
+          input.style.borderColor = '#ccc';
+        }
+      });
+      submitBtn.disabled = !(allFilled && agreeTerms.checked);
+    }
+
+    // Validate on input and change
+    inputs.forEach(function(input) {
+      input.addEventListener('input', validateForm);
+      input.addEventListener('change', validateForm);
+    });
+    agreeTerms.addEventListener('change', validateForm);
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      // Final validation before submit
+      validateForm();
+      if (submitBtn.disabled) return;
+      const data = {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        age: form.age.value,
+        phone: form.phone.value,
+        email: form.email.value,
+        qualification: form.qualification.value,
+        role: form.role.value,
+        institution: form.institution.value,
+        gradYear: form.gradYear.value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbxsYSf89-ltQmRs2DFU4EsGs_fmedLTMnKQw6nfgG3Xr7MhI9lsEK4H3yLEQLzdUHE/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.text())
+      .then(response => {
+        alert("Thank you! Your registration has been submitted.");
+        form.reset();
+        submitBtn.disabled = true;
+        inputs.forEach(function(input) { input.style.borderColor = '#ccc'; });
+      })
+      .catch(error => {
+        alert("Submission failed. Please try again.");
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
