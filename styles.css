@@ -157,6 +157,27 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
   font-weight: normal;
 }
 
+/* Helper: prevent scrolling when mobile sidebar is open */
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* Smooth transitions for theme changes */
+body,
+.navbar,
+section,
+.card,
+.notice-board li,
+footer,
+.popup-content,
+.nav-links,
+.hero,
+.download-btn,
+.theme-toggle {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -167,21 +188,28 @@ a {
 .navbar {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  background-color: #b80404;
-  padding: 0.0rem 1.0rem; /* Slightly more padding for better visibility */
-  color: #ffffff;
-  border-bottom: 1px solid #ccc;
-  width: 100%;           /* Full width for mobile responsiveness */
-  max-width: 100%;
-  box-sizing: border-box; /* Ensures padding doesn't exceed width */
+  background-color: #ffffff; /* white header */
+  padding: 0.5rem 1rem;
+  color: #000000;
+  border-bottom: 1px solid #e6e6e6;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #b80404; /* brand color */
+  cursor: pointer;
+}
+
 .hamburger {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
-  color: #fff;
+  color: #b80404; /* brand color for contrast on white header */
   background: none;
   border-radius: 0;
   box-shadow: none;
@@ -192,6 +220,207 @@ a {
   transform: translateY(-50%);
   z-index: 1001;
 }
+
+/* Theme switch (professional slider) */
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: 0.5rem;
+}
+.theme-switch input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 40px;
+  height: 22px;
+  background: #e6e6e6;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.25s ease;
+}
+.theme-switch input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.theme-switch input[type="checkbox"]:checked {
+  background: #b80404; /* brand red when enabled */
+}
+.theme-switch input[type="checkbox"]:checked::after {
+  transform: translateX(18px);
+  background: #fff;
+}
+.theme-switch .theme-text {
+  font-size: 0.86rem;
+  color: #333;
+  user-select: none;
+}
+.theme-switch input[type="checkbox"]:focus {
+  box-shadow: 0 0 0 3px rgba(184,4,4,0.08);
+}
+
+/* Push the theme switch to the right on wide layouts */
+/* Place switch at end of header only on wider screens */
+@media (min-width: 769px) {
+  /* Push nav links (and following controls) to the right on desktop */
+  .nav-links {
+    margin-left: auto;
+  }
+}
+
+/* Smaller compact switch on narrow screens */
+@media (max-width: 420px) {
+  .theme-switch .theme-text {
+    display: none; /* hide text on very small screens */
+  }
+  .theme-switch input[type="checkbox"] {
+    width: 34px;
+    height: 18px;
+  }
+  .theme-switch input[type="checkbox"]::after {
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    left: 2px;
+  }
+  .theme-switch input[type="checkbox"]:checked::after {
+    transform: translateX(16px);
+  }
+}
+
+/* Dark mode overrides (apply by adding class 'dark' to <body>) */
+body.dark {
+  background-color: #0f1720; /* dark background */
+  color: #e6eef6; /* light text */
+}
+body.dark .navbar {
+  background-color: #0b1220;
+  border-bottom-color: rgba(255,255,255,0.04);
+  color: #e6eef6;
+}
+body.dark .logo,
+body.dark .nav-links a,
+body.dark .hamburger,
+body.dark .theme-switch .theme-text,
+body.dark .theme-switch input[type="checkbox"] {
+  color: #f0b2b2; /* softer brand on dark */
+}
+
+/* Ensure main content and small blocks use readable light text */
+body.dark section,
+body.dark .card,
+body.dark .notice-board li,
+body.dark p,
+body.dark li,
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark .hero,
+body.dark .gallery-category p {
+  background-color: transparent !important;
+  color: #e6eef6 !important;
+}
+
+/* Override common inline white backgrounds and text colors used across pages */
+body.dark .card,
+body.dark .card-container .card,
+body.dark .reg-section,
+body.dark .speakers-list,
+body.dark .contact-info,
+body.dark .gallery-thumbnails,
+body.dark .gallery-category {
+  background-color: transparent !important;
+  color: #e6eef6 !important;
+}
+
+/* Inputs, selects, textareas in dark mode */
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background-color: #0b1620 !important;
+  color: #e6eef6 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+/* Headings that had inline color will be forced to readable color in dark */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5 {
+  color: #e6eef6 !important;
+}
+
+/* Links color tweak for darker backgrounds */
+body.dark a {
+  color: #ffd54d !important;
+}
+
+/* Buttons and accent elements */
+body.dark .download-btn {
+  background-color: #7a0b0b;
+  color: #fff;
+}
+body.dark .download-btn.online-registration {
+  background: #ffd54d;
+  color: #7a0b0b;
+}
+
+body.dark .red-divider {
+  background-color: #7a0b0b;
+}
+
+body.dark footer {
+  background-color: #071018;
+  color: #bdbdbd;
+}
+
+/* Ensure popup overlay and content look good in dark mode */
+body.dark .popup-gallery {
+  background: rgba(0,0,0,0.75);
+}
+body.dark #popup-close {
+  color: #e6eef6;
+}
+
+/* Links in dark mode should be visible and distinct */
+body.dark a,
+body.dark .notice-board a {
+  color: #ffd54d;
+}
+
+/* Make hr/dividers visible on dark */
+body.dark .red-divider {
+  background-color: #b85a5a;
+}
+
+/* Strong overrides for event page: ensure inline-styled headings and speaker blocks are readable */
+body.dark .card,
+body.dark .card *,
+body.dark .speakers-list,
+body.dark .speakers-list *,
+body.dark .speakers-list h4,
+body.dark .speakers-list div {
+  background-color: transparent !important;
+  color: #e6eef6 !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* Specific: ensure emphasized in-speaker text is readable */
+body.dark .speakers-list span,
+body.dark .speakers-list p {
+  color: #dbeaf6 !important;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -208,8 +437,6 @@ a {
     transition: color 0.3s ease;
   }
 
-  /* Hamburger turns black when sidebar is open */
-  .nav-links.active ~ #hamburger,
   .hamburger.active {
     color: #111 !important;
   }
@@ -220,7 +447,7 @@ a {
     right: -100%;
     background-color: #fff; /* White sidebar */
     height: 100vh;
-    width: 200px;
+    width: 220px;
     flex-direction: column;
     gap: 2rem;
     padding-top: 4rem;
@@ -229,9 +456,35 @@ a {
     z-index: 1000;
     box-shadow: -2px 0 12px rgba(0,0,0,0.08);
   }
-  
+
   .nav-links.active {
     right: 0;
+  }
+
+  .nav-links a {
+    color: #b80404;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #FFD600;
+  }
+
+  /* When the switch is moved into the nav menu, style it as a menu item */
+  .nav-links .theme-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-left: 0;
+    padding: 0.6rem 0;
+  }
+  .nav-links .theme-switch .theme-text {
+    color: #b80404;
+    font-size: 0.95rem;
+  }
+  .nav-links .theme-switch input[type="checkbox"] {
+    width: 36px;
+    height: 20px;
   }
 }
 .hero {
@@ -268,9 +521,9 @@ a {
   gap: 1.5rem;
 }
 
-/* Desktop nav links: white */
+/* Desktop nav links: brand red */
 .nav-links a {
-  color: #fff;
+  color: #b80404;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -300,7 +553,7 @@ a {
     text-decoration-thickness: 2px;
   }
 .red-divider-wrapper {
-  width: 100vw;
+  width: 100%;
   margin: 0;
   padding: 0;
   line-height: 0; /* eliminates extra vertical spacing */
@@ -350,7 +603,7 @@ p {
   flex: 1;
   padding: 2rem;
   min-width: 250px;
-  max-width: 400px;
+  max-width: 900px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   border-left: 5px solid #b80404; /* Red accent border */
@@ -489,3 +742,96 @@ footer {
     font-size: 2rem;
   }
 }
+
+
+/* ===== Members page: responsive grid & cards ===== */
+.members-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 1000px;
+  margin: 1.5rem auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.member-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.member-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  object-fit: cover;
+  flex: 0 0 100px;
+  border: 3px solid rgba(0, 33, 164, 0.08);
+}
+
+.member-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.member-name {
+  font-weight: 700;
+  color: #111;
+}
+
+.member-role {
+  font-size: 0.95rem;
+  color: #6b6b6b;
+}
+
+.member-interests {
+  font-size: 0.88rem;
+  color: #444;
+}
+
+.social-icons {
+  margin-top: 0.35rem;
+}
+
+.social-link {
+  color: #032c8a;
+  display: inline-flex;
+  align-items: center;
+}
+.social-link svg { display: block; }
+.social-link:hover { color: #8b0303; }
+
+@media (max-width: 768px) {
+  .members-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .member-avatar {
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+  }
+}
+
+/* Dark mode for members */
+body.dark .member-card {
+  background: transparent !important;
+  border-color: rgba(255,255,255,0.04) !important;
+  box-shadow: none !important;
+  color: #e6eef6 !important;
+}
+
+body.dark .member-name { color: #e6eef6 !important; }
+body.dark .member-role, body.dark .member-interests { color: #cbdff0 !important; }
+body.dark .social-link { color: #ffd54d !important; }
+
+
+
