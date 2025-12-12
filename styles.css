@@ -795,6 +795,11 @@ footer {
   color: #444;
 }
 
+.member-email {
+  font-size: 0.88rem;
+  color: #444;
+}
+
 .social-icons {
   margin-top: 0.35rem;
 }
@@ -830,8 +835,24 @@ body.dark .member-card {
 }
 
 body.dark .member-name { color: #e6eef6 !important; }
-body.dark .member-role, body.dark .member-interests { color: #cbdff0 !important; }
+body.dark .member-role, body.dark .member-interests, body.dark .member-email { color: #cbdff0 !important; }
 body.dark .social-link { color: #ffd54d !important; }
 
+.container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            width: 90%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        }
 
+        /* Image Styling */
+        .construction-img {
+            width: 100%; /* Responsive width */
+            max-width: 400px; /* Maximum size so it doesn't get huge */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px;
+        }
 
