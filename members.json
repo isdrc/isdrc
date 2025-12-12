@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Prof. Nabin Baran Manik",
+    "role": "Coordinator of ISDRC, Head of the Department of Physics, Jadavpur University",
+    "interests": "Instrumentation, low-temperature physics, organic polymer solar cells, renewable energy, circuit design, science communication, and writing on science & philosophy.",
+    "email": "nb_manik@yahoo.co.in",
+    "img": "NBM.jpg",
+    "imgAlt": "Prof. Nabin Baran Manik",
+    "linkedin": "",
+    "scholar": "https://scholar.google.com/citations?user=3RuLZ98AAAAJ&hl=en",
+    "category": "faculties"
+  },
+  {
+    "name": "Dr. Soumyaditya Sutradhar",
+    "role": "Department of Physics, Jadavpur University",
+    "interests": "",
+    "email": "sutradhar.physics@jadavpuruniversity.in",
+    "img": "placeholder.png",
+    "imgAlt": "Dr. Soumyaditya Sutradhar",
+    "linkedin": "",
+    "scholar": "",
+    "category": "faculties"
+  },
+  {
+    "name": "Chinmoy Sarkar",
+    "role": "Founding member of ISDRC, PhD student at Department of Physics, Jadavpur University",
+    "interests": "Microprocessor Programming, Condensed matter physics, Low dimensional physics, Instrumentation",
+    "email": "chinmoys.physics.rs@jadavpuruniversity.in",
+    "img": "Chinmoy Sarkar.jpg",
+    "imgAlt": "Chinmoy Sarkar",
+    "linkedin": "",
+    "scholar": "",
+    "category": "researchers"
+  },
+  {
+    "name": "Niloy Mandal",
+    "role": "Founding member of ISDRC, PhD student at Department of Physics, Jadavpur University",
+    "interests": "Condensed matter physics",
+    "email": "niloymandal202@gmail.com",
+    "img": "members_photos/Niloy Mandal.jpg",
+    "imgAlt": "Niloy Mandal",
+    "linkedin": "",
+    "scholar": "",
+    "category": "researchers"
+  },
+  {
+    "name": "Arpan Purkait",
+    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University",
+    "interests": "Astrophysics, Photonics, Robotics",
+    "email": "arpanpurkait121@gmail.com",
+    "img": "ARPAN_PURKAIT.jpeg",
+    "imgAlt": "Arpan Purkait",
+    "linkedin": "",
+    "scholar": "",
+    "category": "students"
+  },
+  {
+    "name": "Rangan Chakrabarty",
+    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University",
+    "interests": "Quantum Information Theory, Quantum Computation and Quantum Error correction",
+    "email": "ranganc.physics.ug@jadavpuruniversity.in",
+    "img": "members_photos/Rangan Chakrabarty.jpeg",
+    "imgAlt": "Rangan Chakrabarty",
+    "linkedin": "",
+    "scholar": "",
+    "category": "students"
+  },
+  {
+    "name": "Sounak Sarangi",
+    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University",
+    "interests": "Optics and laser",
+    "email": "sarangisounak2004@gmail.com",
+    "img": "members_photos/SOUNAK SARANGI.jpg",
+    "imgAlt": "Sounak Sarangi",
+    "linkedin": "",
+    "scholar": "",
+    "category": "students"
+  }
+]

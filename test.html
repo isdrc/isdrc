@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Members JSON Validation Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .success { color: green; font-weight: bold; }
+    .error { color: red; font-weight: bold; }
+    .info { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Members System Validation</h1>
+  <div id="results"></div>
+  
+  <script>
+    async function validateSetup() {
+      const results = document.getElementById('results');
+      let html = '';
+      
+      // Test 1: Check JSON validity
+      try {
+        const res = await fetch('members.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const members = await res.json();
+        html += `<div class="info"><span class="success">✓ members.json loads successfully</span> (${members.length} members found)</div>`;
+        
+        // Test 2: Check member structure
+        let validMembers = 0;
+        members.forEach((m, i) => {
+          const required = ['name', 'role', 'email', 'img', 'imgAlt', 'category'];
+          const valid = required.every(field => field in m);
+          if (valid) validMembers++;
+        });
+        
+        if (validMembers === members.length) {
+          html += `<div class="info"><span class="success">✓ All ${members.length} members have required fields</span></div>`;
+        } else {
+          html += `<div class="info"><span class="error">✗ Only ${validMembers}/${members.length} members have required fields</span></div>`;
+        }
+        
+        // Test 3: Check categories
+        const categories = new Set(members.map(m => m.category));
+        html += `<div class="info"><span class="success">✓ Categories found:</span> ${Array.from(categories).join(', ')}</div>`;
+        
+        // Test 4: Check script.js loads
+        const script = await fetch('script.js');
+        if (script.ok) {
+          html += `<div class="info"><span class="success">✓ script.js loads successfully</span></div>`;
+        }
+        
+        // Test 5: Summary
+        html += `<div class="info"><strong>Summary:</strong><br>
+          - Faculties: ${members.filter(m => m.category === 'faculties').length}<br>
+          - Researchers: ${members.filter(m => m.category === 'researchers').length}<br>
+          - Students: ${members.filter(m => m.category === 'students').length}<br>
+          - Advisory: ${members.filter(m => m.category === 'advisory').length}
+        </div>`;
+        
+      } catch (err) {
+        html += `<div class="info"><span class="error">✗ Error: ${err.message}</span></div>`;
+      }
+      
+      results.innerHTML = html;
+    }
+    
+    window.addEventListener('DOMContentLoaded', validateSetup);
+  </script>
+</body>
+</html>

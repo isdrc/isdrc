@@ -7,30 +7,12 @@
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   padding: 2.5rem 2rem;
 }
-@media (min-width: 900px) {
-  .reg-section {
-    max-width: 1000px;
-  }
-}
-/* Registration form 2-column grid for desktop */
 .reg-form-2col .reg-form-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1.1rem;
 }
-.reg-form-2col .reg-form-grid > * {
-  flex: 1 1 45%;
-  min-width: 200px;
-  box-sizing: border-box;
-  padding: 0.9rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  margin-bottom: 0;
-}
-.reg-form-2col .reg-form-grid select {
-  color: #888;
-}
+
 @media (max-width: 700px) {
   .reg-form-2col .reg-form-grid {
     flex-direction: column;
@@ -420,6 +402,59 @@ body.dark .speakers-list span,
 body.dark .speakers-list p {
   color: #dbeaf6 !important;
 }
+
+/* Noticeboard - dark mode color calibration */
+body.dark .notice-list {
+  /* keep the list container transparent to blend with page */
+  background: transparent !important;
+}
+
+body.dark .notice-item {
+  background: #07121a; /* very dark card background */
+  border-color: rgba(255,255,255,0.04);
+  color: #e6eef6;
+  box-shadow: none;
+}
+
+body.dark .notice-header-line {
+  color: #9fb3c8; /* muted cyan for meta line */
+}
+
+body.dark .notice-title strong {
+  color: #ffffff !important;
+}
+
+body.dark .notice-summary {
+  color: #cfeaf7;
+}
+
+body.dark .notice-full {
+  color: #e6f7ff;
+}
+
+body.dark .notice-pinned {
+  border-left-color: rgba(255,90,90,0.5);
+}
+body.dark .notice-pinned .notice-header-line::before {
+  background: rgba(255,90,90,0.06);
+  color: #ffb3b3;
+  border-color: rgba(255,90,90,0.12);
+}
+
+body.dark .notice-download {
+  background: #114e3f; /* deep desaturated green */
+  color: #e6eef6 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+body.dark .notice-download:hover {
+  filter: brightness(1.04);
+}
+
+body.dark .notice-readmore {
+  color: #8fbffd; /* gentle blue for interactive text */
+}
+body.dark .notice-readmore:focus { outline: 3px solid rgba(143,191,253,0.12); border-radius: 6px; }
+
 
 @media (max-width: 768px) {
   .navbar {
@@ -832,6 +867,148 @@ body.dark .member-card {
   border-color: rgba(255,255,255,0.04) !important;
   box-shadow: none !important;
   color: #e6eef6 !important;
+}
+
+/* ===== Notice Board - Polished Institutional Styles ===== */
+.notice-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.notice-item {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  padding: 1rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  color: #222;
+}
+
+.notice-pinned {
+  /* Subtle left accent replaced with slimmer, less saturated line */
+  border-left: 4px solid rgba(184,4,4,0.9);
+  padding-left: 0.85rem; /* keep content away from the accent */
+  position: relative;
+}
+
+/* Add a small 'Pinned' badge instead of a dominating vertical bar */
+.notice-pinned .notice-header-line::before {
+  content: "Pinned";
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b80404;
+  background: rgba(184,4,4,0.08);
+  border: 1px solid rgba(184,4,4,0.12);
+  padding: 0.08rem 0.4rem;
+  margin-right: 0.6rem;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.notice-header-line {
+  font-size: 0.92rem;
+  color: #666;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.notice-title strong {
+  font-size: 1.03rem;
+  color: #111;
+}
+
+.notice-summary {
+  margin-top: 0.45rem;
+  color: #333;
+  line-height: 1.45;
+}
+
+.notice-full {
+  margin-top: 0.6rem;
+  color: #222;
+  line-height: 1.6;
+}
+
+.notice-actions {
+  margin-top: 0.65rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.notice-download {
+  background: #f1dfd8;
+  color: #02a86b !important;
+  /* Compact button */
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  min-width: auto;
+  max-width: 240px;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(184,4,4,0.08);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.notice-download:hover { filter: brightness(0.96); transform: translateY(-1px); }
+.notice-download:active { transform: translateY(0); }
+.notice-download:focus { outline: 3px solid rgba(184,4,4,0.15); }
+
+/* Inline SVG icon inside the download link - more flexible and accessible */
+.notice-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem; /* gap between icon and label */
+  color: #02a86b !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+.notice-download-icon {
+  width: 18px; /* slightly larger for better visibility */
+  height: 18px;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(0.5px) scale(1.06); /* subtle scale to appear bolder */
+}
+.notice-download-label {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.notice-readmore {
+  background: transparent;
+  border: none;
+  color: #032c8a;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.25rem;
+}
+.notice-readmore svg { display: inline-block; vertical-align: middle; }
+
+/* small accessibility focus style */
+.notice-readmore:focus { outline: 3px solid rgba(3,44,138,0.12); border-radius: 6px; }
+
+@media (max-width: 700px) {
+  .notice-item { padding: 0.9rem; }
+  .notice-download { padding: 0.4rem 0.6rem; font-size: 0.9rem; }
 }
 
 body.dark .member-name { color: #e6eef6 !important; }

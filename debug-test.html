@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Members Loading Test</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .test-result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    pre { background: #f4f4f4; padding: 10px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>Members Loading Debug Test</h1>
+  <div id="results"></div>
+
+  <script>
+    const resultsDiv = document.getElementById('results');
+
+    async function runTests() {
+      // Test 1: Check if members.json exists
+      try {
+        const res = await fetch('members.json');
+        if (res.ok) {
+          const data = await res.json();
+          const result = document.createElement('div');
+          result.className = 'test-result success';
+          result.innerHTML = `<strong>✓ members.json loaded successfully</strong><br>
+            Contains ${data.length} members:<br>
+            ${data.map(m => `${m.name} (${m.category})`).join('<br>')}`;
+          resultsDiv.appendChild(result);
+        } else {
+          throw new Error('Response status: ' + res.status);
+        }
+      } catch (err) {
+        const result = document.createElement('div');
+        result.className = 'test-result error';
+        result.innerHTML = `<strong>✗ Failed to load members.json</strong><br>Error: ${err.message}`;
+        resultsDiv.appendChild(result);
+      }
+
+      // Test 2: Check if containers exist
+      const containers = ['members-faculties', 'members-researchers', 'members-students', 'members-advisory'];
+      containers.forEach(id => {
+        const container = document.getElementById(id);
+        if (container) {
+          const result = document.createElement('div');
+          result.className = 'test-result success';
+          result.innerHTML = `<strong>✓ Container #${id} exists</strong>`;
+          resultsDiv.appendChild(result);
+        } else {
+          const result = document.createElement('div');
+          result.className = 'test-result error';
+          result.innerHTML = `<strong>✗ Container #${id} NOT found</strong>`;
+          resultsDiv.appendChild(result);
+        }
+      });
+
+      // Test 3: Check script.js
+      const scriptTag = document.querySelector('script[src="script.js"]');
+      if (scriptTag) {
+        const result = document.createElement('div');
+        result.className = 'test-result success';
+        result.innerHTML = `<strong>✓ script.js is loaded</strong>`;
+        resultsDiv.appendChild(result);
+      } else {
+        const result = document.createElement('div');
+        result.className = 'test-result error';
+        result.innerHTML = `<strong>✗ script.js NOT found in HTML</strong>`;
+        resultsDiv.appendChild(result);
+      }
+    }
+
+    // Run tests when page loads
+    window.addEventListener('load', runTests);
+  </script>
+</body>
+</html>
