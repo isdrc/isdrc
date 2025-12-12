@@ -1,10 +1,22 @@
 [
   {
+    "id": "nb-seminar-2026",
+    "title": "National Seminar 2026 - coming soon!",
+    "date": "2025-11-07",
+    "summary": "Get ready for the National Seminar 2026 organized by ISDRC, Jadavpur University.",
+    "content": "We are excited to announce that the Innovation and Skill Development Research Centre (ISDRC), Department of Physics, Jadavpur University, is gearing up to host the National Seminar 2026.\nStay tuned for more details on themes, dates, and submission guidelines by visiting our official website.",
+    "category": "announcement",
+    "link": "",
+    "download": null,
+    "pinned": true,
+    "visible": true
+  },
+  {
     "id": "nb-abstract-2025",
     "title": "Official Release – ISDRC 2025 Abstract Book",
-    "date": "2025-02-15",
+    "date": "2025-09-05",
     "summary": "Abstract Book for the ISDRC Seminar 2025 is published (soft copy available).",
-    "content": "The detailed Abstract Book for the ISDRC Seminar 2025 has been published.\nThe soft copy of the book is available from the download link.",
+    "content": "On this Teachers’ Day, we are pleased to announce that the detailed Abstract Book for the ISDRC Seminar 2025 is being published today. The soft copy of the book is available from the download link. All members, participants, and interested readers are requested to access the book at their convenience.",
     "category": "download",
     "link": "",
     "download": { "url": "https://drive.google.com/uc?export=download&id=1DV9jr7xEbWv5pFa0z7p6-V0OP28IZ04v", "label": "Abstract Book (PDF)" },
@@ -15,7 +27,7 @@
     "id": "nb-call-abstracts-2025",
     "title": "Call for Abstracts – National Seminar 2025",
     "date": "2025-03-07",
-    "summary": "Submit one-page abstracts for the National Seminar by 10 June 2025.",
+    "summary": "Submit one-page abstracts for the National Seminar by 10 June 2025 at isdrcjuphys@gmail.com.",
     "content": "The Innovation and Skill Development Research Centre (ISDRC), Department of Physics, Jadavpur University, invites one-page abstracts for inclusion in the Abstract Book of the National Seminar held on 7th March 2025.\nSubmit your abstract by 10th June 2025 to isdrcjuphys@gmail.com.",
     "category": "call",
     "link": "mailto:isdrcjuphys@gmail.com",
