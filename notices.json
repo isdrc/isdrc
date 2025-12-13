@@ -40,10 +40,10 @@
     "title": "National Seminar Website & Program Schedule",
     "date": "2025-02-20",
     "summary": "Official seminar website and program schedule are now available online.",
-    "content": "We are pleased to announce the official website for the upcoming One-Day National Seminar organized by the ISDRC, Department of Physics, Jadavpur University.\nParticipants can access important updates, program schedule, and session details online.",
+    "content": "We are pleased to announce the official website for the upcoming One-Day National Seminar organized by the ISDRC, Department of Physics, Jadavpur University.\nParticipants can access important updates, program schedule, and session details online. \nVisit Seminar Website: https://sites.google.com/view/isdrcjuphysics/home",
     "category": "announcement",
     "link": "https://sites.google.com/view/isdrcjuphysics/home",
-    "download": { "url": "forms/ISDRC_Program_Schedule.pdf", "label": "Program Schedule (PDF)" },
+    "download": { "url": "https://drive.google.com/uc?export=download&id=1IiEkStz1VPsEl2Ec4PZxRCbeZCyGaFBb", "label": "Program Schedule (PDF)" },
     "pinned": false,
     "visible": true
   },
@@ -55,7 +55,7 @@
     "content": "ISDRC is organizing a one-day national seminar on 7th March 2025 named Scientific Innovation and Skill Development for Societal Advancement at the Dr. K.P. Basu Memorial Hall, Engineering Science Building, Jadavpur University, Kolkata.\nFaculty, researchers, students, and professionals from all fields are invited to participate.",
     "category": "seminar",
     "link": "https://drive.google.com/file/d/1IiEkStz1VPsEl2Ec4PZxRCbeZCyGaFBb/view?usp=sharing",
-    "download": { "url": "https://drive.google.com/file/d/1IiEkStz1VPsEl2Ec4PZxRCbeZCyGaFBb/view?usp=sharing", "label": "Seminar Flyer (PDF)" },
+    "download": { "url": "https://drive.google.com/uc?export=download&id=1Avs53KfCJSqHwsvueyiJwbJtwwl8gcOo", "label": "Seminar Flyer (PDF)" },
     "pinned": false,
     "visible": true
   }

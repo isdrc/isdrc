@@ -240,6 +240,38 @@ function escapeAttr(text) {
   return String(text).replace(/["'&]/g, m => map[m]);
 }
 
+// Sanitize summary HTML to allow safe <a> tags while preventing XSS
+function sanitizeSummaryHtml(text) {
+  // Create a temporary div to parse the text
+  const div = document.createElement('div');
+  div.textContent = text;
+  let html = div.innerHTML;
+
+  // Only allow safe <a> tags with specific attributes
+  // Match: <a href="url" target="_blank">text</a> or variations
+  // Using a more robust regex that handles ampersands in URLs
+  html = html.replace(
+    /&lt;a\s+href=&quot;(.+?)&quot;(?:\s+target=&quot;(.+?)&quot;)?&gt;(.+?)&lt;\/a&gt;/gi,
+    (match, href, target, linkText) => {
+      // Decode the entities in href
+      const decodedHref = href
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"');
+      
+      // Only allow http, https, and mailto protocols
+      if (/^(https?:|mailto:)/.test(decodedHref)) {
+        const safeTarget = target && /^_blank|_self|_parent|_top$/.test(target) ? target : '_blank';
+        return '<a href="' + escapeAttr(decodedHref) + '" target="' + safeTarget + '">' + escapeHtml(linkText) + '</a>';
+      }
+      return escapeHtml(match);
+    }
+  );
+
+  return html;
+}
+
 // Render a single member card with inline SVGs
 function renderMember(member) {
   const name = escapeHtml(member.name || '');
@@ -361,7 +393,8 @@ async function loadNotices() {
 
       const summary = document.createElement('div');
       summary.className = 'notice-summary';
-      summary.textContent = summaryText;
+      // Use innerHTML to allow HTML links in summary, but sanitize to prevent XSS
+      summary.innerHTML = sanitizeSummaryHtml(summaryText);
 
       // Actions (download / external link)
       const actions = document.createElement('div');
