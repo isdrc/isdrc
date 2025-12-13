@@ -122,20 +122,27 @@ const galleryData = {
     "img/training3.jpg"
   ],
   seminar: [
-    "img/seminar1.jpg",
-    "img/seminar2.jpg"
+    "gallery/Copy of DSC_0076.JPG",
+    "gallery/Copy of DSC_0088.JPG",
+    "gallery/Copy of DSC_0133.JPG",
+    "gallery/Copy of DSC_0139.JPG",
+    "gallery/Copy of DSC_0153.JPG",
+    "gallery/Copy of DSC_0174.JPG",
+    "gallery/Copy of DSC_0206.JPG",
+    "gallery/Copy of DSC_0229.JPG",
+    "gallery/Copy of DSC_0256.JPG",
+    "gallery/Copy of DSC_0267.JPG",
+    "gallery/Copy of DSC_0284.JPG",
+    "gallery/Copy of DSC_0326.JPG",
+    "gallery/Copy of DSC_0357.JPG",
+    "gallery/Copy of DSC_0370.JPG",
+    "gallery/Copy of DSC_0400.JPG",
+    "gallery/Copy of DSC_0492.JPG",
+    "gallery/Copy of DSC_0495.JPG",
+    "gallery/Copy of DSC_0572.JPG"
   ],
-  laboratory: [
-    "img/laboratory1.jpg",
-    "img/laboratory2.jpg",
-    "img/laboratory3.jpg"
-  ],
-  members: [
-    "img/members1.jpg",
-    "img/members2.jpg",
-    "img/members3.jpg",
-    "img/members4.jpg"
-  ]
+  laboratory: [],
+  members: [] // Automatically populated from members.json in loadMembers()
 };
 
 const popupGallery = document.getElementById('popup-gallery');
@@ -184,6 +191,10 @@ async function loadMembers() {
     if (!res.ok) throw new Error('Failed to fetch members.json: ' + res.status);
     const members = await res.json();
     console.log('Members loaded:', members.length, 'members');
+
+    // Automatically populate gallery members array from members.json
+    galleryData.members = members.map(member => member.img).filter(img => img);
+    console.log('Gallery members updated:', galleryData.members);
 
     // Group members by category
     const grouped = {
