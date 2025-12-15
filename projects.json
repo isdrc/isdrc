@@ -1,0 +1,50 @@
+{
+  "projects": [
+    {
+      "id": "000001",
+      "date": "SEPTEMBER 05, 2025",
+      "title": "Development of an IoT-based remote temperature and humidity monitoring system using DHT-11 sensor",
+      "authors": [
+        {"name": "Anindya Biswas", "affiliationIndex": "1"},
+        {"name": "Nabin Baran Manik", "affiliationIndex": "1", "email": "nabinb.manik@jadavpuruniversity.in", "isCorresponding": true}
+      ],
+      "affiliations": [
+        "Department of Physics, Jadavpur University, Kolkata - 700032, India"
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "content": "The internet era is experiencing a lot of controlled devices, sending data over the internet, making life easier. Multiple weathering parameters are tracked to forecast the weather. Basic parameters, such as humidity and temperature, can be monitored using inexpensive sensors, which send data over the internet. Using cloud services, we can view the data."
+        },
+        {
+          "type": "paragraph",
+          "content": "This project focuses on designing and implementing a home weather monitoring system using the ESP32 microcontroller, a Cloud platform (e.g. Blynk), and a DHT sensor for monitoring humidity and temperature. The system not only measures ambient temperature and humidity but also allows users to view real-time data through the cloud-based mobile app (e.g. Blynk mobile app), enabling remote interaction from anywhere with internet access. Here, Blynk provides a cloud service. Google Firebase can also be used. "
+        },
+        {
+          "type": "paragraph",
+          "content": "The DHT sensor works on the variable capacitor principle. The dielectric used in it changes its dielectric constant with the change of humidity, thus its capacitance changes. Also, its analog input changes and then it is converted to digital. This DHT sensor has an in-built Analog to Digital converter. Now, the digital signal is communicated serially to ESP32 through I2C protocol. This DHT sensor also includes a thermistor which registers temperature data. After collecting the data from the DHT sensor, the data is processed with any kind of microcontroller, especially one that has Wi-Fi capabilities. ESP32 and other Node-MCU boards can be used, such as ESP8266. Then the processed data is sent to the cloud over the internet. In the mobile app, one can view the weather conditions remotely. The analysis of the data can be portrayed through various kinds of graphs through the app."
+        },
+        {
+          "type": "paragraph",
+          "content": "This project can be used to check the room conditions of elderly people, and we can also monitor the condition of small animal farms without much inspection. This can also be implemented in health centers to check their room condition."
+        },
+        {
+          "type": "paragraph",
+          "content": "Keywords: IoT, ESP-32, DHT-11, Sensor, Cloud, Remote, Humidity and Temperature measurement. "
+        }
+      ],
+      "images": [
+        {
+          "src": "projects_photo/000001/DHT11.png",
+          "alt": "Related Diagram",
+          "caption": "Figure 1:System Architecture Diagram"
+        }
+      ],
+      "moreDetails": {
+        "label": "View Abstract Book",
+        "url": "https://drive.google.com/uc?export=download&id=1DV9jr7xEbWv5pFa0z7p6-V0OP28IZ04v",
+        "target": "_blank"
+      }
+    }
+  ]
+}

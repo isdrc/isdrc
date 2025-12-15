@@ -122,27 +122,20 @@ const galleryData = {
     "img/training3.jpg"
   ],
   seminar: [
-    "gallery/Copy of DSC_0076.JPG",
-    "gallery/Copy of DSC_0088.JPG",
-    "gallery/Copy of DSC_0133.JPG",
-    "gallery/Copy of DSC_0139.JPG",
-    "gallery/Copy of DSC_0153.JPG",
-    "gallery/Copy of DSC_0174.JPG",
-    "gallery/Copy of DSC_0206.JPG",
-    "gallery/Copy of DSC_0229.JPG",
-    "gallery/Copy of DSC_0256.JPG",
-    "gallery/Copy of DSC_0267.JPG",
-    "gallery/Copy of DSC_0284.JPG",
-    "gallery/Copy of DSC_0326.JPG",
-    "gallery/Copy of DSC_0357.JPG",
-    "gallery/Copy of DSC_0370.JPG",
-    "gallery/Copy of DSC_0400.JPG",
-    "gallery/Copy of DSC_0492.JPG",
-    "gallery/Copy of DSC_0495.JPG",
-    "gallery/Copy of DSC_0572.JPG"
+    "img/seminar1.jpg",
+    "img/seminar2.jpg"
   ],
-  laboratory: [],
-  members: [] // Automatically populated from members.json in loadMembers()
+  laboratory: [
+    "img/laboratory1.jpg",
+    "img/laboratory2.jpg",
+    "img/laboratory3.jpg"
+  ],
+  members: [
+    "img/members1.jpg",
+    "img/members2.jpg",
+    "img/members3.jpg",
+    "img/members4.jpg"
+  ]
 };
 
 const popupGallery = document.getElementById('popup-gallery');
@@ -191,10 +184,6 @@ async function loadMembers() {
     if (!res.ok) throw new Error('Failed to fetch members.json: ' + res.status);
     const members = await res.json();
     console.log('Members loaded:', members.length, 'members');
-
-    // Automatically populate gallery members array from members.json
-    galleryData.members = members.map(member => member.img).filter(img => img);
-    console.log('Gallery members updated:', galleryData.members);
 
     // Group members by category
     const grouped = {
@@ -249,38 +238,6 @@ function escapeAttr(text) {
     '&': '&amp;'
   };
   return String(text).replace(/["'&]/g, m => map[m]);
-}
-
-// Sanitize summary HTML to allow safe <a> tags while preventing XSS
-function sanitizeSummaryHtml(text) {
-  // Create a temporary div to parse the text
-  const div = document.createElement('div');
-  div.textContent = text;
-  let html = div.innerHTML;
-
-  // Only allow safe <a> tags with specific attributes
-  // Match: <a href="url" target="_blank">text</a> or variations
-  // Using a more robust regex that handles ampersands in URLs
-  html = html.replace(
-    /&lt;a\s+href=&quot;(.+?)&quot;(?:\s+target=&quot;(.+?)&quot;)?&gt;(.+?)&lt;\/a&gt;/gi,
-    (match, href, target, linkText) => {
-      // Decode the entities in href
-      const decodedHref = href
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"');
-      
-      // Only allow http, https, and mailto protocols
-      if (/^(https?:|mailto:)/.test(decodedHref)) {
-        const safeTarget = target && /^_blank|_self|_parent|_top$/.test(target) ? target : '_blank';
-        return '<a href="' + escapeAttr(decodedHref) + '" target="' + safeTarget + '">' + escapeHtml(linkText) + '</a>';
-      }
-      return escapeHtml(match);
-    }
-  );
-
-  return html;
 }
 
 // Render a single member card with inline SVGs
@@ -404,8 +361,7 @@ async function loadNotices() {
 
       const summary = document.createElement('div');
       summary.className = 'notice-summary';
-      // Use innerHTML to allow HTML links in summary, but sanitize to prevent XSS
-      summary.innerHTML = sanitizeSummaryHtml(summaryText);
+      summary.textContent = summaryText;
 
       // Actions (download / external link)
       const actions = document.createElement('div');

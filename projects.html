@@ -6,6 +6,24 @@
   <title>Projects – ISDRC</title>
   <link rel="icon" type="image/png" href="isdrc_logo.png" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- MathJax for LaTeX equation rendering -->  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      startup: {
+        pageReady: () => {
+          return window.MathJax.typesetPromise();
+        }
+      }
+    };
+  </script>  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- html2pdf for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- IP Address fetcher -->
+  <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
 </head>
 <body>
   <header>
@@ -28,25 +46,22 @@
     </nav>
   </header>
 
-  <section>
+  <!-- Hidden PDF template -->
+  <div id="pdf-template" style="display: none;"></div>
     <h1>Our Projects</h1>
-    <div class="card-container">
-      <div class="card">
-        <h3>Smart Farming with IoT</h3>
-        <p>Using sensors and automation to enhance agricultural productivity.</p>
-      </div>
-      <div class="card">
-        <h3>AI-Based Career Recommendation</h3>
-        <p>An ML tool that suggests career paths based on student aptitude tests.</p>
-      </div>
-      <div class="card">
-        <h3>Remote Learning Platform</h3>
-        <p>Building inclusive online education tools for rural learners.</p>
-      </div>
-      <div class="card">
-        <h3>Energy Efficiency in Campuses</h3>
-        <p>Monitoring and optimizing power usage in educational institutions.</p>
-      </div>
+    <div class="search-bar-container">
+      <input 
+        type="text" 
+        id="project-search" 
+        class="project-search-input" 
+        placeholder="Search projects by title, author, keywords..."
+        aria-label="Search projects"
+      >
+      <span class="search-icon">🔍</span>
+    </div>
+    <div id="search-results-info" class="search-results-info" style="display: none;"></div>
+    <div id="projects-container" class="projects-container">
+      <!-- Projects will be loaded dynamically here -->
     </div>
   </section>
 
@@ -62,6 +77,442 @@
   </div>
 
 </footer>
+<script>
+  // Store all projects for filtering
+  let allProjects = [];
+  let userIP = 'N/A';
+  
+  // Get user IP address
+  function getIP(json) {
+    userIP = json.ip;
+  }
+
+  // Fetch and render projects from projects.json
+  async function loadProjects() {
+    try {
+      const response = await fetch('projects.json');
+      if (!response.ok) throw new Error('Failed to load projects.json');
+      
+      const data = await response.json();
+      allProjects = data.projects;
+      renderProjects(allProjects);
+      
+      // Setup search functionality
+      setupSearch();
+    } catch (error) {
+      console.error('Error loading projects:', error);
+      document.getElementById('projects-container').innerHTML = 
+        '<p style="color: #d32f2f;">Error loading projects. Please try again later.</p>';
+    }
+  }
+  
+  // Render projects to the DOM
+  function renderProjects(projects) {
+    const container = document.getElementById('projects-container');
+    container.innerHTML = ''; // Clear previous content
+    
+    if (projects.length === 0) {
+      const message = document.createElement('p');
+      message.style.cssText = 'text-align: center; color: #666; padding: 2rem;';
+      message.textContent = 'No projects found matching your search.';
+      container.appendChild(message);
+      return;
+    }
+    
+    projects.forEach(project => {
+      // Create project card
+      const projectCard = document.createElement('div');
+      projectCard.className = 'project-card';
+      projectCard.id = `project-${project.id}`;
+      
+      // Create header
+      const header = document.createElement('div');
+      header.className = 'project-header';
+      
+      const date = document.createElement('p');
+      date.className = 'project-date';
+      date.textContent = project.date;
+      header.appendChild(date);
+      
+      // Create download button
+      const downloadBtn = document.createElement('button');
+      downloadBtn.className = 'project-download-btn';
+      downloadBtn.innerHTML = '⬇ PDF';
+      downloadBtn.title = 'Download as PDF';
+      downloadBtn.onclick = () => downloadProjectPDF(projectCard, project.title, project);
+      header.appendChild(downloadBtn);
+      
+      const title = document.createElement('h2');
+      title.textContent = project.title;
+      header.appendChild(title);
+      
+      const metadata = document.createElement('div');
+      metadata.className = 'project-metadata';
+      
+      // Create authors line
+      const authorP = document.createElement('p');
+      authorP.className = 'project-authors';
+      
+      const authorsHtml = project.authors.map(author => 
+        `${author.name}${author.isCorresponding ? '*' : ''}<sup class="author-index">${author.affiliationIndex}</sup>`
+      ).join(', ');
+      
+      authorP.innerHTML = authorsHtml;
+      metadata.appendChild(authorP);
+      
+      // Create affiliations section
+      const affiliationsDiv = document.createElement('div');
+      affiliationsDiv.className = 'project-affiliations';
+      
+      project.affiliations.forEach((affiliation, index) => {
+        const affP = document.createElement('p');
+        affP.className = 'project-affiliation';
+        affP.innerHTML = `<sup class="affiliation-index">${index + 1}</sup> ${affiliation}`;
+        affiliationsDiv.appendChild(affP);
+      });
+      
+      metadata.appendChild(affiliationsDiv);
+      
+      // Create corresponding author email if exists (after affiliations)
+      const correspondingAuthor = project.authors.find(a => a.isCorresponding);
+      if (correspondingAuthor) {
+        const correspondingP = document.createElement('p');
+        correspondingP.className = 'corresponding-author';
+        correspondingP.innerHTML = `* Corresponding author: <a href="mailto:${correspondingAuthor.email}">${correspondingAuthor.email}</a>`;
+        metadata.appendChild(correspondingP);
+      }
+      
+      header.appendChild(metadata);
+      projectCard.appendChild(header);
+      
+      // Create body
+      const body = document.createElement('div');
+      body.className = 'project-body';
+      
+      project.body.forEach(para => {
+        if (para.type === 'paragraph') {
+          const p = document.createElement('p');
+          p.innerHTML = para.content; // Use innerHTML for LaTeX equations
+          body.appendChild(p);
+        }
+      });
+      
+      projectCard.appendChild(body);
+      
+      // Create images section if exists
+      if (project.images && project.images.length > 0) {
+        const imagesDiv = document.createElement('div');
+        imagesDiv.className = 'project-images';
+        
+        project.images.forEach(img => {
+          const figure = document.createElement('figure');
+          figure.className = 'project-figure';
+          
+          const image = document.createElement('img');
+          image.src = img.src;
+          image.alt = img.alt;
+          image.loading = 'lazy';
+          figure.appendChild(image);
+          
+          const figcaption = document.createElement('figcaption');
+          figcaption.textContent = img.caption;
+          figure.appendChild(figcaption);
+          
+          imagesDiv.appendChild(figure);
+        });
+        
+        projectCard.appendChild(imagesDiv);
+      }
+      
+      // Create footer with more details link
+      if (project.moreDetails && project.moreDetails.url) {
+        const footer = document.createElement('div');
+        footer.className = 'project-footer';
+        
+        const link = document.createElement('a');
+        link.href = project.moreDetails.url;
+        link.target = project.moreDetails.target || '_self';
+        link.className = 'more-details-link';
+        link.textContent = (project.moreDetails.label || 'View Details') + ' →';
+        
+        footer.appendChild(link);
+        projectCard.appendChild(footer);
+      }
+      
+      container.appendChild(projectCard);
+    });
+    
+    // Re-render MathJax if it's loaded
+    if (window.MathJax) {
+      setTimeout(() => {
+        window.MathJax.typesetPromise().catch(err => console.log('MathJax rendering error:', err));
+      }, 100);
+    }
+  }
+  
+  // Setup search functionality
+  function setupSearch() {
+    const searchInput = document.getElementById('project-search');
+    const resultsInfo = document.getElementById('search-results-info');
+    
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      
+      if (searchTerm === '') {
+        // Show all projects and hide results info
+        renderProjects(allProjects);
+        resultsInfo.style.display = 'none';
+      } else {
+        // Filter projects
+        const filteredProjects = allProjects.filter(project => {
+          const searchableText = `
+            ${project.title}
+            ${project.author}
+            ${project.affiliation}
+            ${project.body.map(p => p.content).join(' ')}
+          `.toLowerCase();
+          
+          return searchableText.includes(searchTerm);
+        });
+        
+        // Render filtered projects
+        renderProjects(filteredProjects);
+        
+        // Show results info
+        resultsInfo.style.display = 'block';
+        resultsInfo.textContent = `Found ${filteredProjects.length} project${filteredProjects.length !== 1 ? 's' : ''} matching "${escapeHtml(e.target.value)}"`;
+      }
+    });
+    
+    // Clear search on Escape key
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        renderProjects(allProjects);
+        resultsInfo.style.display = 'none';
+      }
+    });
+  }
+  
+  // Utility function to escape HTML special characters
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  // Load projects when DOM is ready
+  document.addEventListener('DOMContentLoaded', loadProjects);
+  
+  // Function to download project card as professional PDF
+  async function downloadProjectPDF(element, projectTitle, projectData) {
+    // Get the IP if not already fetched
+    if (userIP === 'N/A') {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    
+  const currentDate = new Intl.DateTimeFormat("en-GB", {
+  weekday: "short",
+  month: "short",
+  day: "2-digit",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  timeZoneName: "short"
+})
+.format(new Date())
+.replace(",", "");
+    
+    // Create professional PDF content
+    const pdfContent = document.createElement('div');
+    pdfContent.innerHTML = `
+      <style>
+        .pdf-journal-template {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          max-width: 210mm;
+          padding: 4mm 8mm;
+          background: white;
+          color: #333;
+        }
+        
+        .pdf-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 3px solid #032c8a;
+          padding-bottom: 3px;
+          margin-bottom: 3px;
+        }
+        
+        .pdf-logos {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+        }
+        
+        .pdf-logo {
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .pdf-logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        
+        .pdf-org-info {
+          text-align: right;
+        }
+        
+        .pdf-org-info h1 {
+          margin: 0;
+          font-size: 16px;
+          color: #032c8a;
+          font-weight: 700;
+        }
+        
+        .pdf-org-info p {
+          margin: 3px 0 0 0;
+          font-size: 14px;
+          color: #666;
+          font-weight: 500;
+          font-style: italic;
+        }
+        
+        .pdf-article-date {
+          font-size: 10px;
+          color: #999;
+          margin-bottom: 15px;
+          font-weight: 500;
+          text-transform: uppercase;
+        }
+        
+        .pdf-article-title {
+          font-size: 19px;
+          font-weight: 700;
+          color: #032c8a;
+          margin-bottom: 15px;
+          line-height: 1.35;
+        }
+        
+        .pdf-authors {
+          font-size: 12px;
+          margin-bottom: 8px;
+          line-height: 1.5;
+          font-weight: 600;
+          color: #b90a0a;
+          font-style: italic;
+        }
+        
+        .pdf-affiliations {
+          font-size: 10px;
+          color: #666;
+          margin-bottom: 12px;
+          line-height: 1.6;
+        }
+        
+        .pdf-affiliation-item {
+          margin-bottom: 4px;
+        }
+        
+        .pdf-corresponding {
+          font-size: 10px;
+          color: #666;
+          margin-bottom: 15px;
+          font-style: italic;
+        }
+        
+        .pdf-corresponding a {
+          color: #032c8a;
+          text-decoration: none;
+        }
+        
+        .pdf-content {
+          font-size: 11px;
+          line-height: 1.7;
+          color: #333;
+          text-align: justify;
+        }
+        
+        .pdf-content p {
+          margin: 10px 0;
+        }
+        
+        .pdf-footer {
+          margin-top: 40px;
+          padding-top: 12px;
+          border-top: 1px solid #ddd;
+          font-size: 9px;
+          color: #999;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      </style>
+      
+      <div class="pdf-journal-template">
+        <!-- Header -->
+        <div class="pdf-header">
+          <div class="pdf-logos">
+            <div class="pdf-logo"><img src="ju_logo.png" alt="Jadavpur University Logo" /></div>
+            <div class="pdf-logo"><img src="isdrc_logo.png" alt="ISDRC Logo" /></div>
+          </div>
+          <div class="pdf-org-info">
+            <h1>Innovation & Skill Development Research Centre (ISDRC)</h1>
+            <p>Department of Physics, Jadavpur University</p>
+          </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="pdf-article-date">Published: ${projectData.date}</div>
+        
+        <h2 class="pdf-article-title">${projectData.title}</h2>
+        
+        <div class="pdf-authors">
+          ${projectData.authors.map(a => a.name).join(', ')}
+        </div>
+        
+        <div class="pdf-affiliations">
+          ${projectData.affiliations.map((aff, idx) => 
+            `<div class="pdf-affiliation-item"><sup>${idx + 1}</sup> ${aff}</div>`
+          ).join('')}
+        </div>
+        
+        ${projectData.authors.find(a => a.isCorresponding) ? 
+          `<div class="pdf-corresponding">
+            * Corresponding author: <a href="mailto:${projectData.authors.find(a => a.isCorresponding).email}">${projectData.authors.find(a => a.isCorresponding).email}</a>
+          </div>` 
+          : ''}
+        
+        <div class="pdf-content">
+          ${projectData.body.map(p => `<p>${p.content}</p>`).join('')}
+        </div>
+        
+        <!-- Footer -->
+        <div class="pdf-footer">
+          <span>Downloaded on: ${currentDate}</span>
+          <span>System IP Address: ${userIP}</span>
+        </div>
+      </div>
+    `;
+    
+    const opt = {
+      margin: [15, 12, 20, 12],
+      filename: `${projectTitle.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+    };
+    
+    html2pdf().set(opt).from(pdfContent).save();
+  }
+
+</script>
 <script src="script.js"></script>
 </body>
 </html>
