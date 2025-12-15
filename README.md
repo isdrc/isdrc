@@ -34,18 +34,10 @@ This repository hosts the source code and resources for the ISDRC website, inclu
 - JSON  
 - Node.js (optional, for local testing)
 
-## Getting Started
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/isdrc/isdrc.git
-cd isdrc
-
 
 ## Developer
 
-This project is developed by **Arpan Purkait**, an undergraduate student of the **Department of Physics, Jadavpur University**.
+This project is developed by **Arpan Purkait**, an **Bachelor of Science (BS)** student of the **Department of Physics, Jadavpur University**.
 
 **Phone / WhatsApp:** +91 7047137776  
 **Email:** arpanpurkait121@gmail.com
