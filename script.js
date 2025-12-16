@@ -158,37 +158,103 @@ const popupGallery = document.getElementById('popup-gallery');
 const popupImagesContainer = document.getElementById('popup-images');
 const popupClose = document.getElementById('popup-close');
 
-// Open popup with images of clicked category - only if gallery exists
-if (popupGallery && popupImagesContainer && popupClose) {
-  document.querySelectorAll('.gallery-category').forEach(category => {
-    category.addEventListener('click', () => {
-      const categoryName = category.getAttribute('data-category');
-      const images = galleryData[categoryName];
-      if (images && images.length) {
-        popupImagesContainer.innerHTML = '';
-        images.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = categoryName + " image";
-          popupImagesContainer.appendChild(img);
-        });
-        popupGallery.classList.remove('hidden');
-      }
-    });
-  });
+// Inline SVG placeholder (data URL) used when member photo is absent or fails to load
+const PLACEHOLDER_DATAURL = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="100%" height="100%" fill="#f2f2f2" />
+  <g transform="translate(200,150)">
+    <circle r="60" fill="#d9d9d9" />
+    <rect x="-90" y="80" width="180" height="90" rx="10" fill="#e6e6e6" />
+    <text x="0" y="150" font-size="20" text-anchor="middle" fill="#888" font-family="Arial,Helvetica,sans-serif">No Photo</text>
+  </g>
+</svg>`);
 
-  // Close popup on clicking X
-  popupClose.addEventListener('click', () => {
-    popupGallery.classList.add('hidden');
-  });
+function createImageWithFallback(candidates, alt) {
+  const img = document.createElement('img');
+  img.alt = alt || '';
+  img.className = 'popup-thumb';
 
-  // Close popup when clicking outside content
-  popupGallery.addEventListener('click', (e) => {
-    if (e.target === popupGallery) {
-      popupGallery.classList.add('hidden');
+  let index = 0;
+  function tryLoad() {
+    if (!candidates || index >= candidates.length) {
+      img.src = PLACEHOLDER_DATAURL;
+      img.onerror = null;
+      return;
     }
+    img.onerror = tryLoad;
+    img.src = candidates[index++];
+  }
+  tryLoad();
+  return img;
+}
+
+function buildCandidatesFor(path) {
+  if (!path) return [];
+  const p = path.trim();
+  // If path looks absolute or remote, use as-is
+  if (/^(https?:|\/)/i.test(p)) return [p];
+  // Try as-provided, then relative to members_photos, then percent-encoded version
+  const encoded = p.split('/').map(encodeURIComponent).join('/');
+  const candidates = [p, `members_photos/${p}`, encoded, `members_photos/${encoded}`];
+  // remove duplicates
+  return Array.from(new Set(candidates));
+}
+
+// Open popup with images for a category. Always safe to call multiple times.
+async function openGalleryPopupForCategory(categoryName) {
+  if (!popupGallery || !popupImagesContainer) return;
+  let images = galleryData[categoryName] ? galleryData[categoryName].slice() : [];
+
+  if (categoryName === 'members') {
+    try {
+      const res = await fetch('members.json', { cache: 'no-store' });
+      if (res.ok) {
+        const members = await res.json();
+        images = members
+          .map(m => (m.img && m.img.trim()) ? m.img.trim() : null)
+          .filter(Boolean);
+        images = Array.from(new Set(images));
+      }
+    } catch (e) {
+      console.warn('Failed to load members.json for gallery:', e);
+    }
+  }
+
+  // render
+  popupImagesContainer.innerHTML = '';
+  if (!images || images.length === 0) {
+    // show single placeholder
+    popupImagesContainer.appendChild(createImageWithFallback([], 'No images'));
+  } else {
+    images.forEach(src => {
+      const candidates = buildCandidatesFor(src);
+      const img = createImageWithFallback(candidates, categoryName + ' image');
+      popupImagesContainer.appendChild(img);
+    });
+  }
+
+  // show popup and prevent background scroll
+  popupGallery.classList.remove('hidden');
+  document.body.classList.add('no-scroll');
+}
+
+function closeGalleryPopup() {
+  if (!popupGallery || !popupImagesContainer) return;
+  popupGallery.classList.add('hidden');
+  document.body.classList.remove('no-scroll');
+  // keep content so reopening is fast; if you prefer clearing, uncomment next line
+  // popupImagesContainer.innerHTML = '';
+}
+
+// Attach handlers safely (id-based elements may be present on multiple pages)
+if (document.querySelectorAll('.gallery-category').length) {
+  document.querySelectorAll('.gallery-category').forEach(category => {
+    category.addEventListener('click', () => openGalleryPopupForCategory(category.getAttribute('data-category')));
   });
 }
+
+if (popupClose) popupClose.addEventListener('click', closeGalleryPopup);
+if (popupGallery) popupGallery.addEventListener('click', (e) => { if (e.target === popupGallery) closeGalleryPopup(); });
 
 // ===== Member Loading System =====
 async function loadMembers() {
