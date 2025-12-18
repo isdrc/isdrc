@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://isdrc.github.io/isdrc/sitemap.xml
