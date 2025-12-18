@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap generated for ISDRC repository.
+  Design notes:
+  - Uses canonical base URL discovered in `index.html`: https://isdrc.github.io/isdrc/
+  - Includes only SEO-relevant, public pages (excludes debug/test and verification artifacts).
+  - `lastmod` values derived from Git commit timestamps or file mtimes.
+  - `changefreq` and `priority` assigned by page importance and update frequency (heuristic).
+  - Image extensions included for media-rich pages (members, projects, index) using encoded paths.
+  - This file is ready for submission to Google Search Console; replace the base URL only if your canonical domain differs.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Home -->
+  <url>
+    <loc>https://isdrc.github.io/isdrc/</loc>
+    <lastmod>2025-12-16T15:24:11Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/isdrc_logo.png</image:loc>
+      <image:caption>ISDRC logo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/ju_logo.png</image:loc>
+      <image:caption>Jadavpur University logo</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Events -->
+  <url>
+    <loc>https://isdrc.github.io/isdrc/events.html</loc>
+    <lastmod>2025-12-09T19:33:43+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Projects (includes one project image) -->
+  <url>
+    <loc>https://isdrc.github.io/isdrc/projects.html</loc>
+    <lastmod>2025-12-15T06:14:05Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/projects_photo/000001/DHT11.png</image:loc>
+      <image:caption>Project DHT11 sensor image</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Downloads -->
+  <url>
+    <loc>https://isdrc.github.io/isdrc/downloads.html</loc>
+    <lastmod>2025-12-12T06:12:53Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+  <!-- Members (includes member photos) -->
+  <url>
+    <loc>https://isdrc.github.io/isdrc/members.html</loc>
+    <lastmod>2025-12-12T18:40:03Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/NBM.jpg</image:loc>
+      <image:caption>Prof. Nabin Baran Manik</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/ARPAN_PURKAIT.jpeg</image:loc>
+      <image:caption>Arpan Purkait</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/Chinmoy%20Sarkar.jpg</image:loc>
+      <image:caption>Chinmoy Sarkar</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/members_photos/Niloy%20Mandal.jpg</image:loc>
+      <image:caption>Niloy Mandal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/members_photos/Rangan%20Chakrabarty.jpeg</image:loc>
+      <image:caption>Rangan Chakrabarty</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/members_photos/SDS.jpeg</image:loc>
+      <image:caption>Dr. Soumyaditya Sutradhar</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://isdrc.github.io/isdrc/members_photos/SOUNAK%20SARANGI.jpg</image:loc>
+      <image:caption>Sounak Sarangi</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://isdrc.github.io/isdrc/contact.html</loc>
+    <lastmod>2025-12-09T19:33:00+05:30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+
+  <!-- Registration / Join Us -->
+  <url>
+    <loc>https://isdrc.github.io/isdrc/Registration.html</loc>
+    <lastmod>2025-05-30T23:11:01+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.40</priority>
+  </url>
+
+</urlset>
