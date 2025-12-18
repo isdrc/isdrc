@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Sitemap generated for ISDRC repository.
-  Design notes:
-  - Uses canonical base URL discovered in `index.html`: https://isdrc.github.io/isdrc/
-  - Includes only SEO-relevant, public pages (excludes debug/test and verification artifacts).
-  - `lastmod` values derived from Git commit timestamps or file mtimes.
-  - `changefreq` and `priority` assigned by page importance and update frequency (heuristic).
-  - Image extensions included for media-rich pages (members, projects, index) using encoded paths.
-  - This file is ready for submission to Google Search Console; replace the base URL only if your canonical domain differs.
--->
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
