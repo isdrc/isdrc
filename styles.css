@@ -784,7 +784,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
-  max-width: 1000px;
+  max-width: 100%;
   margin: 1.5rem auto 2rem auto;
   padding: 0 1rem;
 }
@@ -817,12 +817,12 @@ footer {
 
 .member-name {
   font-weight: 700;
-  color: #111;
+  color: #00027d;
 }
 
 .member-role {
   font-size: 0.95rem;
-  color: #6b6b6b;
+  color: #003f90;
 }
 
 .member-interests {
@@ -864,9 +864,9 @@ footer {
 /* Dark mode for members */
 body.dark .member-card {
   background: transparent !important;
-  border-color: rgba(255,255,255,0.04) !important;
+  border-color: rgba(0, 35, 139, 0.04) !important;
   box-shadow: none !important;
-  color: #e6eef6 !important;
+  color: #002d5a !important;
 }
 
 /* ===== Notice Board - Polished Institutional Styles ===== */
