@@ -45,7 +45,7 @@
   },
   {
     "name": "Arpan Purkait",
-    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University",
+    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University (Batch 2027)",
     "interests": "Astrophysics, Photonics, Robotics",
     "email": "arpanpurkait121@gmail.com",
     "img": "ARPAN_PURKAIT.jpeg",
@@ -56,7 +56,7 @@
   },
   {
     "name": "Rangan Chakrabarty",
-    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University",
+    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University (Batch 2027)",
     "interests": "Quantum Information Theory, Quantum Computation and Quantum Error correction",
     "email": "ranganc.physics.ug@jadavpuruniversity.in",
     "img": "members_photos/Rangan Chakrabarty.jpeg",
@@ -67,7 +67,7 @@
   },
   {
     "name": "Sounak Sarangi",
-    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University",
+    "role": "Founding member of ISDRC, Undergraduate student at Department of Physics, Jadavpur University (Batch 2027)",
     "interests": "Optics and laser",
     "email": "sarangisounak2004@gmail.com",
     "img": "members_photos/SOUNAK SARANGI.jpg",
@@ -75,5 +75,126 @@
     "linkedin": "",
     "scholar": "",
     "category": "students"
+  },
+  { 
+    "name": "TANMAY KUNDU",
+    "role": "PhD student at Department of Physics, Jadavpur University",
+    "interests": "Material Science", 
+    "email": "tanmaykundu913@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "TANMAY KUNDU", 
+    "linkedin": "", 
+    "scholar": "https://scholar.google.com/citations?user=FvDOwFkAAAAJ&hl=en", 
+    "category": "researchers" 
+  },
+  { 
+    "name": "Subham Kumar", 
+    "role": "Founding member of ISDRC, Undergraduate student at Department of Medicine, ESI-PGIMSR and ESIC Medical College and Hospital and ODC(EZ) (Batch 2030)", 
+    "interests": "Medical Physics, Biophysics, Medical Data Science", 
+    "email": "subham2710kumar@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "Subham Kumar", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  {
+    "name": "Sanket Dolui", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Sound and Acoustic, Computational Physics, IOT, Electronics", 
+    "email": "sanketdolui1@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "Sanket Dolui", 
+    "linkedin": "https://www.linkedin.com/in/sanket-dolui-70b007356", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  { 
+    "name": "Anindya Biswas", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Astronomy, electronics, IoT, Robotics", 
+    "email": "anindya911@duck.com", 
+    "img": "members_photos/", 
+    "imgAlt": "Anindya Biswas", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  { 
+    "name": "Biswaroop Chakraborty", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Mathematics, Circuits designing, Coding", 
+    "email": "biswaroopchakraborty96@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "Biswaroop Chakraborty", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  { 
+    "name": "Aritra Singha Roy", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Electronics, Astrophysics, Quantum physics", 
+    "email": "aritrasingharoy00@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "Aritra Singha Roy", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  { 
+    "name": "Shouvik Datta", 
+    "role": "Postgraduate student at Department of Physics, Jadavpur University (Batch 2026)", 
+    "interests": "Designing and preparation of hardware", 
+    "email": "dattashouvik003@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "Shouvik Datta", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  { 
+    "name": "Tathagata Mitra", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Science, Programming", 
+    "email": "tathamitra007@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "TATHAGATA MITRA", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  }, 
+  { 
+    "name": "Aritra Roy Prodhan", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Wireless Electricity, Biophysics, Relativity and cosmology, Quantum mechanics, number series", 
+    "email": "aritraroyprodhan243@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "Aritra Roy Prodhan", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  { 
+    "name": "Sauhardya Mandal", 
+    "role": "Postgraduate student at Department of  Physics, Jadavpur University (Batch 2027)", 
+    "interests": "Observational Astronomy, Quantum Computing", 
+    "email": "mandalsauhardya@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "SAUHARDYA MANDAL", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+  { "name": "Pranoy Dey", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Quantum Mechanics, Electronics,Wireless Electricity Transportation", 
+    "email": "pranoydey12345@gmail.com", 
+    "img": "members_photos/", 
+    "imgAlt": "PRANOY DEY", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
   }
 ]
+
