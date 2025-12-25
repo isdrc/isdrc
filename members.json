@@ -143,17 +143,6 @@
     "category": "students" 
   },
   { 
-    "name": "Shouvik Datta", 
-    "role": "Postgraduate student at Department of Physics, Jadavpur University (Batch 2026)", 
-    "interests": "Designing and preparation of hardware", 
-    "email": "dattashouvik003@gmail.com", 
-    "img": "members_photos/Shouvik26.png", 
-    "imgAlt": "Shouvik Datta", 
-    "linkedin": "", 
-    "scholar": "", 
-    "category": "students" 
-  },
-  { 
     "name": "Tathagata Mitra", 
     "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
     "interests": "Science, Programming", 
@@ -175,6 +164,16 @@
     "scholar": "", 
     "category": "students" 
   },
+  { "name": "Pranoy Dey", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Quantum Mechanics, Electronics,Wireless Electricity Transportation", 
+    "email": "pranoydey12345@gmail.com", 
+    "img": "members_photos/Pranoy28.png", 
+    "imgAlt": "PRANOY DEY", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
   { 
     "name": "Sauhardya Mandal", 
     "role": "Postgraduate student at Department of  Physics, Jadavpur University (Batch 2027)", 
@@ -186,12 +185,13 @@
     "scholar": "", 
     "category": "students" 
   },
-  { "name": "Pranoy Dey", 
-    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
-    "interests": "Quantum Mechanics, Electronics,Wireless Electricity Transportation", 
-    "email": "pranoydey12345@gmail.com", 
-    "img": "members_photos/Pranoy28.png", 
-    "imgAlt": "PRANOY DEY", 
+    { 
+    "name": "Shouvik Datta", 
+    "role": "Postgraduate student at Department of Physics, Jadavpur University (Batch 2026)", 
+    "interests": "Designing and preparation of hardware", 
+    "email": "dattashouvik003@gmail.com", 
+    "img": "members_photos/Shouvik26.png", 
+    "imgAlt": "Shouvik Datta", 
     "linkedin": "", 
     "scholar": "", 
     "category": "students" 
