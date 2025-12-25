@@ -174,17 +174,6 @@
     "scholar": "", 
     "category": "students" 
   },
-  { 
-    "name": "Sauhardya Mandal", 
-    "role": "Postgraduate student at Department of  Physics, Jadavpur University (Batch 2027)", 
-    "interests": "Observational Astronomy, Quantum Computing", 
-    "email": "mandalsauhardya@gmail.com", 
-    "img": "members_photos/Sauhardya27.png", 
-    "imgAlt": "SAUHARDYA MANDAL", 
-    "linkedin": "", 
-    "scholar": "", 
-    "category": "students" 
-  },
     { 
     "name": "Shouvik Datta", 
     "role": "Postgraduate student at Department of Physics, Jadavpur University (Batch 2026)", 
@@ -192,6 +181,17 @@
     "email": "dattashouvik003@gmail.com", 
     "img": "members_photos/Shouvik26.png", 
     "imgAlt": "Shouvik Datta", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
+    { 
+    "name": "Sauhardya Mandal", 
+    "role": "Postgraduate student at Department of  Physics, Jadavpur University (Batch 2027)", 
+    "interests": "Observational Astronomy, Quantum Computing", 
+    "email": "mandalsauhardya@gmail.com", 
+    "img": "members_photos/Sauhardya27.png", 
+    "imgAlt": "SAUHARDYA MANDAL", 
     "linkedin": "", 
     "scholar": "", 
     "category": "students" 
