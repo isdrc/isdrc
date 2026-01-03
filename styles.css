@@ -873,11 +873,11 @@ body.dark .member-card {
 .notice-list {
   list-style: none;
   margin: 0 auto;
-  padding: 0 1rem;
-  max-width: 1000px;
+  padding: 0 0.1rem;
+  max-width: 90%;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.05rem;
 }
 
 .notice-item {
