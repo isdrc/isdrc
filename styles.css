@@ -36,7 +36,8 @@ a[href="https://sites.google.com/view/isdrcjuphysics/"]:hover {
 }
 .gallery-thumbnails {
   display: flex;
-  gap: 20px;
+  width: 100%;
+  gap: 2.5%;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -44,7 +45,7 @@ a[href="https://sites.google.com/view/isdrcjuphysics/"]:hover {
 .gallery-category {
   cursor: pointer;
   text-align: center;
-  width: 150px;
+  width: clamp(180px, 20vw, 280px);
 }
 
 .gallery-category img {
@@ -111,12 +112,14 @@ a[href="https://sites.google.com/view/isdrcjuphysics/"]:hover {
     }
     
     #popup-images img {
-      max-width: 200px;
-      max-height: 150px;
+      max-width: clamp(220px, 30vw, 280px);
+      max-height: auto;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       cursor: pointer;
       transition: transform 0.3s ease;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
     }
 
     #popup-images img:hover {
