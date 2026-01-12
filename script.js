@@ -9,70 +9,34 @@ document.addEventListener('DOMContentLoaded', function() {
       regBtn.textContent = 'Online Registration';
     });
   }
-  // Initialize theme toggle state from localStorage (checkbox + text)
-  const themeCheckbox = document.getElementById('theme-toggle');
-  const themeText = document.querySelector('.theme-text');
-  const saved = localStorage.getItem('isdrc-dark-mode');
-  const savedDark = saved === 'true';
-  if (savedDark) {
-    document.body.classList.add('dark');
-    if (themeCheckbox) themeCheckbox.checked = true;
-    if (themeText) themeText.textContent = 'Dark';
-  } else {
-    if (themeCheckbox) themeCheckbox.checked = false;
-    if (themeText) themeText.textContent = 'Light';
-  }
-  if (themeCheckbox) {
-    themeCheckbox.addEventListener('change', () => {
-      const isDark = themeCheckbox.checked;
-      document.body.classList.toggle('dark', isDark);
-      if (themeText) themeText.textContent = isDark ? 'Dark' : 'Light';
-      localStorage.setItem('isdrc-dark-mode', isDark ? 'true' : 'false');
-    });
-  }
-  // Move theme switch into nav menu on small screens so it doesn't take header space
-  const themeSwitch = document.querySelector('.theme-switch');
-  const navLinks = document.querySelector('.nav-links');
-  const navbar = document.querySelector('.navbar');
-  const mqMobile = window.matchMedia('(max-width: 768px)');
-  function moveThemeSwitch() {
-    if (!themeSwitch || !navLinks || !navbar) return;
-    if (mqMobile.matches) {
-      if (themeSwitch.parentNode !== navLinks) navLinks.appendChild(themeSwitch);
-    } else {
-      if (themeSwitch.parentNode !== navbar) navbar.appendChild(themeSwitch);
-    }
-  }
-  // initialize and listen for changes
-  moveThemeSwitch();
-  if (mqMobile.addEventListener) mqMobile.addEventListener('change', moveThemeSwitch);
-  else if (mqMobile.addListener) mqMobile.addListener(moveThemeSwitch);
-  window.addEventListener('resize', moveThemeSwitch);
+  
 });
 
 
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  hamburger.classList.toggle('active');
-  // prevent background scrolling when sidebar is open
-  if (navLinks.classList.contains('active')) {
-    document.body.classList.add('no-scroll');
-  } else {
-    document.body.classList.remove('no-scroll');
-  }
-  // Toggle hamburger icon between menu and close (cross)
-  if (hamburger.classList.contains('active')) {
-    hamburger.innerHTML = '&times;'; // Cross icon
-    // Add overlay for closing on outside click
-    addSidebarOverlay();
-  } else {
-    hamburger.innerHTML = '&#9776;'; // Hamburger icon
-    removeSidebarOverlay();
-  }
-});
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    // prevent background scrolling when sidebar is open
+    if (navLinks.classList.contains('active')) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+    // Toggle hamburger icon between menu and close (cross)
+    if (hamburger.classList.contains('active')) {
+      hamburger.innerHTML = '&times;'; // Cross icon
+      // Add overlay for closing on outside click
+      addSidebarOverlay();
+    } else {
+      hamburger.innerHTML = '&#9776;'; // Hamburger icon
+      removeSidebarOverlay();
+    }
+  });
+}
 
 // Overlay logic for closing sidebar on outside click
 function addSidebarOverlay() {
@@ -82,14 +46,17 @@ function addSidebarOverlay() {
     overlay.style.position = 'fixed';
     overlay.style.top = '0';
     overlay.style.left = '0';
-    overlay.style.width = '100vw';
-    overlay.style.height = '100vh';
+    overlay.style.inset = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
     overlay.style.zIndex = '999';
     overlay.style.background = 'rgba(0,0,0,0)'; // invisible but clickable
     overlay.addEventListener('click', () => {
       navLinks.classList.remove('active');
-      hamburger.classList.remove('active');
-      hamburger.innerHTML = '&#9776;';
+      if (hamburger) {
+        hamburger.classList.remove('active');
+        hamburger.innerHTML = '&#9776;';
+      }
       removeSidebarOverlay();
       document.body.classList.remove('no-scroll');
     });
@@ -107,12 +74,43 @@ function removeSidebarOverlay() {
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('active');
-    hamburger.classList.remove('active');
-    hamburger.innerHTML = '&#9776;'; // Reset to hamburger icon
+    if (hamburger) {
+      hamburger.classList.remove('active');
+      hamburger.innerHTML = '&#9776;'; // Reset to hamburger icon
+    }
     removeSidebarOverlay();
     document.body.classList.remove('no-scroll');
   });
 });
+
+// Hide header on scroll down, show on scroll up
+(function() {
+  const navbar = document.querySelector('.navbar');
+  const sideNav = document.querySelector('.nav-links');
+  if (!navbar) return;
+
+  let lastScroll = window.pageYOffset || document.documentElement.scrollTop;
+  let ticking = false;
+  const threshold = 10;
+
+  window.addEventListener('scroll', () => {
+    const current = window.pageYOffset || document.documentElement.scrollTop;
+    if (Math.abs(current - lastScroll) <= threshold) return;
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      // don't hide header if side menu is open
+      const menuOpen = sideNav && sideNav.classList.contains('active');
+      if (current > lastScroll && current > 80 && !menuOpen) {
+        navbar.classList.add('header-hidden');
+      } else {
+        navbar.classList.remove('header-hidden');
+      }
+      lastScroll = current;
+      ticking = false;
+    });
+  }, { passive: true });
+})();
 
 // Images for each category
 const galleryData = {
