@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>All Notices — ISDRC</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo-section" onclick="window.location.href='index.html'" style="cursor:pointer;">
+          <div class="logo-box">
+            <img src="ju_logo.png" alt="ISDRC Logo" class="ju-logo"/>
+          </div>
+          <div class="brand-text">
+            <span class="main-title">Jadavpur University</span>
+            <span class="sub-title">যাদবপুর বিশ্ববিদ্যালয়</span>
+          </div>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="hamburger">
+          <span class="line-1"></span>
+          <span class="line-2"></span>
+          <span class="line-3"></span>
+        </label>
+
+        <div class="nav-row">
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="conference.html">Conference</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="downloads.html">Download Centre</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="notice-board">
+      <div style="text-align:right; margin-bottom:0.6rem;">
+        <a href="index.html">Back to Home</a>
+      </div>
+      <h2 style="text-align:center;">All Notices</h2>
+      <ul id="notice-board-list" class="notice-list"></ul>
+    </section>
+  </main>
+
+  <footer style="padding: 10px 20px; background: #212121; font-size: 0.9rem; color: #FFFFFF;">
+    <div style="text-align: center;">
+      <p style="margin: 0; color: #FFFFFF;">ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
+      <p style="margin: 0; color: #FFFFFF; font-style: italic;">Copyright &copy; 2026 isdrcju.in , All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

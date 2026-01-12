@@ -387,15 +387,20 @@ async function loadNotices() {
     });
     const ordered = pinned.concat(rest);
 
+    // Honor an optional `data-max` attribute on the container to limit items
+    const maxAttr = container.getAttribute('data-max');
+    const max = maxAttr ? parseInt(maxAttr, 10) : NaN;
+    const displayed = (!isNaN(max) && max > 0) ? ordered.slice(0, max) : ordered;
+
     // Clear container
     container.innerHTML = '';
 
-    if (ordered.length === 0) {
+    if (displayed.length === 0) {
       container.innerHTML = '<li class="notice-empty">No notices at this time.</li>';
       return;
     }
 
-    ordered.forEach(notice => {
+    displayed.forEach(notice => {
       const li = document.createElement('li');
       li.className = 'notice-item';
       if (notice.pinned) li.classList.add('notice-pinned');
@@ -533,6 +538,11 @@ async function loadNotices() {
 
       container.appendChild(li);
     });
+
+    // If we sliced the list, expose a flag (DOM) so pages can show a 'See all' link if desired
+    if (!isNaN(max) && ordered.length > displayed.length) {
+      container.setAttribute('data-has-more', 'true');
+    }
 
   } catch (err) {
     console.error('Error loading notices:', err);

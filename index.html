@@ -35,15 +35,9 @@
   <link rel="icon" type="image/png" href="isdrc_logo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-  <div id="popup-gallery" class="popup-gallery hidden">
-  <div class="popup-content">
-    <span id="popup-close">&times;</span>
-    <div id="popup-images"></div>
-  </div>
-</div>
-  
 <body>
-  <nav class="navbar">
+  <header>
+    <nav class="navbar">
       <div class="navbar-container">
         <div class="logo-section" onclick="window.location.href='index.html'" style="cursor:pointer;">
           <div class="logo-box">
@@ -86,23 +80,35 @@
     <h3>Department of Physics, Jadavpur University, Kolkata - 700032</h3>
     <p style="text-align:centre; max-width:100%; line-height:1.5;">The Innovation and Skill Development Research Centre (ISDRC) is an academic and technical activity centre established in 2024. It was created to promote skill-oriented education among young learners in alignment with the National Education Policy (NEP). The centre operates at the intersection of science, technology, and society, motivating students to think both creatively and logically. ISDRC actively encourages hands-on learning, experimentation, and project-based education in interdisciplinary topics. One of its key sections is Teaching and Learning, which guides students toward research opportunities and academic growth.</p>
   </section>
+
 <div class="red-divider-wrapper">
   <hr class="red-divider" />
 </div>
 
-<section class="coordinator-address">
-  <h2 style="text-align: center;">About ISDRC</h2>
-  <p style="text-align:justify; max-width:100%; line-height:1.6;"> The Innovation and Skill Development Research Centre (ISDRC) was established in the Department of Physics at Jadavpur University in 2024 to strengthen innovation and skill education as envisioned by the National Education Policy (NEP). It provides students a powerful space to showcase their work, ideas, and research. 
-  One of the unique and pioneering initiatives of ISDRC is its annual research journal, dedicated primarily to publishing full-length research papers authored by undergraduate and postgraduate students of West Bengal, while also welcoming high-quality contributions from PhD scholars and independent researchers—making it a completely new and first-of-its-kind concept in the region.
-  ISDRC also houses a workshop with fabrication units equipped with instrument and prototyping tools, where students can transform theoretical ideas into functional prototypes and real-world products. From concept development to product fabrication, the centre supports the entire innovation pipeline.
-  Beyond academics and research, ISDRC also serves as a launchpad for entrepreneurship. The centre provides a dedicated platform to support new startups, innovative business ideas, and student-led ventures, guiding them toward growth, sustainability, and real market impact.</p>
+  <section class="coordinator-address" >
+    <h2 style="text-align: center;">About ISDRC</h2>
+    <p style="text-align:justify; max-width:110%; line-height:1.5;"> The Innovation and Skill Development Research Centre (ISDRC) was established in the Department of Physics at Jadavpur University in 2024 to strengthen innovation and skill education as envisioned by the National Education Policy (NEP). It provides students a powerful space to showcase their work, ideas, and research. 
+One of the unique and pioneering initiatives of ISDRC is its annual research journal, dedicated primarily to publishing full-length research papers authored by undergraduate and postgraduate students of West Bengal, while also welcoming high-quality contributions from PhD scholars and independent researchers—making it a completely new and first-of-its-kind concept in the region.
+ISDRC also houses a workshop with fabrication units equipped with instrument and prototyping tools, where students can transform theoretical ideas into functional prototypes and real-world products. From concept development to product fabrication, the centre supports the entire innovation pipeline.
+Beyond academics and research, ISDRC also serves as a launchpad for entrepreneurship. The centre provides a dedicated platform to support new startups, innovative business ideas, and student-led ventures, guiding them toward growth, sustainability, and real market impact.
+</p>
 </section>
+
+<div class="red-divider-wrapper">
+  <hr class="red-divider" />
+</div>
 
 <section class="notice-board">
   <h2 style="text-align: center;">Notice Board</h2>
-  <ul id="notice-board-list" class="notice-list"></ul>
+  <ul id="notice-board-list" class="notice-list" data-max="3"></ul>
+  <div style="text-align:left; margin-left:10% ; margin-top:0.6rem;">
+    <a href="notices.html">See all notices</a>
+  </div>
 </section>
 
+<div class="red-divider-wrapper">
+  <hr class="red-divider" />
+</div>
 
   <section class="gallery">
     <h2 style="text-align: center;">Gallery</h2>
@@ -126,6 +132,10 @@
     </div>
   </section>
 
+<div class="red-divider-wrapper">
+  <hr class="red-divider" />
+</div>
+
   <section class="vision-mission">
     <div class="card">
       <h3 style="text-align: center;">Vision</h3>
@@ -141,13 +151,14 @@
 <li><strong>Publish high-quality academic resources:</strong> Produce an annual research journal, abstract books, technical articles, and digital content that showcase student-led research and technical writing.</li>
 <li><strong>Offer certification-based skill programs:</strong> Deliver short courses and certifications in programming, electronics, computational physics, data science, and emerging technologies to enhance employability and research readiness.</li>
 <li><strong>Organize seminars, workshops, and training:</strong> Connect learners with domain experts from academia and industry to promote knowledge exchange and collaboration.</li>
-<li><strong>Build a digital knowledge repository:</strong> Maintain a searchable archive of project reports, datasets, tutorials, lecture notes, and multimedia resources accessible to students and educators.</li>
 <li><strong>Promote entrepreneurship and employment:</strong> Guide students in idea development, business planning, prototype creation, and early-stage startup support.</li>
 <li><strong>Create an inclusive networking platform:</strong> Enable inter-institutional collaboration and peer-to-peer mentoring through events, hackathons, and research symposia.</li>
-<li><strong>Support academic excellence and career development:</strong> Provide mentoring for higher studies, competitive exams, internships, and research placements.</li>
-<li><strong>Uphold integrity and scientific rigor:</strong> Ensure all ISDRC activities adhere to high academic and ethical standards, promoting reproducible and responsible research.</li>
     </div>
-  </section>
+</section>
+
+<div class="red-divider-wrapper">
+  <hr class="red-divider" />
+</div>
 
   <section class="join-us">
     <h2>Join Us</h2>
@@ -155,9 +166,7 @@
       Become a part of our vibrant community dedicated to innovation and skill development.
     </p>
     <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; margin-top: 1.2rem;">
-      <a href="https://drive.google.com/file/d/1v71_dfwiECTWsPInCOjPXdDSUBOEsELr/view?usp=sharing" download class="download-btn" style="flex:1; min-width:180px; text-align:center;">Download Joining Form</a>
-      <span style="font-weight: bold; color: #b80404; font-size: 1.2em;">or</span>
-      <a href="https://forms.gle/LuDJ6Jc9qsrtgcdt5" class="download-btn online-registration" id="online-reg-btn" style="flex:1; min-width:180px; text-align:center;">Online Registration</a>
+      <a href="https://forms.gle/LuDJ6Jc9qsrtgcdt5" class="download-btn online-registration" id="online-reg-btn" style="flex:1; text-align:center;">Apply now !</a>
     </div>
   </section>
 
