@@ -283,7 +283,7 @@ footer,
 
 
 /* --- Mobile View (Responsive) --- */
-@media (max-width: 712px) {
+@media (max-width: 1200px) {
   .hamburger {
     display: block;
     cursor: pointer;
@@ -431,16 +431,7 @@ footer,
   }
 }
 
-/* On very small screens reduce background size to avoid covering text */
-@media (max-width: 480px) {
-  .hero::before {
-    background-size: 180px auto; /* small thumb-sized image */
-    background-position: left 1rem center;
-  }
-  .hero {
-    padding-left: 1rem;
-  }
-}
+
 
 .nav-links {
   list-style: none;
@@ -1320,6 +1311,3 @@ footer {
     margin: 1rem 0.5rem 1.5rem;
   }
 }
-
-
-
