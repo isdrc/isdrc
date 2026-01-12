@@ -43,49 +43,62 @@
 </div>
   
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">ISDRC</div>
-      <div class="hamburger" id="hamburger">&#9776;</div>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="downloads.html">Download Centre</a></li>
-        <li><a href="members.html">Members</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-      <label class="theme-switch" title="Toggle dark mode">
-        <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
-        <span class="slider" aria-hidden="true"></span>
-        <span class="theme-text">Dark mode Off</span>
-      </label>
+  <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo-section" onclick="window.location.href='index.html'" style="cursor:pointer;">
+          <div class="logo-box">
+            <img src="ju_logo.png" alt="ISDRC Logo" class="ju-logo"/>
+          </div>
+          <div class="brand-text">
+            <span class="main-title">Jadavpur University</span>
+            <span class="sub-title">যাদবপুর বিশ্ববিদ্যালয়</span>
+          </div>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="hamburger">
+          <span class="line-1"></span>
+          <span class="line-2"></span>
+          <span class="line-3"></span>
+        </label>
+
+        <div class="nav-row">
+          <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="conference.html">Conference</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="downloads.html">Download Centre</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
   <section class="hero">
-  <div class="hero-logos">
-    <img src="ju_logo.png" alt="Jadavpur University Logo" class="hero-logo" />
-  </div>
-  <h1>Innovation & Skill Development Research Centre (ISDRC)</h1>
-  <h3>Department of Physics, Jadavpur University, Kolkata - 700032</h3>
-  <p style="text-align:justify; max-width:90%; margin:0.8rem auto; line-height:1.6;">The Innovation and Skill Development Research Centre (ISDRC) is an academic and technical activity centre established in 2024. It was created to promote skill-oriented education among young learners in alignment with the National Education Policy (NEP). The centre operates at the intersection of science, technology, and society, motivating students to think both creatively and logically. ISDRC actively encourages hands-on learning, experimentation, and project-based education in interdisciplinary topics. One of its key sections is Teaching and Learning, which guides students toward research opportunities and academic growth.</p>
-
-</section>
+    <div class="hero-logos">
+      <img src="isdrc_logo.png" alt="ISDRC Logo" class="hero-logo" />
+    </div>
+    <h1>Innovation & Skill Development Research Centre (ISDRC)</h1>
+    <h3>Department of Physics, Jadavpur University, Kolkata - 700032</h3>
+    <p style="text-align:centre; max-width:100%; line-height:1.5;">The Innovation and Skill Development Research Centre (ISDRC) is an academic and technical activity centre established in 2024. It was created to promote skill-oriented education among young learners in alignment with the National Education Policy (NEP). The centre operates at the intersection of science, technology, and society, motivating students to think both creatively and logically. ISDRC actively encourages hands-on learning, experimentation, and project-based education in interdisciplinary topics. One of its key sections is Teaching and Learning, which guides students toward research opportunities and academic growth.</p>
+  </section>
 <div class="red-divider-wrapper">
   <hr class="red-divider" />
 </div>
 
-  <section class="coordinator-address">
-    <h2 style="text-align: center;">About ISDRC</h2>
-    <p style="text-align:justify; max-width:90%; margin:0.8rem auto; line-height:1.6;"> The Innovation and Skill Development Research Centre (ISDRC) was established in the Department of Physics at Jadavpur University in 2024 to strengthen innovation and skill education as envisioned by the National Education Policy (NEP). It provides students a powerful space to showcase their work, ideas, and research. 
-One of the unique and pioneering initiatives of ISDRC is its annual research journal, dedicated primarily to publishing full-length research papers authored by undergraduate and postgraduate students of West Bengal, while also welcoming high-quality contributions from PhD scholars and independent researchers—making it a completely new and first-of-its-kind concept in the region.
-ISDRC also houses a workshop with fabrication units equipped with instrument and prototyping tools, where students can transform theoretical ideas into functional prototypes and real-world products. From concept development to product fabrication, the centre supports the entire innovation pipeline.
-Beyond academics and research, ISDRC also serves as a launchpad for entrepreneurship. The centre provides a dedicated platform to support new startups, innovative business ideas, and student-led ventures, guiding them toward growth, sustainability, and real market impact.
-</p>
-  </section>
+<section class="coordinator-address">
+  <h2 style="text-align: center;">About ISDRC</h2>
+  <p style="text-align:justify; max-width:100%; line-height:1.6;"> The Innovation and Skill Development Research Centre (ISDRC) was established in the Department of Physics at Jadavpur University in 2024 to strengthen innovation and skill education as envisioned by the National Education Policy (NEP). It provides students a powerful space to showcase their work, ideas, and research. 
+  One of the unique and pioneering initiatives of ISDRC is its annual research journal, dedicated primarily to publishing full-length research papers authored by undergraduate and postgraduate students of West Bengal, while also welcoming high-quality contributions from PhD scholars and independent researchers—making it a completely new and first-of-its-kind concept in the region.
+  ISDRC also houses a workshop with fabrication units equipped with instrument and prototyping tools, where students can transform theoretical ideas into functional prototypes and real-world products. From concept development to product fabrication, the centre supports the entire innovation pipeline.
+  Beyond academics and research, ISDRC also serves as a launchpad for entrepreneurship. The centre provides a dedicated platform to support new startups, innovative business ideas, and student-led ventures, guiding them toward growth, sustainability, and real market impact.</p>
+</section>
 
-  <section class="notice-board">
+<section class="notice-board">
   <h2 style="text-align: center;">Notice Board</h2>
   <ul id="notice-board-list" class="notice-list"></ul>
 </section>

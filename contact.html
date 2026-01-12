@@ -10,21 +10,37 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">ISDRC</div>
-      <div class="hamburger" id="hamburger">&#9776;</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="downloads.html">Download Centre</a></li>
-        <li><a href="members.html">Members</a></li>
-        <li><a href="contact.html" class="active">Contact Us</a></li>
-      </ul>
-      <label class="theme-switch" title="Toggle dark mode">
-        <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
-        <span class="slider" aria-hidden="true"></span>
-        <span class="theme-text">Light</span>
-      </label>
+      <div class="navbar-container">
+        <div class="logo-section" onclick="window.location.href='index.html'" style="cursor:pointer;">
+          <div class="logo-box">
+            <img src="ju_logo.png" alt="ISDRC Logo" class="ju-logo"/>
+          </div>
+          <div class="brand-text">
+            <span class="main-title">Jadavpur University</span>
+            <span class="sub-title">যাদবপুর বিশ্ববিদ্যালয়</span>
+          </div>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="hamburger">
+          <span class="line-1"></span>
+          <span class="line-2"></span>
+          <span class="line-3"></span>
+        </label>
+
+        <div class="nav-row">
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="conference.html">Conference</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="downloads.html">Download Centre</a></li>
+            <li><a href="members.html" class="active">Members</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 

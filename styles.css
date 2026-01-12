@@ -6,30 +6,50 @@
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   padding: 2.5rem 2rem;
-}
-.reg-form-2col .reg-form-grid {
+  background-color: #ffffff; /* White hero fallback */
+  color: #000000; /* Black text */
+  text-align: center;
+  padding: 1rem 1rem 0 1rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  position: relative;
+  overflow: hidden; /* prevent any background overflow from creating scroll */
+  /* Make hero fill viewport minus the navbar so landing page shows only hero */
+  min-height: calc(100vh - var(--navbar-height));
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (max-width: 700px) {
-  .reg-form-2col .reg-form-grid {
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-  .reg-form-2col .reg-form-grid > * {
-    min-width: 0;
-    width: 100%;
-  }
+/* Decorative left-anchored background layer with 50% opacity */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('JU_arabinda_bhaban.jpeg');
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  opacity: 40%;
+  pointer-events: none;
+  z-index: 0;
 }
-/* Disabled submit button style for registration form */
-#submitBtn:disabled {
-  background: #cccccc !important;
-  color: #888 !important;
-  cursor: not-allowed;
-  border: none;
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
+
+/* Ensure hero is full-bleed (no side gaps) */
+.hero {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* ===== Events More Info Link Hover ===== */
 a[href="https://sites.google.com/view/isdrcjuphysics/"]:hover {
   color: #FFD600 !important;
@@ -134,12 +154,29 @@ a[href="https://sites.google.com/view/isdrcjuphysics/"]:hover {
   box-sizing: border-box;
 }
 
+:root {
+  /* adjust this if your header/nav height is different */
+  --navbar-height: 72px;
+}
+
+/* Prevent horizontal scrolling on small devices */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   background-color: #ffffff; /* White background */
   color: #000000; /* Black text */
   font-weight: normal;
+}
+
+/* Make media elements responsive by default */
+img, picture, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Helper: prevent scrolling when mobile sidebar is open */
@@ -163,300 +200,142 @@ footer,
   transition: background-color 0.35s ease, color 0.35s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: normal;
-}
-
 /* ===== Navbar ===== */
 .navbar {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #ffffff; /* white header */
-  padding: 0.5rem 1rem;
+  background-color: #ffffff;
   color: #000000;
-  border-bottom: 1px solid #e6e6e6;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 10px 0;
+  border-top: 2px solid #910200;
+  border-bottom: 2px solid #910200;
+  position: sticky; /* keep header visible during scroll */
+  top: 0;
+  z-index: 1200; /* sit above page content while scrolling */
+  backdrop-filter: saturate(120%) blur(4px); /* subtle clarity when over content */
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #b80404; /* brand color */
-  cursor: pointer;
+/* smooth transform when hiding/showing header */
+.navbar {
+  transition: transform 0.25s ease, box-shadow 0.2s ease;
 }
 
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #b80404; /* brand color for contrast on white header */
-  background: none;
-  border-radius: 0;
+/* class applied to hide header on scroll down */
+.navbar.header-hidden {
+  transform: translateY(-110%);
   box-shadow: none;
-  padding: 0;
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
-  z-index: 1001;
 }
-
-/* Theme switch (professional slider) */
-.theme-switch {
-  display: inline-flex;
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.45rem;
-  margin-left: 0.5rem;
+  padding: 0 20px;
 }
-.theme-switch input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 40px;
-  height: 22px;
-  background: #e6e6e6;
-  border-radius: 12px;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-  transition: background-color 0.25s ease;
+/* Brand Section */
+.logo-section { display: flex; align-items: center; }
+.logo-box {
+  background: white;
+  width: 55px; /* Slightly larger to accommodate a detailed logo */
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Traditional academic logos look great in circles */
+  margin-right: 5px;
+  margin-left: 20px;
+  overflow: hidden; 
 }
-.theme-switch input[type="checkbox"]::after {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 16px;
-  height: 16px;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-.theme-switch input[type="checkbox"]:checked {
-  background: #b80404; /* brand red when enabled */
-}
-.theme-switch input[type="checkbox"]:checked::after {
-  transform: translateX(18px);
-  background: #fff;
-}
-.theme-switch .theme-text {
-  font-size: 0.86rem;
-  color: #333;
-  user-select: none;
-}
-.theme-switch input[type="checkbox"]:focus {
-  box-shadow: 0 0 0 3px rgba(184,4,4,0.08);
-}
+.ju-logo { width: 90%; height: 90%; object-fit: contain; }
+.brand-text .main-title { display: block; font-size: 1.2rem; font-weight: bold; }
+.brand-text .sub-title { display: block; font-size: 1rem; opacity: 0.9; }
 
-/* Push the theme switch to the right on wide layouts */
-/* Place switch at end of header only on wider screens */
-@media (min-width: 769px) {
-  /* Push nav links (and following controls) to the right on desktop */
+
+/* Desktop Navigation */
+.nav-links { 
+  position: fixed;
+  top: 0;
+  right: -100%; /* Hidden off-screen */
+  width: 280px;
+  height: 100vh;
+  background: white;
+  flex-direction: column;
+  padding-top: 100px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  transition: 0.4s;
+  list-style: none;
+  z-index: 999;
+}
+.nav-links li a {
+  display: block;
+  padding: 20px;
+  color: #b80404;
+  text-decoration: none;
+  border-bottom: 1px;
+  font-size: 1.0rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+.nav-links li a:hover { color: #0a0091; }
+
+/* Hide Toggle Elements */
+#menu-toggle, .hamburger { display: none; }
+
+
+/* --- Mobile View (Responsive) --- */
+@media (max-width: 712px) {
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 101; /* Keep above the menu */
+    padding: 5px;
+  }
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #b80404;
+    margin: 5px 0;
+    transition: all 0.4s ease-in-out;
+  }
+  /* 1. Rotate the top line 45 degrees */
+  #menu-toggle:checked ~ .hamburger .line-1 {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  /* 2. Make the middle line disappear */
+  #menu-toggle:checked ~ .hamburger .line-2 {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  /* 3. Rotate the bottom line -45 degrees */
+  #menu-toggle:checked ~ .hamburger .line-3 {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
   .nav-links {
-    margin-left: auto;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #0a0091;
+    flex-direction: column;
+    padding-top: 80px;
+    transition: 0.5s ease;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    list-style: none;
   }
+
+  /* when checkbox is checked, open the nav which is inside .nav-row */
+  #menu-toggle:checked ~ .nav-row .nav-links { right: 0; }
+  
+  .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .nav-links li a { display: block; padding: 20px; font-size: 1.1rem; }
 }
 
-/* Smaller compact switch on narrow screens */
-@media (max-width: 420px) {
-  .theme-switch .theme-text {
-    display: none; /* hide text on very small screens */
-  }
-  .theme-switch input[type="checkbox"] {
-    width: 34px;
-    height: 18px;
-  }
-  .theme-switch input[type="checkbox"]::after {
-    width: 14px;
-    height: 14px;
-    top: 2px;
-    left: 2px;
-  }
-  .theme-switch input[type="checkbox"]:checked::after {
-    transform: translateX(16px);
-  }
-}
-
-/* Dark mode overrides (apply by adding class 'dark' to <body>) */
-body.dark {
-  background-color: #0f1720; /* dark background */
-  color: #e6eef6; /* light text */
-}
-body.dark .navbar {
-  background-color: #0b1220;
-  border-bottom-color: rgba(255,255,255,0.04);
-  color: #e6eef6;
-}
-body.dark .logo,
-body.dark .nav-links a,
-body.dark .hamburger,
-body.dark .theme-switch .theme-text,
-body.dark .theme-switch input[type="checkbox"] {
-  color: #f0b2b2; /* softer brand on dark */
-}
-
-/* Ensure main content and small blocks use readable light text */
-body.dark section,
-body.dark .card,
-body.dark .notice-board li,
-body.dark p,
-body.dark li,
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark .hero,
-body.dark .gallery-category p {
-  background-color: transparent !important;
-  color: #e6eef6 !important;
-}
-
-/* Override common inline white backgrounds and text colors used across pages */
-body.dark .card,
-body.dark .card-container .card,
-body.dark .reg-section,
-body.dark .speakers-list,
-body.dark .contact-info,
-body.dark .gallery-thumbnails,
-body.dark .gallery-category {
-  background-color: transparent !important;
-  color: #e6eef6 !important;
-}
-
-/* Inputs, selects, textareas in dark mode */
-body.dark input,
-body.dark textarea,
-body.dark select {
-  background-color: #0b1620 !important;
-  color: #e6eef6 !important;
-  border-color: rgba(255,255,255,0.12) !important;
-}
-
-/* Headings that had inline color will be forced to readable color in dark */
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark h4,
-body.dark h5 {
-  color: #e6eef6 !important;
-}
-
-/* Links color tweak for darker backgrounds */
-body.dark a {
-  color: #ffd54d !important;
-}
-
-/* Buttons and accent elements */
-body.dark .download-btn {
-  background-color: #7a0b0b;
-  color: #fff;
-}
-body.dark .download-btn.online-registration {
-  background: #ffd54d;
-  color: #7a0b0b;
-}
-
-body.dark .red-divider {
-  background-color: #7a0b0b;
-}
-
-body.dark footer {
-  background-color: #071018;
-  color: #bdbdbd;
-}
-
-/* Ensure popup overlay and content look good in dark mode */
-body.dark .popup-gallery {
-  background: rgba(0,0,0,0.75);
-}
-body.dark #popup-close {
-  color: #e6eef6;
-}
-
-/* Links in dark mode should be visible and distinct */
-body.dark a,
-body.dark .notice-board a {
-  color: #ffd54d;
-}
-
-/* Make hr/dividers visible on dark */
-body.dark .red-divider {
-  background-color: #b85a5a;
-}
-
-/* Strong overrides for event page: ensure inline-styled headings and speaker blocks are readable */
-body.dark .card,
-body.dark .card *,
-body.dark .speakers-list,
-body.dark .speakers-list *,
-body.dark .speakers-list h4,
-body.dark .speakers-list div {
-  background-color: transparent !important;
-  color: #e6eef6 !important;
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-/* Specific: ensure emphasized in-speaker text is readable */
-body.dark .speakers-list span,
-body.dark .speakers-list p {
-  color: #dbeaf6 !important;
-}
-
-/* Noticeboard - dark mode color calibration */
-body.dark .notice-list {
-  /* keep the list container transparent to blend with page */
-  background: transparent !important;
-}
-
-body.dark .notice-item {
-  background: #07121a; /* very dark card background */
-  border-color: rgba(255,255,255,0.04);
-  color: #e6eef6;
-  box-shadow: none;
-}
-
-body.dark .notice-header-line {
-  color: #9fb3c8; /* muted cyan for meta line */
-}
-
-body.dark .notice-title strong {
-  color: #ffffff !important;
-}
-
-body.dark .notice-summary {
-  color: #cfeaf7;
-}
-
-body.dark .notice-full {
-  color: #e6f7ff;
-}
-
-body.dark .notice-pinned {
-  border-left-color: rgba(255,90,90,0.5);
-}
-body.dark .notice-pinned .notice-header-line::before {
-  background: rgba(255,90,90,0.06);
-  color: #ffb3b3;
-  border-color: rgba(255,90,90,0.12);
-}
-
-body.dark .notice-download {
-  background: #114e3f; /* deep desaturated green */
-  color: #e6eef6 !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-body.dark .notice-download:hover {
-  filter: brightness(1.04);
-}
-
-body.dark .notice-readmore {
-  color: #8fbffd; /* gentle blue for interactive text */
-}
-body.dark .notice-readmore:focus { outline: 3px solid rgba(143,191,253,0.12); border-radius: 6px; }
+/* theme/dark-mode rules removed */
 
 
 @media (max-width: 768px) {
@@ -507,31 +386,28 @@ body.dark .notice-readmore:focus { outline: 3px solid rgba(143,191,253,0.12); bo
   .nav-links a.active {
     color: #FFD600;
   }
-
-  /* When the switch is moved into the nav menu, style it as a menu item */
-  .nav-links .theme-switch {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-left: 0;
-    padding: 0.6rem 0;
-  }
-  .nav-links .theme-switch .theme-text {
-    color: #b80404;
-    font-size: 0.95rem;
-  }
-  .nav-links .theme-switch input[type="checkbox"] {
-    width: 36px;
-    height: 20px;
-  }
+  
 }
 .hero {
-  background: #ffffff; /* White hero */
+  background-color: #ffffff; /* White hero fallback */
+  /* Left-anchored decorative background image.
+     Image file should be placed at project root: JU_arabinda_bhaban.jpeg */
+  background-position: left center; /* anchor image to left */
+  background-repeat: no-repeat;
+  background-size: auto 100%; /* fit image height to hero; width will crop from right as viewport changes */
+  background-attachment: scroll; /* avoid mobile issues with fixed */
   color: #000000; /* Black text */
   text-align: center;
-  padding: 1rem 1rem 0 1rem;
   margin-bottom: 0;
   padding-bottom: 0;
+  position: relative;
+  overflow: hidden; /* prevent any background overflow from creating scroll */
+  /* Make hero fill viewport minus the navbar so landing page shows only hero */
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-logos {
@@ -539,21 +415,34 @@ body.dark .notice-readmore:focus { outline: 3px solid rgba(143,191,253,0.12); bo
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .hero-logo {
-  height: 70px;
+  height: 110px;
   object-fit: contain;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* Use a fixed background on larger screens for a stable look */
+@media (min-width: 900px) {
+  .hero::before {
+    background-attachment: fixed;
+    background-size: auto 100%;
+  }
+}
+
+/* On very small screens reduce background size to avoid covering text */
+@media (max-width: 480px) {
+  .hero::before {
+    background-size: 180px auto; /* small thumb-sized image */
+    background-position: left 1rem center;
+  }
+  .hero {
+    padding-left: 1rem;
+  }
 }
 
 .nav-links {
-
   list-style: none;
   display: flex;
   gap: 1.5rem;
@@ -569,6 +458,71 @@ body.dark .notice-readmore:focus { outline: 3px solid rgba(143,191,253,0.12); bo
 .nav-links a:hover,
 .nav-links a.active {
   color: #FFD600; /* Yellow for active/hover */
+}
+
+/* Ensure nav is visible and horizontal on larger screens */
+@media (min-width: 901px) {
+  .nav-links {
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1.5rem;
+  }
+  /* hide mobile toggle on large screens */
+  #menu-toggle, .hamburger { display: none !important; }
+}
+
+/* Desktop: place nav links centered under the logo */
+@media (min-width: 901px) {
+  .navbar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 20px;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .nav-links li { display: inline-block; }
+  .nav-links li a { padding: 0.6rem 0.9rem; }
+}
+
+/* Nav row groups nav links and theme switch; desktop: inline row, mobile: stacked */
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .nav-row {
+    display: block;
+  }
+  /* Keep previous mobile rule working if theme-switch was inside nav-links */
+  /* theme-switch removed */
+}
+
+@media (min-width: 901px) {
+  .nav-row { justify-content: center; }
+  /* theme-switch removed */
 }
 
 @media (max-width: 768px) {
@@ -864,13 +818,7 @@ footer {
   }
 }
 
-/* Dark mode for members */
-body.dark .member-card {
-  background: transparent !important;
-  border-color: rgba(0, 35, 139, 0.04) !important;
-  box-shadow: none !important;
-  color: #002d5a !important;
-}
+/* Dark mode removed: member card dark styles were removed */
 
 /* ===== Notice Board - Polished Institutional Styles ===== */
 .notice-list {
@@ -1014,9 +962,7 @@ body.dark .member-card {
   .notice-download { padding: 0.4rem 0.6rem; font-size: 0.9rem; }
 }
 
-body.dark .member-name { color: #e6eef6 !important; }
-body.dark .member-role, body.dark .member-interests, body.dark .member-email { color: #cbdff0 !important; }
-body.dark .social-link { color: #ffd54d !important; }
+/* Dark mode member text colors removed */
 
 .container {
             text-align: center;
@@ -1076,20 +1022,7 @@ body.dark .social-link { color: #ffd54d !important; }
   color: #999;
 }
 
-body.dark .project-search-input {
-  background: #2a2a2a;
-  border-color: #444;
-  color: #e0e0e0;
-}
-
-body.dark .project-search-input:focus {
-  border-color: #ffd54d;
-  box-shadow: 0 4px 12px rgba(255, 213, 77, 0.2);
-}
-
-body.dark .project-search-input::placeholder {
-  color: #666;
-}
+/* Dark mode removed: project search input overrides */
 
 .search-icon {
   position: absolute;
@@ -1099,9 +1032,7 @@ body.dark .project-search-input::placeholder {
   color: #999;
 }
 
-body.dark .search-icon {
-  color: #666;
-}
+/* Dark mode removed: search icon color */
 
 .search-results-info {
   text-align: center;
@@ -1114,11 +1045,7 @@ body.dark .search-icon {
   border-left: 4px solid #032c8a;
 }
 
-body.dark .search-results-info {
-  background: rgba(255, 213, 77, 0.1);
-  color: #ffd54d;
-  border-left-color: #ffd54d;
-}
+/* Dark mode removed: search results info */
 
 .project-card {
   background: #ffffff;
@@ -1134,15 +1061,7 @@ body.dark .search-results-info {
   transform: translateY(-2px);
 }
 
-body.dark .project-card {
-  background: #1e1e1e;
-  border-left-color: #1e1e1e;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-body.dark .project-card:hover {
-  box-shadow: 0 8px 20px rgba(255, 213, 77, 0.2);
-}
+/* Dark mode removed: project card overrides */
 
 .project-header {
   margin-bottom: 1.5rem;
@@ -1161,9 +1080,7 @@ body.dark .project-card:hover {
   letter-spacing: 0.5px;
 }
 
-body.dark .project-date {
-  color: #ffd54d;
-}
+/* Dark mode removed: project date color */
 
 .project-download-btn {
   display: inline-block;
@@ -1191,15 +1108,7 @@ body.dark .project-date {
   transform: translateY(0);
 }
 
-body.dark .project-download-btn {
-  background: #000000;
-  color: #e1ff00;
-}
-
-body.dark .project-download-btn:hover {
-  background: #4f3b00;
-  box-shadow: 0 4px 8px rgba(255, 213, 77, 0.3);
-}
+/* Dark mode removed: project download button */
 
 .project-header h2 {
   margin: 0 0 0.5rem 0;
@@ -1208,9 +1117,7 @@ body.dark .project-download-btn:hover {
   line-height: 1.3;
 }
 
-body.dark .project-header h2 {
-  color: #ffd54d;
-}
+/* Dark mode removed: project header h2 color */
 
 .project-metadata {
   display: flex;
@@ -1229,9 +1136,7 @@ body.dark .project-header h2 {
   line-height: 1.5;
 }
 
-body.dark .project-authors {
-  color: #ff6b6b;
-}
+/* Dark mode removed: project authors color */
 
 .author-index {
   font-size: 0.7rem;
@@ -1241,9 +1146,7 @@ body.dark .project-authors {
   margin: 0 2px;
 }
 
-body.dark .author-index {
-  color: #ffd54d;
-}
+/* Dark mode removed: author index color */
 
 .project-affiliations {
   display: flex;
@@ -1258,9 +1161,7 @@ body.dark .author-index {
   line-height: 1.4;
 }
 
-body.dark .project-affiliation {
-  color: #b3b3b3;
-}
+/* Dark mode removed: project affiliation color */
 
 .affiliation-index {
   font-size: 0.7rem;
@@ -1270,9 +1171,7 @@ body.dark .project-affiliation {
   margin-right: 3px;
 }
 
-body.dark .affiliation-index {
-  color: #ffd54d;
-}
+/* Dark mode removed: affiliation index color */
 
 .corresponding-author {
   margin: 0.05rem 0 0 0;
@@ -1281,9 +1180,7 @@ body.dark .affiliation-index {
   font-style: italic;
 }
 
-body.dark .corresponding-author {
-  color: #b3b3b3;
-}
+/* Dark mode removed: corresponding author color */
 
 .corresponding-author a {
   color: #032c8a;
@@ -1297,13 +1194,7 @@ body.dark .corresponding-author {
   color: #0244c9;
 }
 
-body.dark .corresponding-author a {
-  color: #ffd54d;
-}
-
-body.dark .corresponding-author a:hover {
-  color: #ffe082;
-}
+/* Dark mode removed: corresponding-author link colors */
 
 .project-body {
   line-height: 1.7;
@@ -1311,9 +1202,7 @@ body.dark .corresponding-author a:hover {
   margin-bottom: 1.5rem;
 }
 
-body.dark .project-body {
-  color: #e0e0e0;
-}
+/* Dark mode removed: project body color */
 
 .project-body p {
   margin: 1rem 0;
@@ -1347,9 +1236,7 @@ body.dark .project-body {
   overflow: hidden;
 }
 
-body.dark .project-figure {
-  background: #2a2a2a;
-}
+/* Dark mode removed: project figure background */
 
 .project-figure img {
   width: 100%;
@@ -1366,10 +1253,7 @@ body.dark .project-figure {
   text-align: center;
 }
 
-body.dark .project-figure figcaption {
-  color: #aaa;
-  border-top-color: #444;
-}
+/* Dark mode removed: project figure figcaption */
 
 .project-footer {
   display: flex;
@@ -1379,9 +1263,7 @@ body.dark .project-figure figcaption {
   border-top: 1px solid #e0e0e0;
 }
 
-body.dark .project-footer {
-  border-top-color: #444;
-}
+/* Dark mode removed: project footer */
 
 .more-details-link {
   display: inline-flex;
@@ -1401,14 +1283,7 @@ body.dark .project-footer {
   transform: translateX(4px);
 }
 
-body.dark .more-details-link {
-  background: #322701;
-  color: #1a1a1a;
-}
-
-body.dark .more-details-link:hover {
-  background: #03852e;
-}
+/* Dark mode removed: more-details-link overrides */
 
 @media (max-width: 768px) {
   .projects-container {
