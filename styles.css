@@ -338,7 +338,7 @@ footer,
 /* theme/dark-mode rules removed */
 
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
