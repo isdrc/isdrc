@@ -553,3 +553,263 @@ async function loadNotices() {
 // Hook notices loader
 document.addEventListener('DOMContentLoaded', loadNotices);
 
+
+// ===== Gallery Slideshow System =====
+class GallerySlideshow {
+  constructor() {
+    this.currentCategory = 'seminar';
+    this.currentImageIndex = 0;
+    this.images = [];
+    this.autoplayEnabled = true;  // Enabled by default
+    this.autoplayInterval = null;
+    this.autoplayDelay = 8000; // 8 seconds
+
+    this.initElements();
+    this.attachEventListeners();
+    this.loadCategory('seminar');
+  }
+
+  initElements() {
+    this.categoryButtons = document.querySelectorAll('.category-btn');
+    this.slideshowImage = document.getElementById('slideshow-image');
+    this.slideshowThumbnails = document.getElementById('slideshow-thumbnails');
+    this.prevBtn = document.getElementById('prev-slide');
+    this.nextBtn = document.getElementById('next-slide');
+    this.slideshowLoading = document.querySelector('.slideshow-loading');
+  }
+
+  attachEventListeners() {
+    // Category buttons
+    if (this.categoryButtons.length > 0) {
+      this.categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const category = btn.getAttribute('data-category');
+          this.switchCategory(category);
+        });
+      });
+    }
+
+    // Navigation buttons
+    if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.previousImage());
+    if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.nextImage());
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.previousImage();
+      if (e.key === 'ArrowRight') this.nextImage();
+    });
+
+    // Start autoplay by default
+    this.startAutoplay();
+  }
+
+  async loadCategory(category) {
+    this.currentCategory = category;
+    this.currentImageIndex = 0;
+    this.images = [];
+
+    // Get images from galleryData
+    if (galleryData[category]) {
+      this.images = [...galleryData[category]];
+    }
+
+    // For members category, fetch from members.json
+    if (category === 'members') {
+      try {
+        const res = await fetch('members.json', { cache: 'no-store' });
+        if (res.ok) {
+          const members = await res.json();
+          this.images = members
+            .map(m => (m.img && m.img.trim()) ? m.img.trim() : null)
+            .filter(Boolean);
+          this.images = Array.from(new Set(this.images));
+        }
+      } catch (e) {
+        console.warn('Failed to load members.json:', e);
+      }
+    }
+
+    this.updateDisplay();
+  }
+
+  switchCategory(category) {
+    // Stop autoplay when switching categories
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayInterval = null;
+    }
+
+    // Update active button
+    this.categoryButtons.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-category') === category) {
+        btn.classList.add('active');
+      }
+    });
+
+    // Load new category and restart autoplay
+    this.loadCategory(category).then(() => {
+      this.startAutoplay();
+    });
+  }
+
+  updateDisplay() {
+    if (this.images.length === 0) {
+      if (this.slideshowImage) this.slideshowImage.src = '';
+      if (this.slideshowThumbnails) this.slideshowThumbnails.innerHTML = '<p style="color: #999; padding: 20px;">No images available</p>';
+      return;
+    }
+
+    // Load main image
+    this.loadImage(this.images[this.currentImageIndex]);
+
+    // Generate thumbnails
+    this.generateThumbnails();
+
+    // Update button states
+    if (this.prevBtn) this.prevBtn.disabled = this.currentImageIndex === 0;
+    if (this.nextBtn) this.nextBtn.disabled = this.currentImageIndex === this.images.length - 1;
+  }
+
+  loadImage(imagePath) {
+    if (!imagePath || !this.slideshowImage) {
+      if (this.slideshowImage) this.slideshowImage.src = '';
+      return;
+    }
+
+    this.showLoading();
+    const candidates = this.buildImageCandidates(imagePath);
+    let index = 0;
+
+    const tryLoad = () => {
+      if (index >= candidates.length) {
+        if (this.slideshowImage) this.slideshowImage.src = '';
+        this.hideLoading();
+        return;
+      }
+
+      const img = new Image();
+      img.onload = () => {
+        if (this.slideshowImage) this.slideshowImage.src = candidates[index];
+        this.hideLoading();
+      };
+      img.onerror = () => {
+        index++;
+        tryLoad();
+      };
+      img.src = candidates[index];
+    };
+
+    tryLoad();
+  }
+
+  buildImageCandidates(imagePath) {
+    if (!imagePath) return [];
+    const p = imagePath.trim();
+    if (/^(https?:|\/)/i.test(p)) return [p];
+    
+    const encoded = p.split('/').map(encodeURIComponent).join('/');
+    const candidates = [p, `members_photos/${p}`, encoded, `members_photos/${encoded}`];
+    return Array.from(new Set(candidates));
+  }
+
+  generateThumbnails() {
+    if (!this.slideshowThumbnails) return;
+    
+    this.slideshowThumbnails.innerHTML = '';
+    
+    this.images.forEach((imagePath, index) => {
+      const thumb = document.createElement('div');
+      thumb.className = 'thumbnail-item';
+      if (index === this.currentImageIndex) {
+        thumb.classList.add('active');
+      }
+
+      const img = document.createElement('img');
+      img.alt = `Thumbnail ${index + 1}`;
+      
+      const candidates = this.buildImageCandidates(imagePath);
+      let imgIndex = 0;
+      
+      const tryLoadThumb = () => {
+        if (imgIndex >= candidates.length) {
+          img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70"%3E%3Crect fill="%23ddd" width="70" height="70"/%3E%3C/svg%3E';
+          return;
+        }
+        img.onerror = () => {
+          imgIndex++;
+          tryLoadThumb();
+        };
+        img.src = candidates[imgIndex];
+      };
+      tryLoadThumb();
+
+      thumb.appendChild(img);
+      thumb.addEventListener('click', () => this.goToImage(index));
+      this.slideshowThumbnails.appendChild(thumb);
+    });
+  }
+
+  nextImage() {
+    if (this.currentImageIndex < this.images.length - 1) {
+      this.currentImageIndex++;
+      this.updateDisplay();
+    }
+  }
+
+  previousImage() {
+    if (this.currentImageIndex > 0) {
+      this.currentImageIndex--;
+      this.updateDisplay();
+    }
+  }
+
+  goToImage(index) {
+    if (index >= 0 && index < this.images.length) {
+      this.currentImageIndex = index;
+      this.updateDisplay();
+    }
+  }
+
+  startAutoplay() {
+    this.autoplayEnabled = true;
+
+    const nextImageWrapped = () => {
+      if (this.currentImageIndex < this.images.length - 1) {
+        this.nextImage();
+      } else {
+        this.currentImageIndex = 0;
+        this.updateDisplay();
+      }
+    };
+
+    this.autoplayInterval = setInterval(nextImageWrapped, this.autoplayDelay);
+  }
+
+  stopAutoplay() {
+    this.autoplayEnabled = false;
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayInterval = null;
+    }
+  }
+
+  showLoading() {
+    if (this.slideshowLoading) {
+      this.slideshowLoading.classList.add('show');
+    }
+  }
+
+  hideLoading() {
+    if (this.slideshowLoading) {
+      this.slideshowLoading.classList.remove('show');
+    }
+  }
+}
+
+// Initialize slideshow when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.gallery-category-bar')) {
+    window.gallerySlideshow = new GallerySlideshow();
+  }
+});

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery Test</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #debug { border: 1px solid #ccc; padding: 10px; margin: 20px 0; background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <h1>Gallery Debug Test</h1>
+  
+  <div id="debug">
+    <h3>Debug Output:</h3>
+    <pre id="debug-output"></pre>
+  </div>
+
+  <section class="gallery">
+    <h2 style="text-align: center;">Gallery Test</h2>
+    
+    <!-- Category Selection Bar -->
+    <div class="gallery-category-bar">
+      <button class="category-btn active" data-category="training">
+        <span class="btn-icon">🎓</span> Trainings
+      </button>
+      <button class="category-btn" data-category="seminar">
+        <span class="btn-icon">📍</span> Seminars
+      </button>
+    </div>
+
+    <!-- Slideshow Container -->
+    <div class="gallery-slideshow-container">
+      <div class="slideshow-wrapper">
+        <div class="slideshow-image-container">
+          <img id="slideshow-image" src="" alt="Gallery Image" class="slideshow-image" />
+          <div class="slideshow-loading" id="slideshow-loading">Loading...</div>
+        </div>
+        
+        <!-- Navigation Controls -->
+        <div class="slideshow-controls">
+          <button id="prev-slide" class="slide-btn prev-btn" aria-label="Previous image">❮</button>
+          <button id="next-slide" class="slide-btn next-btn" aria-label="Next image">❯</button>
+        </div>
+
+        <!-- Thumbnails Strip -->
+        <div class="slideshow-thumbnails" id="slideshow-thumbnails"></div>
+
+        <!-- Image Counter -->
+        <div class="slideshow-info">
+          <span id="slideshow-counter" class="image-counter">1 / 1</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const debugOutput = document.getElementById('debug-output');
+    function logDebug(msg) {
+      debugOutput.textContent += msg + '\n';
+      console.log(msg);
+    }
+
+    logDebug('Page loaded, testing gallery setup...');
+    logDebug('Category bar exists: ' + !!document.querySelector('.gallery-category-bar'));
+    logDebug('Slideshow image exists: ' + !!document.getElementById('slideshow-image'));
+    logDebug('Prev button exists: ' + !!document.getElementById('prev-slide'));
+  </script>
+
+  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      logDebug('DOMContentLoaded fired');
+      logDebug('galleryData defined: ' + (typeof galleryData !== 'undefined'));
+      if (typeof galleryData !== 'undefined') {
+        logDebug('galleryData keys: ' + Object.keys(galleryData).join(', '));
+      }
+      logDebug('GallerySlideshow class exists: ' + (typeof GallerySlideshow !== 'undefined'));
+      logDebug('window.gallerySlideshow exists: ' + !!window.gallerySlideshow);
+    });
+  </script>
+</body>
+</html>
