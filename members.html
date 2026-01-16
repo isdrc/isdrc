@@ -44,27 +44,51 @@
     </nav>
   </header>
 
-  <section>
-    <h1>ISDRC Members</h1>
-    <p>Meet our group of the Innovation and Skill Development Research Centre.</p>
-    
-    <h3 style="text-align: center;  border-top: 2px solid red; border-bottom: 2px solid red;">Faculties</h3>
-    <div id="members-faculties" class="members-container"></div>
-    
-    <h3 style="text-align: center; border-top: 2px solid red; border-bottom: 2px solid red;">Research Scholars</h3>
-    <div id="members-researchers" class="members-container"></div>
-    
-    <h3 style="text-align: center;  border-top: 2px solid red; border-bottom: 2px solid red;">Students</h3>
-    <div id="members-students" class="members-container"></div>
-    
-    <h3 style="text-align: center; border-top: 2px solid red; border-bottom: 2px solid red;">Advisory Board</h3>
-    <div id="members-advisory" class="members-container"></div>
-      
+  <section class="members-section">
+    <div class="members-header">
+      <h1>Our Team</h1>
+      <p>Meet the brilliant minds driving innovation and skill development at ISDRC</p>
+    </div>
 
-    <div style="margin-top: 2rem; padding: 1.5rem; background: #f9f7f4; border-radius: 8px; border-left: 5px solid #b80404;">
-      <h2 style="color: #b80404; margin-top: 0;">❤️ Join Our Team</h2>
-      <p>Interested in becoming part of the ISDRC community? We welcome passionate students, researchers, and faculty members who are committed to innovation and skill development.</p>
-      <a href="https://forms.gle/Sq7H52agaZ2bWuCq8" class="download-btn" style="display: inline-block;">Register as a Member</a>
+    <!-- Category Filter Tabs -->
+    <div class="members-filter-tabs">
+      <button class="filter-tab active" data-filter="all">All Members</button>
+      <button class="filter-tab" data-filter="faculties">Faculties</button>
+      <button class="filter-tab" data-filter="researchers">Research Scholars</button>
+      <button class="filter-tab" data-filter="students">Students</button>
+      <button class="filter-tab" data-filter="advisory">Advisory Board</button>
+    </div>
+
+    <!-- Members Grid -->
+    <div class="members-grid">
+      <div class="members-category" data-category="faculties">
+        <h2 class="category-title">Faculties</h2>
+        <div id="members-faculties" class="members-container"></div>
+      </div>
+      
+      <div class="members-category" data-category="researchers">
+        <h2 class="category-title">Research Scholars</h2>
+        <div id="members-researchers" class="members-container"></div>
+      </div>
+      
+      <div class="members-category" data-category="students">
+        <h2 class="category-title">Students</h2>
+        <div id="members-students" class="members-container"></div>
+      </div>
+      
+      <div class="members-category" data-category="advisory">
+        <h2 class="category-title">Advisory Board</h2>
+        <div id="members-advisory" class="members-container"></div>
+      </div>
+    </div>
+
+    <!-- Join CTA Section -->
+    <div class="members-cta">
+      <div class="cta-content">
+        <h2>Join Our Community</h2>
+        <p>Are you passionate about innovation and skill development? We'd love to have you on our team!</p>
+        <a href="https://forms.gle/Sq7H52agaZ2bWuCq8" class="cta-button">Become a Member</a>
+      </div>
     </div>
   </section>
 

@@ -329,6 +329,9 @@ function renderMember(member) {
   const imgAlt = escapeHtml(member.imgAlt || member.name || 'Member');
   const imgSrc = member.img && member.img.trim() ? member.img : 'placeholder.png';
 
+  // Email SVG
+  const emailSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>`;
+
   // LinkedIn SVG
   const linkedInSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764c.966 0 1.75.79 1.75 1.764s-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.026-3.056-1.863-3.056-1.864 0-2.151 1.456-2.151 2.963v5.697h-3v-10h2.881v1.367h.041c.401-.758 1.379-1.558 2.839-1.558 3.037 0 3.6 2.000 3.6 4.6v5.591z"/></svg>`;
 
@@ -337,6 +340,9 @@ function renderMember(member) {
 
   // Build social icons
   let socialIcons = '';
+  if (member.email && member.email.trim()) {
+    socialIcons += `<a href="mailto:${escapeAttr(member.email)}" aria-label="Email - ${escapeAttr(name)}" class="social-link" title="Email">${emailSvg}</a>`;
+  }
   if (member.linkedin && member.linkedin.trim()) {
     socialIcons += `<a href="${escapeAttr(member.linkedin)}" target="_blank" aria-label="LinkedIn - ${escapeAttr(name)}" class="social-link">${linkedInSvg}</a>`;
   }
@@ -351,7 +357,6 @@ function renderMember(member) {
       <div class="member-name">${name}</div>
       <div class="member-role">${role}</div>
       <div class="member-interests">Interests: ${interests}</div>
-      <div class="member-email"> Email: ${email} </div>
       <div class="social-icons">
         ${socialIcons}
       </div>
@@ -552,6 +557,37 @@ async function loadNotices() {
 
 // Hook notices loader
 document.addEventListener('DOMContentLoaded', loadNotices);
+
+// ===== Members Page Filter System =====
+document.addEventListener('DOMContentLoaded', () => {
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const memberCategories = document.querySelectorAll('.members-category');
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const filter = tab.getAttribute('data-filter');
+
+      // Update active tab
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Update visible categories
+      memberCategories.forEach(category => {
+        category.classList.remove('show', 'show-all');
+        if (filter === 'all') {
+          category.classList.add('show-all');
+        } else if (category.getAttribute('data-category') === filter) {
+          category.classList.add('show');
+        }
+      });
+    });
+  });
+
+  // Show all categories by default
+  memberCategories.forEach(category => {
+    category.classList.add('show-all');
+  });
+});
 
 
 // ===== Gallery Slideshow System =====

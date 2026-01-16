@@ -1010,73 +1010,281 @@ footer {
 }
 
 
-/* ===== Members page: responsive grid & cards ===== */
-.members-container {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 0.25rem;
-  max-width: 90%;
-  margin: 1.5rem auto 2rem auto;
-  padding: 0 0.25rem;
+/* ===== Members Page: Modern Clean Design ===== */
+.members-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
 }
 
+.members-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.members-header h1 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.members-header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Filter Tabs */
+.members-filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  padding: 10px 24px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  color: #333;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.filter-tab:hover {
+  border-color: #910200;
+  color: #910200;
+}
+
+.filter-tab.active {
+  background: #910200;
+  color: white;
+  border-color: #910200;
+}
+
+/* Members Grid & Categories */
+.members-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.members-category {
+  display: none;
+}
+
+.members-category.show {
+  display: block;
+}
+
+.members-category.show-all {
+  display: block;
+}
+
+.category-title {
+  font-size: 1.5rem;
+  color: #910200;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+/* Members Container - Grid Layout */
+.members-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Member Card - Modern Design */
 .member-card {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
   align-items: center;
-  background: transparent;
-  padding: 0.25rem;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.04);
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(145, 2, 0, 0.12);
+  border-color: #910200;
 }
 
 .member-avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   object-fit: cover;
-  flex: 0 0 100px;
-  border: 3px solid rgba(0, 33, 164, 0.08);
+  border: 3px solid #910200;
+  margin-bottom: 1rem;
 }
 
 .member-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .member-name {
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #00027d;
+  color: #1a1a1a;
 }
 
 .member-role {
   font-size: 0.95rem;
-  color: #003f90;
+  color: #910200;
+  font-weight: 600;
 }
 
 .member-interests {
-  font-size: 0.88rem;
-  color: #444;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.4;
 }
 
 .member-email {
-  font-size: 0.88rem;
-  color: #444;
+  font-size: 0.85rem;
+  color: #999;
+  word-break: break-all;
 }
 
 .social-icons {
-  margin-top: 0.35rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .social-link {
-  color: #032c8a;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  color: #910200;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
-.social-link svg { display: block; }
-.social-link:hover { color: #8b0303; }
+
+.social-link:hover {
+  background: #910200;
+  color: white;
+  transform: scale(1.1);
+}
+
+.social-link svg {
+  display: block;
+}
+
+/* CTA Section */
+.members-cta {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, #910200 0%, #700101 100%);
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.cta-content p {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 32px;
+  background: white;
+  color: #910200;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+}
+
+.cta-button:hover {
+  background: transparent;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .members-section {
+    padding: 2rem 1rem;
+  }
+
+  .members-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .members-filter-tabs {
+    gap: 0.75rem;
+  }
+
+  .filter-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .members-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .member-card {
+    padding: 1rem;
+  }
+
+  .member-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .members-cta {
+    padding: 2rem 1rem;
+  }
+
+  .cta-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-content p {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
 
 @media (max-width: 768px) {
   .members-container {
