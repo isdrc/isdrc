@@ -44,12 +44,48 @@
     </nav>
   </header>
 
-  <section>
-    <h2>Download Centre</h>
-  
+  <section class="downloads-section">
+    <div class="downloads-header">
+      <h1>Download Centre</h1>
+    </div>
 
-  <div class="container">  <img src="underConstruction.png" alt="This page is under construction" class="construction-img">
- </section>
+    <!-- Sort Filter -->
+    <div class="downloads-filter">
+      <span class="filter-label">Sort by:</span>
+      <button class="sort-btn active" data-sort="newest">Newest First</button>
+      <button class="sort-btn" data-sort="oldest">Oldest First</button>
+    </div>
+
+    <!-- Year Filter -->
+    <div class="year-filter">
+      <label for="year-select" class="filter-label">Filter by Year:</label>
+      <select id="year-select" class="year-dropdown">
+        <option value="">All Years</option>
+        <!-- Options will be generated dynamically -->
+      </select>
+    </div>
+
+    <!-- Downloads Table -->
+    <div class="downloads-container">
+      <table class="downloads-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="downloads-body">
+          <!-- Rows will be loaded dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="empty-state" style="display: none;">
+      <p>No downloads available at this time.</p>
+    </div>
+  </section>
  <footer style="padding: 10px 20px; background: #212121; font-size: 0.9rem; color: #FFFFFF;">
 
   <div style="text-align: center;">

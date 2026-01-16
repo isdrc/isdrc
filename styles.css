@@ -1235,6 +1235,235 @@ footer {
   color: white;
 }
 
+/* ===== Downloads Page: Modern Table Design ===== */
+.downloads-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.downloads-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.downloads-header h1 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.downloads-header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Downloads Filter */
+.downloads-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.sort-btn {
+  padding: 8px 20px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  color: #333;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.sort-btn:hover {
+  border-color: #910200;
+  color: #910200;
+}
+
+.sort-btn.active {
+  background: #910200;
+  color: white;
+  border-color: #910200;
+}
+
+.year-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 1.5rem 0 2rem 0;
+  flex-wrap: wrap;
+}
+
+.year-btn {
+  padding: 8px 20px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  color: #333;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.year-btn:hover {
+  border-color: #910200;
+  color: #910200;
+}
+
+.year-btn.active {
+  background: #910200;
+  color: white;
+  border-color: #910200;
+}
+
+.downloads-container {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.downloads-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.downloads-table thead {
+  background: linear-gradient(135deg, #910200 0%, #700101 100%);
+  color: white;
+}
+
+.downloads-table th {
+  padding: 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.downloads-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+.downloads-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.downloads-table td {
+  padding: 1.25rem;
+  color: #333;
+  vertical-align: middle;
+}
+
+.downloads-table td:first-child {
+  color: #910200;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.download-title {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.25rem;
+}
+
+.download-description {
+  font-size: 0.85rem;
+  color: #999;
+  margin: 0;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 8px 12px;
+  background: transparent;
+  color: #910200;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.download-btn:hover {
+  background: transparent;
+  color: #700101;
+  transform: translateY(-2px);
+  text-decoration: underline;
+}
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.download-icon {
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design for Downloads */
+@media (max-width: 768px) {
+  .downloads-section {
+    padding: 2rem 1rem;
+  }
+
+  .downloads-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .downloads-table {
+    font-size: 0.85rem;
+  }
+
+  .downloads-table th,
+  .downloads-table td {
+    padding: 0.75rem;
+  }
+
+  .downloads-table th {
+    font-size: 0.75rem;
+  }
+  .download-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .download-description {
+    display: none;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .members-section {

@@ -589,6 +589,167 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ===== Downloads Page System =====
+let downloadsData = []; // Store downloads data globally
+let currentSortOrder = 'newest'; // Default sort order
+let currentYearFilter = null; // null means show all years
+
+async function loadDownloads() {
+  const tbody = document.getElementById('downloads-body');
+  const emptyState = document.getElementById('empty-state');
+  
+  if (!tbody) return; // Nothing to do if table doesn't exist
+
+  try {
+    const res = await fetch('downloads.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to fetch downloads.json: ' + res.status);
+    downloadsData = await res.json();
+
+    if (!Array.isArray(downloadsData) || downloadsData.length === 0) {
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    // Generate year filter buttons
+    generateYearFilter();
+
+    // Render with current sort order
+    renderDownloads();
+    emptyState.style.display = 'none';
+  } catch (err) {
+    console.error('Error loading downloads:', err);
+    if (emptyState) {
+      emptyState.innerHTML = '<p>Error loading downloads. Please try again later.</p>';
+      emptyState.style.display = 'block';
+    }
+  }
+}
+
+function renderDownloads() {
+  const tbody = document.getElementById('downloads-body');
+  if (!tbody) return;
+
+  // Filter by year if selected
+  let filteredDownloads = downloadsData;
+  if (currentYearFilter) {
+    filteredDownloads = downloadsData.filter(download => {
+      const downloadYear = new Date(download.date || '1970-01-01').getFullYear();
+      return downloadYear === currentYearFilter;
+    });
+  }
+
+  // Sort downloads based on current sort order
+  const sortedDownloads = [...filteredDownloads].sort((a, b) => {
+    const dateA = new Date(a.date || '1970-01-01');
+    const dateB = new Date(b.date || '1970-01-01');
+    
+    if (currentSortOrder === 'newest') {
+      return dateB - dateA; // Newest first
+    } else {
+      return dateA - dateB; // Oldest first
+    }
+  });
+
+  // Clear and render rows
+  tbody.innerHTML = '';
+  sortedDownloads.forEach(download => {
+    const row = document.createElement('tr');
+    const formattedDate = formatDate(download.date);
+    
+    row.innerHTML = `
+      <td>${formattedDate}</td>
+      <td>
+        <div class="download-title">${escapeHtml(download.title || '')}</div>
+        ${download.description ? `<p class="download-description">${escapeHtml(download.description)}</p>` : ''}
+      </td>
+      <td>
+        <a href="${escapeAttr(download.downloadLink || '#')}" download class="download-btn">
+          <span class="download-icon">⬇</span>
+          Download
+        </a>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const date = new Date(dateStr);
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
+}
+
+function generateYearFilter() {
+  const filterContainer = document.getElementById('year-filter-container');
+  if (!filterContainer) return;
+
+  // Extract unique years from downloads and sort in descending order
+  const years = [...new Set(downloadsData.map(d => new Date(d.date || '1970-01-01').getFullYear()))].sort((a, b) => b - a);
+
+  // Clear existing year buttons (keep filter label)
+  const existingButtons = filterContainer.querySelectorAll('.year-btn');
+  existingButtons.forEach(btn => btn.remove());
+
+  // Create "All Years" button
+  const allYearsBtn = document.createElement('button');
+  allYearsBtn.className = 'year-btn active';
+  allYearsBtn.textContent = 'All Years';
+  allYearsBtn.addEventListener('click', () => {
+    currentYearFilter = null;
+    updateYearFilterButtons();
+    renderDownloads();
+  });
+  filterContainer.appendChild(allYearsBtn);
+
+  // Create year buttons
+  years.forEach(year => {
+    const btn = document.createElement('button');
+    btn.className = 'year-btn';
+    btn.textContent = year;
+    btn.addEventListener('click', () => {
+      currentYearFilter = year;
+      updateYearFilterButtons();
+      renderDownloads();
+    });
+    filterContainer.appendChild(btn);
+  });
+}
+
+function updateYearFilterButtons() {
+  const yearBtns = document.querySelectorAll('.year-btn');
+  yearBtns.forEach(btn => {
+    if (currentYearFilter === null && btn.textContent === 'All Years') {
+      btn.classList.add('active');
+    } else if (currentYearFilter && parseInt(btn.textContent) === currentYearFilter) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+// Initialize downloads and attach sort filter listeners
+document.addEventListener('DOMContentLoaded', () => {
+  loadDownloads();
+
+  // Attach sort button listeners
+  const sortBtns = document.querySelectorAll('.sort-btn');
+  sortBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sortOrder = btn.getAttribute('data-sort');
+      
+      // Update active state
+      sortBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Update sort order and re-render
+      currentSortOrder = sortOrder;
+      renderDownloads();
+    });
+  });
+});
+
 
 // ===== Gallery Slideshow System =====
 class GallerySlideshow {
