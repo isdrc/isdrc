@@ -1024,7 +1024,7 @@ footer {
   display: flex;
   gap: 1rem;
   align-items: center;
-  background: #ffffff;
+  background: transparent;
   padding: 0.25rem;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);

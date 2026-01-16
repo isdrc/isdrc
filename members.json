@@ -22,6 +22,17 @@
     "category": "faculties"
   },
   {
+    "name": "Dr. Animesh Layek",
+    "role": "Assistant Professor, Department of Physics, Jadavpur University",
+    "interests": "Thin film organic-inorganic based semiconductor electronic devices, Inorganic semiconductor material, Inorganic nanoparticles, metal-semiconductor based Schottky devices. ",
+    "email": "alayek.physics@jadavpuruniversity.in",
+    "img": "members_photos/AL.png",
+    "imgAlt": "Dr. Animesh Layek",
+    "linkedin": "",
+    "scholar": "https://scholar.google.com/citations?user=Qg2qhSAAAAAJ&hl=en",
+    "category": "faculties"
+  },
+  {
     "name": "Chinmoy Sarkar",
     "role": "Founding member of ISDRC, Doctoral student at Department of Physics, Jadavpur University",
     "interests": "Microprocessor Programming, Condensed matter physics, Low dimensional physics, Instrumentation",
@@ -142,6 +153,16 @@
     "scholar": "", 
     "category": "students" 
   },
+  { "name": "Debapriya Garai", 
+    "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
+    "interests": "Electronics, Astrophysics, Quantum Mechanics and Graphics Designing", 
+    "email": "debapriya06garai@gmail.com", 
+    "img": "members_photos/Debapriya28.png", 
+    "imgAlt": "Debapriya Garai", 
+    "linkedin": "", 
+    "scholar": "", 
+    "category": "students" 
+  },
   { "name": "Pranoy Dey", 
     "role": "Undergraduate student at Department of Physics, Jadavpur University (Batch 2028)", 
     "interests": "Quantum Mechanics, Electronics,Wireless Electricity Transportation", 
@@ -152,24 +173,13 @@
     "scholar": "", 
     "category": "students" 
   },
-    { 
+  { 
     "name": "Shouvik Datta", 
     "role": "Postgraduate student at Department of Physics, Jadavpur University (Batch 2026)", 
     "interests": "Designing and preparation of hardware", 
     "email": "dattashouvik003@gmail.com", 
     "img": "members_photos/Shouvik26.png", 
     "imgAlt": "Shouvik Datta", 
-    "linkedin": "", 
-    "scholar": "", 
-    "category": "students" 
-  },
-    { 
-    "name": "Sauhardya Mandal", 
-    "role": "Postgraduate student at Department of  Physics, Jadavpur University (Batch 2027)", 
-    "interests": "Observational Astronomy, Quantum Computing", 
-    "email": "mandalsauhardya@gmail.com", 
-    "img": "members_photos/Sauhardya27.png", 
-    "imgAlt": "SAUHARDYA MANDAL", 
     "linkedin": "", 
     "scholar": "", 
     "category": "students" 
