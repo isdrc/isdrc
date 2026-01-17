@@ -2033,15 +2033,6 @@ footer {
 }
 
 /* ===== Blog Page Styles ===== */
-.blog-hero {
-  background-color: #ffffff;
-  color: #000000;
-  text-align: center;
-  padding: 3rem 1rem;
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-}
 
 .blog-hero-content h1 {
   font-size: 2.5rem;
@@ -2068,15 +2059,13 @@ footer {
 }
 
 .blog-intro {
-  background: #f9f9f9;
+  background: #ffffff;
   padding: 2rem;
-  border-radius: 8px;
-  border-left: 4px solid #b80404;
 }
 
 .blog-intro h2 {
   color: #b80404;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
