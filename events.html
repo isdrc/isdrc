@@ -45,73 +45,151 @@
     </nav>
   </header>
 
-  <section>
-    <h1>Our Events</h1>
-    <div class="card" style="max-width:1000px; margin:auto; background:#fff; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-left:5px solid #b80404; padding:2rem;">
-      <h3 style="text-align:center; color:#b80404;">National Seminar 2026</h3>
-      <p><strong>One Day National Seminar on Scientific Innovation and Skill Development for Societal Advancement</strong><br>Summit of Talks, Activities and Workshops<br> Date: <span style="font-size:1.05em;color:#b80404;font-weight:bold;">18th March 2026</span></p>
-      <div class="speakers-list" style="margin-top:1.5rem; background:#faf6f0; border-radius:10px; padding:1.2em 1.5em; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-        <h4 style="margin-bottom:0.7em; color:#b80404; font-size:1.15em; letter-spacing:0.5px;">Featured Speakers</h4>
-        <ul style="list-style:none; padding:0; margin:0;">
-          <li style="margin-bottom:1.1em;">
-            <div style="font-weight:bold; color:#444; font-size:0.98em; margin-top:0.2em;">Prof. (Dr.) Urbasi Sinha<br><span style="font-style:italic; color:#666;">Senior Professor at the Raman Research Institute (RRI), Bengaluru and CERC at the University of Calgary</span></div>
-          </li>
-          <li style="margin-bottom:1.1em;">
-            <div style="font-weight:bold; color:#444; font-size:0.98em; margin-top:0.2em;">Prof. (Dr.) Soumen Mondal<br><span style="font-style:italic; color:#666;">Senior Professor, SNBNCBS</span></div>
-          </li>
-          <li style="margin-bottom:1.1em;">
-            <div style="font-weight:bold; color:#444; font-size:0.98em; margin-top:0.2em;">Prof. (Dr.) Rajib Bandyopadhyay<br><span style="font-style:italic; color:#666;">Professor, Department of Instrumentation and Electronics Engineering, Jadavpur University</span></div>
-          </li>
-          <li style="margin-bottom:1.1em;">
-            <div style="font-weight:bold; color:#444; font-size:0.98em; margin-top:0.2em;">Dr. Santanu Acharya<br><span style="font-style:italic; color:#666;">Assistant Controller of Patents and Designs, Indian Patent Office, O/o CGPDTM, Department for Promotion of Industry and Internal Trade, Ministry of Commerce & Industry, Government of India.</span></div>
-          </li>
-        </ul>
+  <section class="events-section">
+    <div class="events-header">
+      <h1>Our Events</h1>
+      <p>Discover the latest seminars, workshops, and collaborative initiatives at ISDRC</p>
+    </div>
+
+    <!-- Event Filter Tabs -->
+    <div class="events-filter-tabs">
+      <button class="event-filter-tab active" data-filter="all">All Events</button>
+      <button class="event-filter-tab" data-filter="2026">2026 Events</button>
+      <button class="event-filter-tab" data-filter="2025">2025 Events</button>
+      <button class="event-filter-tab" data-filter="upcoming">Upcoming</button>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="events-grid">
+      <!-- Event 1: 2026 National Seminar (Upcoming) -->
+      <div class="event-card" data-event-year="2026" data-event-status="upcoming">
+        <div class="event-header">
+          <h2 class="event-title">National Seminar 2026</h2>
+          <span class="event-badge upcoming">Upcoming</span>
+        </div>
+        
+        <div class="event-meta">
+          <div class="meta-item">
+            <strong>Date:</strong> <span style="color: #910200; font-weight: 700;">18th March 2026</span>
+          </div>
+          <div class="meta-item">
+            <strong>Theme:</strong> Scientific Innovation and Skill Development for Societal Advancement
+          </div>
+          <div class="meta-item">
+            <strong>Type:</strong> One Day National Seminar
+          </div>
+        </div>
+
+        <div class="speakers-section">
+          <h3 class="speakers-title">Featured Speakers</h3>
+          <ul class="speakers-list">
+            <li class="speaker-item">
+              <div class="speaker-name">Prof. (Dr.) Urbasi Sinha</div>
+              <div class="speaker-title">Senior Professor at the Raman Research Institute (RRI), Bengaluru and CERC at the University of Calgary</div>
+            </li>
+            <li class="speaker-item">
+              <div class="speaker-name">Prof. (Dr.) Soumen Mondal</div>
+              <div class="speaker-title">Senior Professor, SNBNCBS</div>
+            </li>
+            <li class="speaker-item">
+              <div class="speaker-name">Prof. (Dr.) Rajib Bandyopadhyay</div>
+              <div class="speaker-title">Professor, Department of Instrumentation and Electronics Engineering, Jadavpur University</div>
+            </li>
+            <li class="speaker-item">
+              <div class="speaker-name">Dr. Santanu Acharya</div>
+              <div class="speaker-title">Assistant Controller of Patents and Designs, Indian Patent Office, O/o CGPDTM, Department for Promotion of Industry and Internal Trade, Ministry of Commerce & Industry, Government of India</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="event-footer">
+          <a href="https://sisdsa2.isdrcju.in/" target="_blank" rel="noopener noreferrer" class="event-btn">Learn More</a>
+        </div>
       </div>
-      <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 1.5rem;">
-        <a href="https://sisdsa2.isdrcju.in/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; color: #b80404; font-weight: bold; font-size: 1.08em; text-decoration: none; gap: 0.4em; transition: color 0.2s;">
-          More Info
-          <span style="display: inline-block; font-size: 1.3em; transform: translateY(1px);">&#8594;</span>
-        </a>
+
+      <!-- Event 2: 2025 National Seminar (Completed) -->
+      <div class="event-card" data-event-year="2025" data-event-status="completed">
+        <div class="event-header">
+          <h2 class="event-title">National Seminar 2025</h2>
+          <span class="event-badge completed">Completed</span>
+        </div>
+        
+        <div class="event-meta">
+          <div class="meta-item">
+            <strong>Date:</strong> <span style="color: #910200; font-weight: 700;">7th March 2025</span>
+          </div>
+          <div class="meta-item">
+            <strong>Theme:</strong> Scientific Innovation and Skill Development for Societal Advancement
+          </div>
+          <div class="meta-item">
+            <strong>Type:</strong> One Day National Seminar
+          </div>
+        </div>
+
+        <div class="speakers-section">
+          <h3 class="speakers-title">Featured Speakers</h3>
+          <ul class="speakers-list">
+            <li class="speaker-item">
+              <div class="speaker-name">Skill Development in Nanoscience and Nano Technology</div>
+              <div class="speaker-title">Dr. Prakriti Ranjan Bangal<br><span style="font-style: italic;">Sr. Principal Scientist, CSIR-IICT, Hyderabad</span></div>
+            </li>
+            <li class="speaker-item">
+              <div class="speaker-name">Skill Development in Medical Physics</div>
+              <div class="speaker-title">Dr. Dilip Kumar Ray<br><span style="font-style: italic;">Head, Department Of Medical Physics, CNCI Kolkata</span></div>
+            </li>
+            <li class="speaker-item">
+              <div class="speaker-name">AI Beckons: Perspectives and Opportunities</div>
+              <div class="speaker-title">Dr. Manas Pratim Das<br><span style="font-style: italic;">Programme Executive, Akashvani Kolkata</span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="event-footer">
+          <a href="https://sites.google.com/view/isdrcjuphysics/" target="_blank" rel="noopener noreferrer" class="event-btn">Event Details</a>
+        </div>
       </div>
     </div>
 
-    <div class="card" style="max-width:1000px; margin:auto; background:#fff; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-left:5px solid #b80404; padding:2rem;">
-      <h3 style="text-align:center; color:#b80404;">National Seminar 2025</h3>
-      <p><strong>One Day National Seminar on Scientific Innovation and Skill Development for Societal Advancement</strong><br>Summit of Talks, Activities and Workshops<br> Date: <span style="font-size:1.05em;color:#b80404;font-weight:bold;">7th March 2025</span></p>
-      <div class="speakers-list" style="margin-top:1.5rem; background:#faf6f0; border-radius:10px; padding:1.2em 1.5em; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-        <h4 style="margin-bottom:0.7em; color:#b80404; font-size:1.15em; letter-spacing:0.5px;">Featured Speakers</h4>
-        <ul style="list-style:none; padding:0; margin:0;">
-          <li style="margin-bottom:1.1em;">
-            <div style="font-weight:bold; color:#222; font-size:1.07em;">Skill Development in Nanoscience and Nano Technology</div>
-            <div style="color:#444; font-size:0.98em; margin-top:0.2em;">Dr. Prakriti Ranjan Bangal<br><span style="font-style:italic; color:#666;">Sr. Principal Scientist, CSIR-IICT, Hyderabad</span></div>
-          </li>
-          <li style="margin-bottom:1.1em;">
-            <div style="font-weight:bold; color:#222; font-size:1.07em;">Skill Development in Medical Physics</div>
-            <div style="color:#444; font-size:0.98em; margin-top:0.2em;">Dr. Dilip Kumar Ray<br><span style="font-style:italic; color:#666;">Head, Department Of Medical Physics, CNCI Kolkata</span></div>
-          </li>
-          <li>
-            <div style="font-weight:bold; color:#222; font-size:1.07em;">AI Beckons: Perspectives and Opportunities</div>
-            <div style="color:#444; font-size:0.98em; margin-top:0.2em;">Dr. Manas Pratim Das<br><span style="font-style:italic; color:#666;">Programme Executive, Akashvani Kolkata</span></div>
-          </li>
-        </ul>
-      </div>
-      <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 1.5rem;">
-        <a href="https://sites.google.com/view/isdrcjuphysics/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; color: #b80404; font-weight: bold; font-size: 1.08em; text-decoration: none; gap: 0.4em; transition: color 0.2s;">
-          More Info
-          <span style="display: inline-block; font-size: 1.3em; transform: translateY(1px);">&#8594;</span>
-        </a>
+    <!-- Events CTA Section -->
+    <div class="events-cta">
+      <div class="cta-content">
+        <h2>Stay Connected with ISDRC</h2>
+        <p>Be part of our dynamic community events and discover opportunities to collaborate, learn, and innovate</p>
+        <a href="contact.html" class="cta-button">Get in Touch</a>
       </div>
     </div>
   </section>
 
   <footer style="padding: 10px 20px; background: #212121; font-size: 0.9rem; color: #FFFFFF;">
+    <div style="text-align: center;">
+      <p style="margin: 0; color: #FFFFFF;">ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
+      <p style="margin: 0; color: #FFFFFF; font-style: italic;">Copyright &copy; 2026 isdrcju.in , All rights reserved.</p>
+    </div>
+  </footer>
 
-  <div style="text-align: center;">
-    <p style="margin: 0; color: #FFFFFF;">ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
-    <p style="margin: 0; color: #FFFFFF; font-style: italic;">Copyright &copy; 2026 isdrcju.in , All rights reserved.</p>
-  </div>
-
-</footer>
   <script src="script.js"></script>
+  <script>
+    // Event Filter Functionality
+    document.querySelectorAll('.event-filter-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+        
+        // Update active tab
+        document.querySelectorAll('.event-filter-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter events
+        document.querySelectorAll('.event-card').forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'block';
+          } else if (filter === 'upcoming') {
+            card.style.display = card.dataset.eventStatus === 'upcoming' ? 'block' : 'none';
+          } else {
+            card.style.display = card.dataset.eventYear === filter ? 'block' : 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
