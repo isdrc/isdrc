@@ -2032,5 +2032,163 @@ footer {
   }
 }
 
+/* ===== Blog Page Styles ===== */
+.blog-hero {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
 
+.blog-hero-content h1 {
+  font-size: 2.5rem;
+  color: #b80404;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
 
+.blog-hero-content p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.blog-section {
+  background-color: #ffffff;
+  padding: 2rem 1rem;
+}
+
+.blog-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.blog-intro {
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid #b80404;
+}
+
+.blog-intro h2 {
+  color: #b80404;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.blog-intro p {
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.blog-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.blog-benefits li {
+  background: white;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border-left: 4px solid #FFD600;
+  color: #333;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.blog-benefits li strong {
+  color: #b80404;
+}
+
+.blog-cta-section {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(185, 4, 4, 0.05) 0%, rgba(255, 214, 0, 0.05) 100%);
+  border-radius: 8px;
+}
+
+.blog-cta-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.blog-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background-color: #b80404;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.blog-btn:hover {
+  background-color: #8b0303;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(184, 4, 4, 0.3);
+}
+
+/* Blog page responsive styles */
+@media (max-width: 768px) {
+  .blog-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .blog-intro {
+    padding: 1.5rem;
+  }
+
+  .blog-benefits li {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .blog-cta-section {
+    padding: 1.5rem;
+  }
+
+  .blog-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .blog-hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .blog-hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .blog-intro h2 {
+    font-size: 1.4rem;
+  }
+
+  .blog-benefits li {
+    border-left-width: 3px;
+    padding: 0.7rem 1rem;
+  }
+
+  .blog-btn {
+    width: 90%;
+    max-width: 300px;
+    padding: 0.75rem 1rem;
+  }
+}
