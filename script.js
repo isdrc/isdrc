@@ -484,6 +484,25 @@ async function loadNotices() {
         actions.appendChild(a);
       }
 
+      // Link button (optional, for external links)
+      if (notice.link && notice.link.trim()) {
+        const linkBtn = document.createElement('a');
+        linkBtn.href = notice.link;
+        linkBtn.target = '_blank';
+        linkBtn.rel = 'noopener noreferrer';
+        linkBtn.className = 'notice-link';
+        // Insert inline SVG for chain link icon + accessible label span
+        const linkSvg = '<svg class="notice-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
+                      + '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>'
+                      + '<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>'
+                      + '</svg>';
+        // Use custom link label if provided, otherwise default to "View Link"
+        const linkLabel = (notice.linkLabel && notice.linkLabel.trim()) ? notice.linkLabel : 'View Link';
+        const label = '<span class="notice-link-label">' + escapeHtml(linkLabel) + '</span>';
+        linkBtn.innerHTML = linkSvg + label;
+        actions.appendChild(linkBtn);
+      }
+
       // Read more toggle and full content
       // Read more button: include a themed chevron icon + text
       const readMoreBtn = document.createElement('button');

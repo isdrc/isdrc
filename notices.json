@@ -7,6 +7,7 @@
     "content": "",
     "category": "announcement",
     "link": "https://sisdsa2.isdrcju.in/",
+    "linkLabel": "Visit Seminar Website",
     "download": null,
     "pinned": true,
     "visible": true
@@ -43,6 +44,7 @@
     "content": "The Innovation and Skill Development Research Centre (ISDRC), Department of Physics, Jadavpur University, invites one-page abstracts for inclusion in the Abstract Book of the National Seminar held on 7th March 2025.\nSubmit your abstract by 10th June 2025 to isdrcjuphys@gmail.com.",
     "category": "call",
     "link": "mailto:isdrcjuphys@gmail.com",
+    "linkLabel": "Mail Us",
     "download": null,
     "pinned": false,
     "visible": true
@@ -55,6 +57,7 @@
     "content": "We are pleased to announce the official website for the upcoming One-Day National Seminar organized by the ISDRC, Department of Physics, Jadavpur University.\nParticipants can access important updates, program schedule, and session details online. \nVisit Seminar Website: https://sites.google.com/view/isdrcjuphysics/home",
     "category": "announcement",
     "link": "https://sites.google.com/view/isdrcjuphysics/home",
+    "linkLabel": "Visit Seminar Website",
     "download": { "url": "https://drive.google.com/uc?export=download&id=1IiEkStz1VPsEl2Ec4PZxRCbeZCyGaFBb", "label": "Program Schedule (PDF)" },
     "pinned": false,
     "visible": true
@@ -66,7 +69,7 @@
     "summary": "One-day national seminar on Scientific Innovation and Skill Development for Societal Advancement.",
     "content": "ISDRC is organizing a one-day national seminar on 7th March 2025 named Scientific Innovation and Skill Development for Societal Advancement at the Dr. K.P. Basu Memorial Hall, Engineering Science Building, Jadavpur University, Kolkata.\nFaculty, researchers, students, and professionals from all fields are invited to participate.",
     "category": "seminar",
-    "link": "https://drive.google.com/file/d/1IiEkStz1VPsEl2Ec4PZxRCbeZCyGaFBb/view?usp=sharing",
+    "link": "",
     "download": { "url": "https://drive.google.com/uc?export=download&id=1Avs53KfCJSqHwsvueyiJwbJtwwl8gcOo", "label": "Seminar Flyer (PDF)" },
     "pinned": false,
     "visible": true
