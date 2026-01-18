@@ -681,52 +681,41 @@ function formatDate(dateStr) {
 }
 
 function generateYearFilter() {
-  const filterContainer = document.getElementById('year-filter-container');
-  if (!filterContainer) return;
+  const yearSelect = document.getElementById('year-select');
+  if (!yearSelect) return;
 
   // Extract unique years from downloads and sort in descending order
   const years = [...new Set(downloadsData.map(d => new Date(d.date || '1970-01-01').getFullYear()))].sort((a, b) => b - a);
 
-  // Clear existing year buttons (keep filter label)
-  const existingButtons = filterContainer.querySelectorAll('.year-btn');
-  existingButtons.forEach(btn => btn.remove());
+  // Clear existing options (keep the "All Years" option)
+  const allYearsOption = yearSelect.querySelector('option[value=""]');
+  yearSelect.innerHTML = '';
+  
+  if (allYearsOption) {
+    yearSelect.appendChild(allYearsOption);
+  } else {
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = 'All Years';
+    yearSelect.appendChild(option);
+  }
 
-  // Create "All Years" button
-  const allYearsBtn = document.createElement('button');
-  allYearsBtn.className = 'year-btn active';
-  allYearsBtn.textContent = 'All Years';
-  allYearsBtn.addEventListener('click', () => {
-    currentYearFilter = null;
-    updateYearFilterButtons();
-    renderDownloads();
-  });
-  filterContainer.appendChild(allYearsBtn);
-
-  // Create year buttons
+  // Create year options
   years.forEach(year => {
-    const btn = document.createElement('button');
-    btn.className = 'year-btn';
-    btn.textContent = year;
-    btn.addEventListener('click', () => {
-      currentYearFilter = year;
-      updateYearFilterButtons();
-      renderDownloads();
-    });
-    filterContainer.appendChild(btn);
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearSelect.appendChild(option);
   });
 }
 
-function updateYearFilterButtons() {
-  const yearBtns = document.querySelectorAll('.year-btn');
-  yearBtns.forEach(btn => {
-    if (currentYearFilter === null && btn.textContent === 'All Years') {
-      btn.classList.add('active');
-    } else if (currentYearFilter && parseInt(btn.textContent) === currentYearFilter) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
+function updateYearFilter() {
+  const yearSelect = document.getElementById('year-select');
+  if (!yearSelect) return;
+
+  const selectedValue = yearSelect.value;
+  currentYearFilter = selectedValue ? parseInt(selectedValue) : null;
+  renderDownloads();
 }
 
 // Initialize downloads and attach sort filter listeners
@@ -748,6 +737,12 @@ document.addEventListener('DOMContentLoaded', () => {
       renderDownloads();
     });
   });
+
+  // Attach year filter listener
+  const yearSelect = document.getElementById('year-select');
+  if (yearSelect) {
+    yearSelect.addEventListener('change', updateYearFilter);
+  }
 });
 
 
