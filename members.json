@@ -33,6 +33,17 @@
     "category": "faculties"
   },
   {
+    "name": "Arnab Kanti Karan",
+    "role": "Founding member of ISDRC, Researcher at Department of Physics, Jadavpur University",
+    "interests": "Condensed matter physics, Nanotechnology, Quantum Dot, Photovoltaics ",
+    "email": "arnabkantikaran13@gmail.com",
+    "img": "ArnabRS.png",
+    "imgAlt": "Arnab Kanti Karan",
+    "linkedin": "",
+    "scholar": "",
+    "category": "researchers"
+  },
+  {
     "name": "Chinmoy Sarkar",
     "role": "Founding member of ISDRC, Doctoral student at Department of Physics, Jadavpur University",
     "interests": "Microprocessor Programming, Condensed matter physics, Low dimensional physics, Instrumentation",
