@@ -198,8 +198,8 @@ Beyond academics and research, ISDRC also serves as a launchpad for entrepreneur
   <section id="visitor-section" style="text-align:center; padding:1rem; max-width:900px; margin:0 auto;">
     <div style="border:1px solid #ddd; padding:1rem; border-radius:6px; background:#fafafa;">
       <h3 style="margin:0 0 0.5rem 0;">Visitors</h3>
-      <p style="margin:0.25rem 0;">Total visitors: <strong id="visitor-count">--</strong></p>
-      <p style="margin:0.25rem 0;">Your country: <strong id="visitor-country">--</strong></p>
+      <p style="margin:0.25rem 0;">Total visitors: <strong id="visitor-count"></strong></p>
+      <p style="margin:0.25rem 0;">Country: <strong id="visitor-country"></strong></p>
     </div>
   </section>
 
@@ -229,10 +229,10 @@ Beyond academics and research, ISDRC also serves as a launchpad for entrepreneur
         return resp.json();
       }).then(function(data){
         if (!data) return;
-        var cnt = document.getElementById('visitor-count');
-        var country = document.getElementById('visitor-country');
-        if (cnt && typeof data.count !== 'undefined') cnt.textContent = data.count;
-        if (country && typeof data.country !== 'undefined') country.textContent = data.country;
+          var cnt = document.getElementById('visitor-count');
+          var country = document.getElementById('visitor-country');
+          if (cnt && typeof data.count !== 'undefined') cnt.textContent = data.count;
+          if (country) country.textContent = (typeof data.country !== 'undefined' ? data.country : 'Unknown');
       }).catch(function(){
         // silent
       });
