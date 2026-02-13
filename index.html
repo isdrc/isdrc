@@ -195,6 +195,14 @@ Beyond academics and research, ISDRC also serves as a launchpad for entrepreneur
     </div>
   </section>
 
+  <section id="visitor-section" style="text-align:center; padding:1rem; max-width:900px; margin:0 auto;">
+    <div style="border:1px solid #ddd; padding:1rem; border-radius:6px; background:#fafafa;">
+      <h3 style="margin:0 0 0.5rem 0;">Visitors</h3>
+      <p style="margin:0.25rem 0;">Total visitors: <strong id="visitor-count">--</strong></p>
+      <p style="margin:0.25rem 0;">Your country: <strong id="visitor-country">--</strong></p>
+    </div>
+  </section>
+
  <footer style="padding: 10px 20px; background: #212121; font-size: 0.9rem; color: #FFFFFF;">
 
   <div style="text-align: center;">
@@ -214,6 +222,22 @@ Beyond academics and research, ISDRC also serves as a launchpad for entrepreneur
   
 
   <script src="script.js"></script>
+  <script>
+    (function(){
+      fetch('/api/visitors').then(function(resp){
+        if (!resp.ok) throw new Error('Network response was not ok');
+        return resp.json();
+      }).then(function(data){
+        if (!data) return;
+        var cnt = document.getElementById('visitor-count');
+        var country = document.getElementById('visitor-country');
+        if (cnt && typeof data.count !== 'undefined') cnt.textContent = data.count;
+        if (country && typeof data.country !== 'undefined') country.textContent = data.country;
+      }).catch(function(){
+        // silent
+      });
+    })();
+  </script>
 </body>
 </html>
 
