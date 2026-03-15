@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ISDRC – Download Certificates</title>
+  <link rel="icon" type="image/png" href="isdrc_logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo-section" onclick="window.location.href='index.html'" style="cursor:pointer;">
+          <div class="logo-box">
+            <img src="ju_logo.png" alt="ISDRC Logo" class="ju-logo"/>
+          </div>
+          <div class="brand-text">
+            <span class="main-title">Jadavpur University</span>
+            <span class="sub-title">যাদবপুর বিশ্ববিদ্যালয়</span>
+          </div>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="hamburger">
+          <span class="line-1"></span>
+          <span class="line-2"></span>
+          <span class="line-3"></span>
+        </label>
+
+        <div class="nav-row">
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="conference.html">Conference</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="downloads.html">Download Centre</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="downloads-section">
+    <div class="downloads-header">
+      <h1>Download Certificates</h1>
+    </div>
+
+    <div id="login-form" class="login-form">
+      <form id="cert-login">
+        <div class="form-group">
+          <label for="userId">User ID:</label>
+          <input type="text" id="userId" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit" class="download-btn">Login</button>
+      </form>
+      <div style="text-align: center; margin-top: 1rem;">
+        <a href="downloads.html" style="color: #910200; text-decoration: none; font-weight: 600;">Back to Download Centre</a>
+      </div>
+    </div>
+
+    <div id="certificates-section" style="display: none;">
+      <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 2rem;">
+        <button id="logout-btn" class="download-btn">Log Out</button>
+      </div>
+      <h2 id="welcome-message"></h2>
+      <p>Download your Documents...</p>
+      <div id="certificates-list" class="documents-list"></div>
+    </div>
+
+    <div id="error-message" style="color: red; display: none;"></div>
+  </section>
+
+  <footer style="padding: 10px 20px; background: #212121; font-size: 0.9rem; color: #FFFFFF;">
+    <div style="text-align: center;">
+      <p style="margin: 0; color: #FFFFFF;">ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
+      <p style="margin: 0; color: #FFFFFF; font-style: italic;">Copyright &copy; 2026 isdrcju.in , All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Certificate login logic
+    document.getElementById('cert-login').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const userId = document.getElementById('userId').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const res = await fetch('certificates.json');
+        if (!res.ok) throw new Error('Failed to load certificates data');
+        const users = await res.json();
+
+        const user = users.find(u => u.userId === userId && u.password === password);
+        if (user) {
+          document.getElementById('login-form').style.display = 'none';
+          document.getElementById('certificates-section').style.display = 'block';
+          document.getElementById('welcome-message').textContent = `Hi! ${user.name}`;
+          displayCertificates(user.downloads);
+        } else {
+          showError('Invalid User ID or Password');
+        }
+      } catch (err) {
+        showError('Error loading certificates. Please try again.');
+        console.error(err);
+      }
+    });
+
+    // Logout functionality
+    document.getElementById('logout-btn').addEventListener('click', function() {
+      document.getElementById('certificates-section').style.display = 'none';
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('cert-login').reset();
+      document.getElementById('welcome-message').textContent = '';
+      document.getElementById('certificates-list').innerHTML = '';
+    });
+
+    function displayCertificates(downloads) {
+      const container = document.getElementById('certificates-list');
+      container.innerHTML = `
+        <table class="certificates-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="certificates-body">
+          </tbody>
+        </table>
+      `;
+      
+      const tbody = document.getElementById('certificates-body');
+      downloads.forEach(cert => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${escapeHtml(cert.title)}</td>
+          <td>
+            <a href="${escapeAttr(cert.link)}" download class="download-btn">
+              <span class="download-icon">⬇</span>
+              Download
+            </a>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function showError(message) {
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+      setTimeout(() => {
+        errorDiv.style.display = 'none';
+      }, 5000);
+    }
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      };
+      return String(text).replace(/[&<>"']/g, m => map[m]);
+    }
+
+    function escapeAttr(text) {
+      const map = {
+        '"': '&quot;',
+        "'": '&#39;',
+        '&': '&amp;'
+      };
+      return String(text).replace(/["'&]/g, m => map[m]);
+    }
+  </script>
+</body>
+</html>
