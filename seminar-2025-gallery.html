@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seminar 2025 Gallery – ISDRC</title>
+  <link rel="icon" type="image/png" href="isdrc_logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo-section" onclick="window.location.href='index.html'" style="cursor:pointer;">
+          <div class="logo-box">
+            <img src="ju_logo.png" alt="ISDRC Logo" class="ju-logo"/>
+          </div>
+          <div class="brand-text">
+            <span class="main-title">Jadavpur University</span>
+            <span class="sub-title">যাদবপুর বিশ্ববিদ্যালয়</span>
+          </div>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="hamburger">
+          <span class="line-1"></span>
+          <span class="line-2"></span>
+          <span class="line-3"></span>
+        </label>
+
+        <div class="nav-row">
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html" class="active">Events</a></li>
+            <li><a href="conference.html">Conference</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="downloads.html">Download Centre</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="gallery">
+    <h1 style="text-align: center; margin-bottom: 30px;">National Seminar SISDSA 2.0, 2025 Gallery</h1>
+
+    <!-- Photo Grid Container -->
+    <div class="photo-grid" id="photo-grid">
+      <!-- Images will be loaded here -->
+    </div>
+  </section>
+
+  <footer style="padding: 10px 20px; background: #212121; font-size: 0.9rem; color: #FFFFFF;">
+    <div style="text-align: center;">
+      <p style="margin: 0; color: #FFFFFF;">ISDRC, Jadavpur University, Kolkata, West Bengal, India</p>
+      <p style="margin: 0; color: #FFFFFF; font-style: italic;">Copyright &copy; 2026 isdrcju.in , All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Load and display seminar_2025 photos in grid
+    document.addEventListener('DOMContentLoaded', async () => {
+      const photoGrid = document.getElementById('photo-grid');
+      let images = [];
+
+      // Get images from galleryData
+      if (galleryData && galleryData['seminar_2025']) {
+        images = [...galleryData['seminar_2025']];
+      }
+
+      if (images.length === 0) {
+        photoGrid.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No photos available yet.</p>';
+        return;
+      }
+
+      // Create image elements
+      images.forEach(src => {
+        const img = document.createElement('img');
+        img.alt = 'Seminar 2025 Photo';
+        
+        // Build candidates for image loading
+        const candidates = buildCandidatesFor(src);
+        let index = 0;
+        
+        const tryLoad = () => {
+          if (index >= candidates.length) {
+            img.src = PLACEHOLDER_DATAURL;
+            return;
+          }
+          img.onerror = tryLoad;
+          img.src = candidates[index++];
+        };
+        tryLoad();
+        
+        photoGrid.appendChild(img);
+      });
+    });
+  </script>
+</body>
+</html>

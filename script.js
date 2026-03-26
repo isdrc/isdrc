@@ -139,6 +139,26 @@ const galleryData = {
   "seminar/Copy of DSC_0495.JPG",
   "seminar/Copy of DSC_0572.JPG"
   ],
+  seminar_2025: [
+    "seminar 2025/Copy of DSC_0076.JPG",
+    "seminar 2025/Copy of DSC_0088.JPG",
+    "seminar 2025/Copy of DSC_0133.JPG",
+    "seminar 2025/Copy of DSC_0139.JPG",
+    "seminar 2025/Copy of DSC_0153.JPG",
+    "seminar 2025/Copy of DSC_0174.JPG",
+    "seminar 2025/Copy of DSC_0206.JPG",
+    "seminar 2025/Copy of DSC_0229.JPG",
+    "seminar 2025/Copy of DSC_0256.JPG",
+    "seminar 2025/Copy of DSC_0267.JPG",
+    "seminar 2025/Copy of DSC_0284.JPG",
+    "seminar 2025/Copy of DSC_0326.JPG",
+    "seminar 2025/Copy of DSC_0357.JPG",
+    "seminar 2025/Copy of DSC_0370.JPG",
+    "seminar 2025/Copy of DSC_0400.JPG",
+    "seminar 2025/Copy of DSC_0492.JPG",
+    "seminar 2025/Copy of DSC_0495.JPG",
+    "seminar 2025/Copy of DSC_0572.JPG"
+  ],
   seminar_2026: [
     "seminar_2026/IMG_7130.JPG",
     "seminar_2026/IMG_7131.JPG",
