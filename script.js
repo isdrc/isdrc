@@ -139,6 +139,8 @@ const galleryData = {
   "seminar/Copy of DSC_0495.JPG",
   "seminar/Copy of DSC_0572.JPG"
   ],
+  seminar_2026: [
+  ],
   laboratory: [
     "img/laboratory1.jpg",
     "img/laboratory2.jpg",
@@ -920,7 +922,13 @@ class GallerySlideshow {
     if (/^(https?:|\/)/i.test(p)) return [p];
     
     const encoded = p.split('/').map(encodeURIComponent).join('/');
-    const candidates = [p, `members_photos/${p}`, encoded, `members_photos/${encoded}`];
+    
+    let candidates;
+    if (p.startsWith('seminar_2026/')) {
+      candidates = [p, encoded];
+    } else {
+      candidates = [p, `members_photos/${p}`, encoded, `members_photos/${encoded}`];
+    }
     return Array.from(new Set(candidates));
   }
 
