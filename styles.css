@@ -900,6 +900,39 @@ p {
   font-weight: normal;
 }
 
+/* ===== Activity Centre ===== */
+.activity-centre {
+  background: #fdfdfd;
+  padding: 2rem 0.8rem;
+}
+.activity-centre h2 {
+  color: #910200;
+  margin-bottom: 0.4rem;
+}
+.activity-centre p {
+  color: #2a2a2a;
+  margin: 0 auto 1rem;
+  max-width: 900px;
+}
+.activity-centre .activity-item {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 1.1rem;
+  max-width: 900px;
+  width: 100%;
+}
+.activity-centre .activity-item h3 {
+  margin-top: 0;
+}
+.activity-centre .activity-item img {
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+  margin-top: 0.8rem;
+}
+
 /* ===== Gallery ===== */
 .gallery-images {
   display: grid;

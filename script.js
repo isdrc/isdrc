@@ -218,6 +218,63 @@ const PLACEHOLDER_DATAURL = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
   </g>
 </svg>`);
 
+// Activity Centre carousel emulation
+const activities = [
+  {
+    title: 'Lectures on Quantum Computation',
+    description: 'ISDRC is now organising distinguished lectures of quantum computation and skills which can be developed within that domain. Lecturer: Prof Urbasi Sinha, RRI Bangalore',
+    image: 'image_activityc/Urbasi%20quantum.jpeg',
+    alt: 'Urbasi Quantum activity image'
+  },
+  {
+    title: 'Lectures related to Astronomy and Astrophysics',
+    description: 'A sessions on astrophysics concepts, observational techniques, and modern astronomical research led by Prof. Soumen Mondal, SNBNCBS',
+    image: 'image_activityc/isdrc-78.jpg',
+    alt: 'Astronomy and Astrophysics lecture image'
+  },
+  {
+    title: 'Information Session about Patent Rights and Regulations in India',
+    description: 'Talk on patent rights, filing process, and regulations in India, with a focus on how researchers can protect their innovations led by Dr. Santanu Acharya, expert from the Indian Patent Office.',
+    image: 'image_activityc/sacharya.jpg',
+    alt: 'Sacharya photo for patent session'
+  }
+];
+
+let currentActivityIndex = 0;
+
+function renderActivity(index) {
+  const activity = activities[index];
+  if (!activity) return;
+
+  const titleEl = document.getElementById('activity-title');
+  const descEl = document.getElementById('activity-desc');
+  const imgEl = document.getElementById('activity-image');
+
+  if (titleEl) titleEl.textContent = activity.title;
+  if (descEl) descEl.textContent = activity.description;
+  if (imgEl) {
+    imgEl.src = activity.image;
+    imgEl.alt = activity.alt;
+  }
+}
+
+function activateActivityCarousel() {
+  const nextBtn = document.getElementById('next-activity-btn');
+
+  if (!nextBtn) return;
+
+  nextBtn.addEventListener('click', () => {
+    currentActivityIndex = (currentActivityIndex + 1) % activities.length;
+    renderActivity(currentActivityIndex);
+  });
+}
+
+// Initialize Activity Centre on DOM content loaded
+document.addEventListener('DOMContentLoaded', () => {
+  renderActivity(currentActivityIndex);
+  activateActivityCarousel();
+});
+
 function createImageWithFallback(candidates, alt) {
   const img = document.createElement('img');
   img.alt = alt || '';
