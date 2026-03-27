@@ -184,6 +184,7 @@ const galleryData = {
     "seminar_2026/isdrc-182.jpg",
     "seminar_2026/isdrc-191.jpg",
     "seminar_2026/isdrc-196.jpg",
+    "seminar_2026/ae6f443a86574804b2d11dfac91054de(1).jpg",
     "seminar_2026/isdrc-206.jpg",
     "seminar_2026/isdrc-22.jpg",
     "seminar_2026/isdrc-67.jpg",

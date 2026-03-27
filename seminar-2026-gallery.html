@@ -78,15 +78,19 @@
         return;
       }
 
-      // Create image elements
-      images.forEach(src => {
+      // Separate out isdrc-206 image so it appears at bottom full-width
+      const bottomImageSrc = 'seminar_2026/isdrc-206.jpg';
+      const gridImages = images.filter(src => src !== bottomImageSrc);
+
+      // Create grid image elements
+      gridImages.forEach(src => {
         const img = document.createElement('img');
         img.alt = 'Seminar 2026 Photo';
-        
+
         // Build candidates for image loading
         const candidates = buildCandidatesFor(src);
         let index = 0;
-        
+
         const tryLoad = () => {
           if (index >= candidates.length) {
             img.src = PLACEHOLDER_DATAURL;
@@ -96,9 +100,40 @@
           img.src = candidates[index++];
         };
         tryLoad();
-        
+
         photoGrid.appendChild(img);
       });
+
+      // Add isdrc-206 at bottom as full dimension image
+      const bottomImg = document.createElement('img');
+      bottomImg.alt = 'Seminar 2026 Highlight - ISDRC 206';
+      bottomImg.style.width = 'calc(100% - 80px)';
+      bottomImg.style.maxWidth = '900px';
+      bottomImg.style.height = 'auto';
+      bottomImg.style.margin = '1.5rem auto 0';
+      bottomImg.style.borderRadius = '8px';
+
+      const bottomCandidates = buildCandidatesFor(bottomImageSrc);
+      let bottomIndex = 0;
+      const tryLoadBottom = () => {
+        if (bottomIndex >= bottomCandidates.length) {
+          bottomImg.src = PLACEHOLDER_DATAURL;
+          return;
+        }
+        bottomImg.onerror = tryLoadBottom;
+        bottomImg.src = bottomCandidates[bottomIndex++];
+      };
+      tryLoadBottom();
+
+      // After the grid, insert the full width image
+      const gallerySection = document.querySelector('.gallery');
+      if (gallerySection) {
+        const bottomWrapper = document.createElement('div');
+        bottomWrapper.style.marginTop = '2rem';
+        bottomWrapper.appendChild(bottomImg);
+        gallerySection.appendChild(bottomWrapper);
+      }
+
     });
   </script>
 </body>
