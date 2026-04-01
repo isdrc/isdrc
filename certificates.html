@@ -52,8 +52,9 @@
     </div>
 
     <div class="certificate-layout">
-      <div id="login-form" class="certificate-card certificate-card--auth">
+      <div id="login-form" class="certificate-card certificate-card--auth login-form">
         <h2>Login to your account</h2>
+        <div id="error-message"></div>
         <p class="section-description">Enter your User ID and password to view your certificate downloads.</p>
         <form id="cert-login">
           <div class="form-group">
@@ -66,10 +67,11 @@
           </div>
           <button type="submit" class="download-btn">Login</button>
         </form>
-        <div class="certificate-footer">
-          <a href="downloads.html" class="text-link">Back to Download Centre</a>
-        </div>
       </div>
+    </div>
+
+    <div class="certificate-footer">
+      <a href="downloads.html" class="text-link">Back to Download Centre</a>
     </div>
 
     <div id="certificates-section" class="certificate-card certificate-card--results" style="display: none;">
