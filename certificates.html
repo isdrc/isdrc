@@ -45,38 +45,45 @@
     </nav>
   </header>
 
-  <section class="downloads-section">
+  <section class="downloads-section certificate-page">
     <div class="downloads-header">
       <h1>Download Certificates</h1>
+      <p class="section-description">Securely access your SISDSA 2026 certificates. Login with your credentials and download all available documents from one place.</p>
     </div>
 
-    <div id="login-form" class="login-form">
-      <form id="cert-login">
-        <div class="form-group">
-          <label for="userId">User ID:</label>
-          <input type="text" id="userId" required>
+    <div class="certificate-layout">
+      <div id="login-form" class="certificate-card certificate-card--auth">
+        <h2>Login to your account</h2>
+        <p class="section-description">Enter your User ID and password to view your certificate downloads.</p>
+        <form id="cert-login">
+          <div class="form-group">
+            <label for="userId">User ID:</label>
+            <input type="text" id="userId" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+          </div>
+          <button type="submit" class="download-btn">Login</button>
+        </form>
+        <div class="certificate-footer">
+          <a href="downloads.html" class="text-link">Back to Download Centre</a>
         </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" required>
-        </div>
-        <button type="submit" class="download-btn">Login</button>
-      </form>
-      <div style="text-align: center; margin-top: 1rem;">
-        <a href="downloads.html" style="color: #910200; text-decoration: none; font-weight: 600;">Back to Download Centre</a>
       </div>
     </div>
 
-    <div id="certificates-section" style="display: none;">
-      <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 2rem;">
-        <button id="logout-btn" class="download-btn">Log Out</button>
+    <div id="certificates-section" class="certificate-card certificate-card--results" style="display: none;">
+      <div class="cert-results-header">
+        <div>
+          <h2 id="welcome-message"></h2>
+          <p class="section-description">Your available downloads are shown below.</p>
+        </div>
+        <button id="logout-btn" class="download-btn logout-btn">Log Out</button>
       </div>
-      <h2 id="welcome-message"></h2>
-      <p>Download your Documents...</p>
-      <div id="certificates-list" class="documents-list"></div>
+      <div id="certificates-list" class="certificates-grid"></div>
     </div>
 
-    <div id="error-message" style="color: red; display: none;"></div>
+    <div id="error-message"></div>
   </section>
 
   <footer style="padding: 10px 20px; background: #212121; font-size: 0.9rem; color: #FFFFFF;">
@@ -125,33 +132,33 @@
 
     function displayCertificates(downloads) {
       const container = document.getElementById('certificates-list');
-      container.innerHTML = `
-        <table class="certificates-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="certificates-body">
-          </tbody>
-        </table>
-      `;
-      
-      const tbody = document.getElementById('certificates-body');
+      container.innerHTML = '';
+
+      const grid = document.createElement('div');
+      grid.className = 'certificates-grid';
+
       downloads.forEach(cert => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${escapeHtml(cert.title)}</td>
-          <td>
-            <a href="${escapeAttr(cert.link)}" download class="download-btn">
-              <span class="download-icon">⬇</span>
-              Download
-            </a>
-          </td>
+        const card = document.createElement('div');
+        card.className = 'certificate-card-item';
+
+        const text = document.createElement('div');
+        text.className = 'item-text';
+        text.innerHTML = `
+          <div class="item-title">${escapeHtml(cert.title)}</div>
         `;
-        tbody.appendChild(row);
+
+        const action = document.createElement('a');
+        action.href = escapeAttr(cert.link);
+        action.download = '';
+        action.className = 'download-btn';
+        action.innerHTML = '<span class="download-icon">⬇</span> Download';
+
+        card.appendChild(text);
+        card.appendChild(action);
+        grid.appendChild(card);
       });
+
+      container.appendChild(grid);
     }
 
     function showError(message) {
