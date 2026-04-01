@@ -240,6 +240,10 @@
       {
         "title": "Certificate - SpotRegistration - SISDSA 2026",
         "link": "../seminar_2026/Certificate/spot_registration/Certificate_SISDSA2_SpotRegistration_arghyadeepsen.pdf"
+      },
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_arghyadeepsen.pdf"
       }
     ]
   },
@@ -317,6 +321,10 @@
       {
         "title": "Certificate - Participants - SISDSA 2026",
         "link": "../seminar_2026/Certificate/Participants/Certificate_SISDSA2_Participants_arpanpurkait.pdf"
+      },
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_arpanpurkait.pdf"
       }
     ]
   },
@@ -692,6 +700,10 @@
       {
         "title": "Certificate - SpotRegistration - SISDSA 2026",
         "link": "../seminar_2026/Certificate/spot_registration/Certificate_SISDSA2_SpotRegistration_madhuchhandasarkar.pdf"
+      },
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_drmadhuchhandasarkar.pdf"
       }
     ]
   },
@@ -1020,6 +1032,10 @@
       {
         "title": "Certificate - Participants - SISDSA 2026",
         "link": "../seminar_2026/Certificate/Participants/Certificate_SISDSA2_Participants_ranganchakrabarty.pdf"
+      },
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_ranganchakrabarty.pdf"
       }
     ]
   },
@@ -1707,6 +1723,50 @@
       {
         "title": "Certificate - SpotRegistration - SISDSA 2026",
         "link": "../seminar_2026/Certificate/spot_registration/Certificate_SISDSA2_SpotRegistration_vastavghosh.pdf"
+      }
+    ]
+  },
+  {
+    "userId": "nirmalbaugh",
+    "password": "sisdsa2",
+    "name": "Nirmal Baugh",
+    "downloads": [
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_nirmalbaugh.pdf"
+      }
+    ]
+  },
+  {
+    "userId": "sayakmukherjee",
+    "password": "sisdsa2",
+    "name": "Sayak Mukherjee",
+    "downloads": [
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_sayakmukherjee.pdf"
+      }
+    ]
+  },
+  {
+    "userId": "surajitdas",
+    "password": "sisdsa2",
+    "name": "Surajit Das",
+    "downloads": [
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_surajitdas.pdf"
+      }
+    ]
+  },
+  {
+    "userId": "sutapabaitalikghorui",
+    "password": "sisdsa2",
+    "name": "Sutapa Baitalik (Ghorui)",
+    "downloads": [
+      {
+        "title": "Certificate - Poster - SISDSA 2026",
+        "link": "../seminar_2026/Certificate/Poster/Certificate_SISDSA2_Poster_sutapabaitalikghorui.pdf"
       }
     ]
   }
